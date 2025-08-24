@@ -1,0 +1,10 @@
+this project is using ionic react typescript.
+please read @/src 
+please setup the entire project and please make the project to have best UI and best UX.
+i want to make an APP.
+the context/detail is in @/context.txt 
+and then for the design i want this to be responsive for both mobile and desktop.
+refer the designs to @/prompt-mobile.txt and @/prompt-dekstop.txt .
+
+please make sure the app works properly.
+remember THE APP IS ALREADY RUNNING, SO DON"T RUN THE APP.

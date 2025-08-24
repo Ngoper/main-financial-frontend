@@ -1,0 +1,8 @@
+nek gak salah kemaren mau fokus di fitur sg "User bisa tanya tentang saham 1 perusahaan"
+
+kita bisa bikin 3 "level" kepintaran e:
+AI cuma bisa jawab 1 hal berdasarkan data di dokumen (cth: pendapatan PT X naik atau turun di tahun 2024?)
+AI bisa jawab kesimpulan/implikasi dari data di dokumen (cth: kalau pendapatan PT X turun, tapi liabilitas naik, apa implikasinya + saham ini bagus atau tidak?)
+AI bisa jawab semua pertanyaan tentang perusahaan + bisa kasih guidance buat manajemen portofolio (cth: dari hasil analisa kita sebelumnya, apakah saham ini bagus dan berapa % dari portofolio yang harus saya masukan di saham ini?)
+
+dan rencana e kita mau bikin sampe level 2 dulu
