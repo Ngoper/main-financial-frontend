@@ -48,7 +48,7 @@ const App: React.FC = () => (
           <Chat />
         </Route>
         <Route exact path="/">
-          <Redirect to="/auth/login" />
+          <Redirect to="/dashboard" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
