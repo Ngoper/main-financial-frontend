@@ -4,8 +4,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import TopicSelection from './pages/chat/TopicSelection';
 import Chat from './pages/chat/Chat';
+import { LanguageProvider } from './components/localization/LanguageProvider';
+import { ThemeProvider } from './components/theme/ThemeProvider';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,34 +25,45 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
+import './theme/spacing-utilities.css';
 import './theme/variables.css';
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route exact path="/auth/login">
-          <Login />
-        </Route>
-        <Route exact path="/auth/register">
-          <Register />
-        </Route>
-        <Route exact path="/chat/topic-selection">
-          <TopicSelection />
-        </Route>
-        <Route exact path="/chat">
-          <Chat />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/dashboard" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
+    <ThemeProvider defaultTheme="system" enableTransitions={true}>
+      <LanguageProvider defaultLanguage="id">
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route exact path="/auth/login">
+              <Login />
+            </Route>
+            <Route exact path="/auth/register">
+              <Register />
+            </Route>
+            {/* Unified Chat Interface - Direct Access */}
+            <Route exact path="/chat">
+              <Chat />
+            </Route>
+            {/* Simplified Routing - All chat topics go to unified interface */}
+            <Route exact path="/chat/:mode">
+              <Chat />
+            </Route>
+            {/* Company Profile Routes */}
+            <Route exact path="/perusahaan/:kode">
+              <Dashboard />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </LanguageProvider>
+    </ThemeProvider>
   </IonApp>
 );
 

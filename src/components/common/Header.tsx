@@ -1,17 +1,82 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTheme } from '../theme/ThemeProvider';
+import ThemeToggle from '../theme/ThemeToggle';
 
+/**
+ * Header Component Properties
+ * 
+ * @interface HeaderProps
+ * @property {string} title - Title to display in the header
+ */
 interface HeaderProps {
   title: string;
 }
 
+/**
+ * Header Component
+ * 
+ * Main navigation header for the StockSavvy application.
+ * Provides:
+ * - Brand logo and navigation
+ * - Desktop navigation menu with smooth transitions
+ * - Theme toggle functionality
+ * - User notifications and profile access
+ * - Responsive design for mobile and desktop
+ * 
+ * Features:
+ * - Light/Dark theme support with proper contrast
+ * - ARIA accessibility labels and semantic HTML
+ * - Hover effects and smooth transitions
+ * - Mobile-responsive design patterns
+ * - Integration with React Router for navigation
+ * 
+ * @param {HeaderProps} props - Component properties
+ * @returns {JSX.Element} Rendered header component
+ */
 const Header: React.FC<HeaderProps> = ({ title }) => {
+  // Hook for programmatic navigation between routes
   const history = useHistory();
+  const { theme, toggleTheme } = useTheme();
+
+  /**
+   * Navigation items configuration for desktop menu
+   */
+  const navigationItems = [
+    { label: 'Home', path: '/dashboard' },
+    { label: 'Portfolio', path: '/dashboard' },
+    { label: 'AI Assistant', path: '/chat' },
+    { label: 'News', path: '/dashboard' },
+    { label: 'Community', path: '/dashboard' }
+  ];
+
+  /**
+   * Handle navigation item click
+   * @param {React.MouseEvent} e - Mouse event
+   * @param {string} path - Target route path
+   */
+  const handleNavigation = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    history.push(path);
+  };
 
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf4] dark:border-b-[#223649] px-4 md:px-10 py-3">
-      <div className="flex items-center gap-4 text-[#0d141c] dark:text-white">
-        <div className="size-4">
+    // Main header container with responsive design and theme support
+    <header 
+      className="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e2e8f0] dark:border-[#374151] bg-white dark:bg-[#101e23] transition-colors duration-300"
+      style={{
+        paddingLeft: 'var(--spacing-lg)',
+        paddingRight: 'var(--spacing-lg)',
+        paddingTop: 'var(--spacing-md)',
+        paddingBottom: 'var(--spacing-md)'
+      }}
+      role="banner"
+      aria-label="Main navigation header"
+    >
+      {/* Left section: Logo and branding */}
+      <div className="flex items-center gap-4 text-[#0f172a] dark:text-[#f8fafc]">
+        {/* StockSavvy logo icon */}
+        <div className="size-4" aria-label="StockSavvy logo">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
@@ -25,21 +90,49 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
             ></path>
           </svg>
         </div>
-        <h2 className="text-[#0d141c] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">{title}</h2>
+        
+        {/* Brand name */}
+        <h2 className="text-h3 text-primary">
+          StockSavvy
+        </h2>
       </div>
+      
+      {/* Right section: Navigation and actions */}
       <div className="flex flex-1 justify-end gap-4 md:gap-8">
-        <div className="hidden md:flex items-center gap-4 md:gap-9">
-          <a className="text-[#0d141c] dark:text-white text-sm font-medium leading-normal" href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); history.push('/dashboard'); }}>Home</a>
-          <a className="text-[#0d141c] dark:text-white text-sm font-medium leading-normal" href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); history.push('/dashboard'); }}>Portfolio</a>
-          <a className="text-[#0d141c] dark:text-white text-sm font-medium leading-normal" href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); history.push('/chat/topic-selection'); }}>Research</a>
-          <a className="text-[#0d141c] dark:text-white text-sm font-medium leading-normal" href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); history.push('/dashboard'); }}>News</a>
-          <a className="text-[#0d141c] dark:text-white text-sm font-medium leading-normal" href="#" onClick={(e: React.MouseEvent) => { e.preventDefault(); history.push('/dashboard'); }}>Community</a>
+        {/* Desktop navigation menu */}
+        <div className="hidden md:flex items-center" style={{ gap: 'var(--spacing-3xl)' }}>
+          {navigationItems.map((item) => (
+            <a 
+              key={item.label}
+              className="text-small text-secondary hover:text-accent font-medium transition-colors duration-200" 
+              href="#" 
+              onClick={(e) => handleNavigation(e, item.path)}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
-        <div className="flex items-center gap-2">
+        
+        {/* Action controls */}
+        <div className="flex items-center" style={{ gap: 'var(--spacing-md)' }}>
+          {/* Theme Toggle */}
+          <ThemeToggle 
+            variant="button" 
+            size="sm"
+            className="h-10 px-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
+          />
+          
+          {/* Notification button */}
           <button
-            className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#e7edf4] dark:bg-[#223649] text-[#0d141c] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+            className="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[#f1f5f9] dark:bg-[#223649] text-[#334155] dark:text-[#e2e8f0] hover:bg-[#e2e8f0] dark:hover:bg-[#2a3f52] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 transition-colors duration-200"
+            style={{
+              height: '44px', // Minimum touch target
+              padding: '0 var(--spacing-sm)'
+            }}
+            aria-label="Notifications"
+            title="View notifications"
           >
-            <div className="text-[#0d141c] dark:text-white" data-icon="Bell" data-size="20px" data-weight="regular">
+            <div className="text-[#334155] dark:text-[#e2e8f0]" data-icon="Bell" data-size="20px" data-weight="regular">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
                 <path
                   d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
@@ -47,10 +140,13 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
               </svg>
             </div>
           </button>
+          
+          {/* User avatar */}
           <div
-            className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+            className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-transparent hover:border-[#0d80f2] dark:hover:border-[#0db9f2] transition-colors duration-200 cursor-pointer"
             style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeaxPOE22Sa1yDJCzRsRth_clB1rINZtXUAwlWxLe_L3aA0z3aWNksAChbEtV_c1vC-Zgat8iiReqZe1QyCfR4yKm1Xg1Km5KeOpO46_aXkH0khA3r8PSEAOTq2hzWay8Jz5sXve7ejGHrx8DCddt1pUNrrzX2mHMk5OHhCyU3SVrfjDDjrWeao_FqQ9jOFjwN_K-UXI6Y76FM_rvwfdGmlBM7U30DDBXVihNvwyPaQKR6KNPwJpwNiV4_6PA_b81kDEpMEwxUyZx5")'}}
-          ></div>
+          >
+          </div>
         </div>
       </div>
     </header>

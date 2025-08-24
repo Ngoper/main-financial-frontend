@@ -2,200 +2,704 @@
 @tailwind components;
 @tailwind utilities;
 
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+/* StockSavvy Enhanced Theme System with Dynamic Switching */
+/* Premium financial app color palette with accessibility compliance */
 
 :root {
-	--ion-color-primary: #3880ff;
-	--ion-color-primary-rgb: 56, 128, 255;
+	/* Enhanced Primary Colors - Matching Design */
+	--ion-color-primary: #0d80f2;
+	--ion-color-primary-rgb: 13, 128, 242;
 	--ion-color-primary-contrast: #ffffff;
 	--ion-color-primary-contrast-rgb: 255, 255, 255;
-	--ion-color-primary-shade: #3171e0;
-	--ion-color-primary-tint: #4c8dff;
+	--ion-color-primary-shade: #0a6bbf;
+	--ion-color-primary-tint: #2390f4;
 
-	--ion-color-secondary: #3dc2ff;
-	--ion-color-secondary-rgb: 61, 194, 255;
+	--ion-color-secondary: #0db9f2;
+	--ion-color-secondary-rgb: 13, 185, 242;
 	--ion-color-secondary-contrast: #ffffff;
 	--ion-color-secondary-contrast-rgb: 255, 255, 255;
-	--ion-color-secondary-shade: #36abe0;
-	--ion-color-secondary-tint: #50c8ff;
+	--ion-color-secondary-shade: #0a9dd4;
+	--ion-color-secondary-tint: #25c1f4;
 
-	--ion-color-tertiary: #5260ff;
-	--ion-color-tertiary-rgb: 82, 96, 255;
-	--ion-color-tertiary-contrast: #ffffff;
-	--ion-color-tertiary-contrast-rgb: 255, 255, 255;
-	--ion-color-tertiary-shade: #4854e0;
-	--ion-color-tertiary-tint: #6370ff;
-
-	--ion-color-success: #2dd36f;
-	--ion-color-success-rgb: 45, 211, 111;
+	/* Financial Success/Danger Colors */
+	--ion-color-success: #10b981;
+	--ion-color-success-rgb: 16, 185, 129;
 	--ion-color-success-contrast: #ffffff;
 	--ion-color-success-contrast-rgb: 255, 255, 255;
-	--ion-color-success-shade: #28ba62;
-	--ion-color-success-tint: #42d77d;
+	--ion-color-success-shade: #0e9f6e;
+	--ion-color-success-tint: #28c490;
 
-	--ion-color-warning: #ffc409;
-	--ion-color-warning-rgb: 255, 196, 9;
-	--ion-color-warning-contrast: #000000;
-	--ion-color-warning-contrast-rgb: 0, 0, 0;
-	--ion-color-warning-shade: #e0ac08;
-	--ion-color-warning-tint: #ffca22;
-
-	--ion-color-danger: #eb445a;
-	--ion-color-danger-rgb: 235, 68, 90;
+	--ion-color-danger: #ef4444;
+	--ion-color-danger-rgb: 239, 68, 68;
 	--ion-color-danger-contrast: #ffffff;
 	--ion-color-danger-contrast-rgb: 255, 255, 255;
-	--ion-color-danger-shade: #cf3c4f;
-	--ion-color-danger-tint: #ed576b;
+	--ion-color-danger-shade: #d23636;
+	--ion-color-danger-tint: #f15757;
 
-	--ion-color-dark: #222428;
-	--ion-color-dark-rgb: 34, 36, 40;
+	--ion-color-warning: #f59e0b;
+	--ion-color-warning-rgb: 245, 158, 11;
+	--ion-color-warning-contrast: #ffffff;
+	--ion-color-warning-contrast-rgb: 255, 255, 255;
+	--ion-color-warning-shade: #d08009;
+	--ion-color-warning-tint: #f6a824;
+
+	/* Neutral Colors */
+	--ion-color-tertiary: #6366f1;
+	--ion-color-tertiary-rgb: 99, 102, 241;
+	--ion-color-tertiary-contrast: #ffffff;
+	--ion-color-tertiary-contrast-rgb: 255, 255, 255;
+	--ion-color-tertiary-shade: #5651d4;
+	--ion-color-tertiary-tint: #7375f2;
+
+	--ion-color-dark: #101e23;
+	--ion-color-dark-rgb: 16, 30, 35;
 	--ion-color-dark-contrast: #ffffff;
 	--ion-color-dark-contrast-rgb: 255, 255, 255;
-	--ion-color-dark-shade: #1e2023;
-	--ion-color-dark-tint: #383a3e;
+	--ion-color-dark-shade: #0e1a1f;
+	--ion-color-dark-tint: #283239;
 
-	--ion-color-medium: #92949c;
-	--ion-color-medium-rgb: 146, 148, 156;
-	--ion-color-medium-contrast: #ffffff;
-	--ion-color-medium-contrast-rgb: 255, 255, 255;
-	--ion-color-medium-shade: #808289;
-	--ion-color-medium-tint: #9d9fa6;
+	--ion-color-medium: #90adcb;
+	--ion-color-medium-rgb: 144, 173, 203;
+	--ion-color-medium-contrast: #000000;
+	--ion-color-medium-contrast-rgb: 0, 0, 0;
+	--ion-color-medium-shade: #7f96b3;
+	--ion-color-medium-tint: #9bb5d0;
 
-	--ion-color-light: #f4f5f8;
-	--ion-color-light-rgb: 244, 245, 248;
+	--ion-color-light: #f8fafc;
+	--ion-color-light-rgb: 248, 250, 252;
 	--ion-color-light-contrast: #000000;
 	--ion-color-light-contrast-rgb: 0, 0, 0;
-	--ion-color-light-shade: #d7d8da;
-	--ion-color-light-tint: #f5f6f9;
+	--ion-color-light-shade: #dadbde;
+	--ion-color-light-tint: #f9fbfc;
+
+	/* Dynamic Theme Variables - Light Mode (Default) */
+	--theme-bg-primary: #ffffff;
+	--theme-bg-secondary: #f8fafc;
+	--theme-bg-tertiary: #f1f5f9;
+	--theme-text-primary: #0f172a;
+	--theme-text-secondary: #334155;
+	--theme-text-muted: #64748b;
+	--theme-accent-blue: #0d80f2;
+	--theme-accent-cyan: #0db9f2;
+	--theme-hover: #e2e8f0;
+	--theme-active: #cbd5e1;
+	--theme-focus: #0d80f2;
+	--theme-success: #059669;
+	--theme-error: #dc2626;
+	--theme-warning: #d97706;
+	--theme-border-light: #e2e8f0;
+	--theme-border-medium: #cbd5e1;
+	--theme-border-strong: #94a3b8;
+
+	/* Professional Spacing System */
+	--spacing-xs: 4px;
+	--spacing-sm: 8px;
+	--spacing-md: 12px;
+	--spacing-lg: 16px;
+	--spacing-xl: 20px;
+	--spacing-2xl: 24px;
+	--spacing-3xl: 32px;
+	--spacing-4xl: 48px;
+
+	/* Card and Component Padding Standards */
+	--card-padding-x: 20px;
+	--card-padding-y: 24px;
+	--button-padding-x: 16px;
+	--button-padding-y: 12px;
+	--section-spacing: 32px;
+
+	/* Theme Transition Configuration */
+	--theme-transition-duration: 300ms;
+	--theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Typography Scale System - Mobile First Approach */
+	/* Display Typography - For hero sections and major headings */
+	--font-size-display: 1.875rem; /* 30px on mobile */
+	--line-height-display: 1.2;
+	--font-weight-display: 700;
+	--letter-spacing-display: -0.025em;
+
+	/* H1 Typography - Main page headings */
+	--font-size-h1: 1.5rem; /* 24px on mobile */
+	--line-height-h1: 1.3;
+	--font-weight-h1: 600;
+	--letter-spacing-h1: -0.015em;
+
+	/* H2 Typography - Section headings */
+	--font-size-h2: 1.25rem; /* 20px on mobile */
+	--line-height-h2: 1.4;
+	--font-weight-h2: 600;
+	--letter-spacing-h2: 0;
+
+	/* H3 Typography - Subsection headings */
+	--font-size-h3: 1.125rem; /* 18px on mobile */
+	--line-height-h3: 1.4;
+	--font-weight-h3: 500;
+	--letter-spacing-h3: 0;
+
+	/* Body Typography - Main content text */
+	--font-size-body: 1rem; /* 16px - minimum for mobile to prevent zoom */
+	--line-height-body: 1.6;
+	--font-weight-body: 400;
+	--letter-spacing-body: 0.01em;
+
+	/* Small Typography - Secondary content */
+	--font-size-small: 0.875rem; /* 14px */
+	--line-height-small: 1.5;
+	--font-weight-small: 400;
+	--letter-spacing-small: 0.01em;
+
+	/* Caption Typography - Labels and metadata */
+	--font-size-caption: 0.75rem; /* 12px */
+	--line-height-caption: 1.4;
+	--font-weight-caption: 500;
+	--letter-spacing-caption: 0.02em;
+
+	/* Button Typography */
+	--font-size-button: 1rem; /* 16px */
+	--line-height-button: 1.2;
+	--font-weight-button: 600;
+	--letter-spacing-button: 0.01em;
+
+	/* Input Typography */
+	--font-size-input: 1rem; /* 16px - prevents iOS zoom */
+	--line-height-input: 1.5;
+	--font-weight-input: 400;
+	--letter-spacing-input: 0.01em;
+
+	/* Label Typography */
+	--font-size-label: 0.875rem; /* 14px */
+	--line-height-label: 1.4;
+	--font-weight-label: 500;
+	--letter-spacing-label: 0.01em;
 }
 
-/*
-   * Dark Colors
-   * -------------------------------------------
-   */
-
-body {
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18,18,18;
-
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
-
-  --ion-color-step-50: #1e1e1e;
-  --ion-color-step-100: #2a2a2a;
-  --ion-color-step-150: #363636;
-  --ion-color-step-200: #414141;
-  --ion-color-step-250: #4d4d4d;
-  --ion-color-step-300: #595959;
-  --ion-color-step-350: #656565;
-  --ion-color-step-400: #717171;
-  --ion-color-step-450: #7d7d7d;
-  --ion-color-step-500: #898989;
-  --ion-color-step-550: #949494;
-  --ion-color-step-600: #a0a0a0;
-  --ion-color-step-650: #acacac;
-  --ion-color-step-700: #b8b8b8;
-  --ion-color-step-750: #c4c4c4;
-  --ion-color-step-800: #d0d0d0;
-  --ion-color-step-850: #dbdbdb;
-  --ion-color-step-900: #e7e7e7;
-  --ion-color-step-950: #f3f3f3;
-
-  --ion-item-background: #1e1e1e;
-
-  --ion-toolbar-background: #1f1f1f;
-
-  --ion-tab-bar-background: #1f1f1f;
-
-  --ion-card-background: #1e1e1e;
+/* Light Theme Styles - Applied when .light class is present */
+.light {
+  --theme-bg-primary: #ffffff;
+  --theme-bg-secondary: #f8fafc;
+  --theme-bg-tertiary: #f1f5f9;
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #334155;
+  --theme-text-muted: #64748b;
+  --theme-accent-blue: #0d80f2;
+  --theme-accent-cyan: #0db9f2;
+  --theme-hover: #e2e8f0;
+  --theme-active: #cbd5e1;
+  --theme-focus: #0d80f2;
+  --theme-success: #059669;
+  --theme-error: #dc2626;
+  --theme-warning: #d97706;
+  --theme-border-light: #e2e8f0;
+  --theme-border-medium: #cbd5e1;
+  --theme-border-strong: #94a3b8;
 }
 
-/*
-   * iOS Dark Theme
-   * -------------------------------------------
-   */
-
-.ios body {
-  --ion-background-color: #000000;
-  --ion-background-color-rgb: 0,0,0;
-
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
-
-  --ion-color-step-50: #0d0d0d;
-  --ion-color-step-100: #1a1a1a;
-  --ion-color-step-150: #262626;
-  --ion-color-step-200: #333333;
-  --ion-color-step-250: #404040;
-  --ion-color-step-300: #4d4d4d;
-  --ion-color-step-350: #595959;
-  --ion-color-step-400: #666666;
-  --ion-color-step-450: #737373;
-  --ion-color-step-500: #808080;
-  --ion-color-step-550: #8c8c8c;
-  --ion-color-step-600: #999999;
-  --ion-color-step-650: #a6a6a6;
-  --ion-color-step-700: #b3b3b3;
-  --ion-color-step-750: #bfbfbf;
-  --ion-color-step-800: #cccccc;
-  --ion-color-step-850: #d9d9d9;
-  --ion-color-step-900: #e6e6e6;
-  --ion-color-step-950: #f2f2f2;
-
-  --ion-item-background: #000000;
-
-  --ion-toolbar-background: #0d0d0d;
-
-  --ion-tab-bar-background: #0d0d0d;
+/* Dark Theme Styles - Applied when .dark class is present */
+.dark {
+  --theme-bg-primary: #101e23;
+  --theme-bg-secondary: #182634;
+  --theme-bg-tertiary: #223649;
+  --theme-text-primary: #f8fafc;
+  --theme-text-secondary: #e2e8f0;
+  --theme-text-muted: #94a3b8;
+  --theme-accent-blue: #0d80f2;
+  --theme-accent-cyan: #0db9f2;
+  --theme-hover: #2a3f52;
+  --theme-active: #374151;
+  --theme-focus: #0d80f2;
+  --theme-success: #10b981;
+  --theme-error: #ef4444;
+  --theme-warning: #f59e0b;
+  --theme-border-light: #374151;
+  --theme-border-medium: #4b5563;
+  --theme-border-strong: #6b7280;
 }
 
-.ios ion-modal {
-  --ion-background-color: var(--ion-color-step-100);
-  --ion-toolbar-background: var(--ion-color-step-150);
-  --ion-toolbar-border-color: var(--ion-color-step-250);
+/* Custom scrollbar for chat log */
+.chat-log::-webkit-scrollbar {
+  width: 6px;
 }
 
+.chat-log::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-/*
-   * Material Design Dark Theme
-   * -------------------------------------------
-   */
+.chat-log::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
 
-.md body {
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18,18,18;
+/* Responsive Typography - Tablet and Desktop Scaling */
+@media (min-width: 768px) {
+  :root {
+    /* Tablet Typography Scaling */
+    --font-size-display: 2.25rem; /* 36px on tablet */
+    --font-size-h1: 1.875rem; /* 30px on tablet */
+    --font-size-h2: 1.5rem; /* 24px on tablet */
+    --font-size-h3: 1.25rem; /* 20px on tablet */
+  }
+}
 
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
+@media (min-width: 1024px) {
+  :root {
+    /* Desktop Typography Scaling */
+    --font-size-display: 2.5rem; /* 40px on desktop */
+    --font-size-h1: 2rem; /* 32px on desktop */
+    --font-size-h2: 1.625rem; /* 26px on desktop */
+    --font-size-h3: 1.375rem; /* 22px on desktop */
+  }
+}
 
-  --ion-border-color: #222222;
+/* Enhanced Dark Theme - Applied with body.dark or html.dark */
+body.dark,
+html.dark {
+  --ion-background-color: var(--theme-bg-primary);
+  --ion-background-color-rgb: 16, 30, 35;
 
-  --ion-color-step-50: #1e1e1e;
-  --ion-color-step-100: #2a2a2a;
-  --ion-color-step-150: #363636;
-  --ion-color-step-200: #414141;
-  --ion-color-step-250: #4d4d4d;
-  --ion-color-step-300: #595959;
-  --ion-color-step-350: #656565;
-  --ion-color-step-400: #717171;
-  --ion-color-step-450: #7d7d7d;
-  --ion-color-step-500: #898989;
-  --ion-color-step-550: #949494;
-  --ion-color-step-600: #a0a0a0;
-  --ion-color-step-650: #acacac;
-  --ion-color-step-700: #b8b8b8;
-  --ion-color-step-750: #c4c4c4;
-  --ion-color-step-800: #d0d0d0;
-  --ion-color-step-850: #dbdbdb;
-  --ion-color-step-900: #e7e7e7;
-  --ion-color-step-950: #f3f3f3;
+  --ion-text-color: var(--theme-text-primary);
+  --ion-text-color-rgb: 248, 250, 252;
 
-  --ion-item-background: #1e1e1e;
+  /* Enhanced color steps for better contrast */
+  --ion-color-step-50: #182634;
+  --ion-color-step-100: #1f2d3b;
+  --ion-color-step-150: #273442;
+  --ion-color-step-200: #2e3b49;
+  --ion-color-step-250: #364250;
+  --ion-color-step-300: #3d4957;
+  --ion-color-step-350: #45505e;
+  --ion-color-step-400: #4c5765;
+  --ion-color-step-450: #545e6c;
+  --ion-color-step-500: #5b6573;
+  --ion-color-step-550: #636c7a;
+  --ion-color-step-600: #6a7381;
+  --ion-color-step-650: #727a88;
+  --ion-color-step-700: #79818f;
+  --ion-color-step-750: #818896;
+  --ion-color-step-800: #888f9d;
+  --ion-color-step-850: #9096a4;
+  --ion-color-step-900: #979dab;
+  --ion-color-step-950: #9fa4b2;
 
-  --ion-toolbar-background: #1f1f1f;
+  --ion-item-background: var(--theme-bg-secondary);
+  --ion-toolbar-background: var(--theme-bg-primary);
+  --ion-tab-bar-background: var(--theme-bg-primary);
+  --ion-card-background: var(--theme-bg-secondary);
+}
 
-  --ion-tab-bar-background: #1f1f1f;
+/* Enhanced Light Theme - Applied with body.light or html.light */
+body.light,
+html.light {
+  --ion-background-color: var(--theme-bg-primary);
+  --ion-background-color-rgb: 255, 255, 255;
 
-  --ion-card-background: #1e1e1e;
+  --ion-text-color: var(--theme-text-primary);
+  --ion-text-color-rgb: 15, 23, 42;
+
+  /* Light theme color steps */
+  --ion-color-step-50: #f8fafc;
+  --ion-color-step-100: #f1f5f9;
+  --ion-color-step-150: #e2e8f0;
+  --ion-color-step-200: #cbd5e1;
+  --ion-color-step-250: #94a3b8;
+  --ion-color-step-300: #64748b;
+  --ion-color-step-350: #475569;
+  --ion-color-step-400: #334155;
+  --ion-color-step-450: #1e293b;
+  --ion-color-step-500: #0f172a;
+  --ion-color-step-550: #020617;
+  --ion-color-step-600: #000000;
+  --ion-color-step-650: #000000;
+  --ion-color-step-700: #000000;
+  --ion-color-step-750: #000000;
+  --ion-color-step-800: #000000;
+  --ion-color-step-850: #000000;
+  --ion-color-step-900: #000000;
+  --ion-color-step-950: #000000;
+
+  --ion-item-background: var(--theme-bg-secondary);
+  --ion-toolbar-background: var(--theme-bg-primary);
+  --ion-tab-bar-background: var(--theme-bg-primary);
+  --ion-card-background: var(--theme-bg-secondary);
+}
+
+/* Professional UI Utility Classes */
+.stocksavvy-card {
+  background: var(--stocksavvy-background-secondary);
+  border-radius: 12px;
+  padding: var(--card-padding-y) var(--card-padding-x);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.stocksavvy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.stocksavvy-section-spacing {
+  margin-bottom: var(--section-spacing);
+}
+
+.stocksavvy-text-primary {
+  color: var(--stocksavvy-text-high-contrast) !important;
+}
+
+.stocksavvy-text-secondary {
+  color: var(--stocksavvy-text-medium-contrast) !important;
+}
+
+.stocksavvy-text-muted {
+  color: var(--stocksavvy-text-low-contrast) !important;
+}
+
+.stocksavvy-btn-primary {
+  background: linear-gradient(135deg, var(--stocksavvy-accent-blue) 0%, var(--stocksavvy-accent-cyan) 100%);
+  color: white;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.stocksavvy-btn-primary:hover {
+  background: var(--stocksavvy-hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(13, 128, 242, 0.3);
+}
+
+.stocksavvy-btn-primary:disabled {
+  background: var(--stocksavvy-disabled-bg);
+  color: var(--stocksavvy-disabled-text);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.stocksavvy-btn-secondary {
+  background: transparent;
+  color: var(--stocksavvy-accent-blue);
+  border: 1px solid var(--stocksavvy-accent-blue);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stocksavvy-btn-secondary:hover {
+  background: var(--stocksavvy-accent-blue);
+  color: white;
+}
+
+/* Enhanced Input Styling */
+.stocksavvy-input {
+  background: var(--stocksavvy-background-secondary);
+  border: 1px solid var(--stocksavvy-border-medium);
+  color: var(--stocksavvy-text-primary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.stocksavvy-input:focus {
+  outline: none;
+  border-color: var(--stocksavvy-accent-blue);
+  box-shadow: 0 0 0 3px rgba(13, 128, 242, 0.1);
+}
+
+.stocksavvy-input::placeholder {
+  color: var(--stocksavvy-text-low-contrast);
+}
+
+/* Professional Button Spacing */
+.stocksavvy-button-group {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-top: var(--spacing-lg);
+}
+
+.stocksavvy-button-group > * {
+  margin: 0;
+}
+
+/* Market Data Styling */
+.stocksavvy-market-positive {
+  color: var(--stocksavvy-success) !important;
+}
+
+.stocksavvy-market-negative {
+  color: var(--stocksavvy-error) !important;
+}
+
+.stocksavvy-market-neutral {
+  color: var(--stocksavvy-text-medium-contrast) !important;
+}
+
+/* Tag/Badge Styling */
+.stocksavvy-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--stocksavvy-background-tertiary);
+  color: var(--stocksavvy-text-primary);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: var(--spacing-xs);
+}
+
+/* Line Height and Readability */
+.stocksavvy-readable {
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.stocksavvy-title {
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Disabled State Styling */
+.stocksavvy-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.stocksavvy-disabled * {
+  color: var(--stocksavvy-disabled-text) !important;
+}
+
+/* Enhanced Disabled Button Styling */
+.stocksavvy-btn-primary:disabled {
+  background: var(--stocksavvy-disabled-bg) !important;
+  color: var(--stocksavvy-disabled-text) !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.5;
+  border: 1px solid var(--stocksavvy-disabled-bg);
+}
+
+.stocksavvy-btn-secondary:disabled {
+  background: transparent !important;
+  color: var(--stocksavvy-disabled-text) !important;
+  border: 1px solid var(--stocksavvy-disabled-text) !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+/* Interactive Element Disabled States */
+.stocksavvy-input:disabled {
+  background: var(--stocksavvy-disabled-bg) !important;
+  color: var(--stocksavvy-disabled-text) !important;
+  border-color: var(--stocksavvy-disabled-text) !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.stocksavvy-input:disabled::placeholder {
+  color: var(--stocksavvy-disabled-text) !important;
+  opacity: 0.7;
+}
+
+/* Card Disabled States */
+.stocksavvy-card.stocksavvy-disabled {
+  background: var(--stocksavvy-disabled-bg) !important;
+  border: 1px solid var(--stocksavvy-disabled-text) !important;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.stocksavvy-card.stocksavvy-disabled:hover {
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography Utility Classes */
+.text-display {
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-display);
+  font-weight: var(--font-weight-display);
+  letter-spacing: var(--letter-spacing-display);
+  color: var(--theme-text-primary);
+}
+
+.text-h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  color: var(--theme-text-primary);
+}
+
+.text-h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-h2);
+  letter-spacing: var(--letter-spacing-h2);
+  color: var(--theme-text-primary);
+}
+
+.text-h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-h3);
+  letter-spacing: var(--letter-spacing-h3);
+  color: var(--theme-text-primary);
+}
+
+.text-body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--theme-text-primary);
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  font-weight: var(--font-weight-small);
+  letter-spacing: var(--letter-spacing-small);
+  color: var(--theme-text-secondary);
+}
+
+.text-caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--theme-text-muted);
+}
+
+/* Button Typography */
+.text-button {
+  font-size: var(--font-size-button);
+  line-height: var(--line-height-button);
+  font-weight: var(--font-weight-button);
+  letter-spacing: var(--letter-spacing-button);
+}
+
+/* Form Typography */
+.text-input {
+  font-size: var(--font-size-input);
+  line-height: var(--line-height-input);
+  font-weight: var(--font-weight-input);
+  letter-spacing: var(--letter-spacing-input);
+  color: var(--theme-text-primary);
+}
+
+.text-label {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--theme-text-primary);
+}
+
+/* Typography Color Variants */
+.text-primary {
+  color: var(--theme-text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--theme-text-secondary) !important;
+}
+
+.text-muted {
+  color: var(--theme-text-muted) !important;
+}
+
+.text-accent {
+  color: var(--theme-accent-blue) !important;
+}
+
+.text-success {
+  color: var(--theme-success) !important;
+}
+
+.text-error {
+  color: var(--theme-error) !important;
+}
+
+.text-warning {
+  color: var(--theme-warning) !important;
+}
+
+/* Typography Weight Utilities */
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Typography Alignment Utilities */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Responsive Typography Utilities */
+@media (max-width: 767px) {
+  .text-mobile-center {
+    text-align: center;
+  }
+  
+  .text-mobile-left {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-tablet-center {
+    text-align: center;
+  }
+  
+  .text-tablet-left {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-desktop-center {
+    text-align: center;
+  }
+  
+  .text-desktop-left {
+    text-align: left;
+  }
 }
