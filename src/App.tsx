@@ -5,8 +5,10 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Chat from './pages/chat/Chat';
+import { AIChat } from './pages/ai-chat/AIChat';
 import { LanguageProvider } from './components/localization/LanguageProvider';
 import { ThemeProvider } from './components/theme/ThemeProvider';
+import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,7 +39,7 @@ const App: React.FC = () => (
         <IonReactRouter>
           <IonRouterOutlet>
             <Route exact path="/dashboard">
-              <Dashboard />
+              <AIChat />
             </Route>
             <Route exact path="/auth/login">
               <Login />
