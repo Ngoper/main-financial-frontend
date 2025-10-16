@@ -25,7 +25,7 @@ export const ModeSelectionView: React.FC<ModeSelectionViewProps> = ({ onSelectMo
     {
       id: 'dokumen',
       title: 'Analisis Dokumen',
-      description: 'Unggah laporan keuangan atau public expose untuk dianalisis AI.',
+      description: 'Unggah dokumen laporan keuangan atau public expose untuk dianalisis AI.',
       emoji: '📄',
       gradient: 'analisis-dokumen'
     }

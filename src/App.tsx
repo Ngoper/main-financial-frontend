@@ -1,13 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
-import Chat from './pages/chat/Chat';
+import { LandingPage } from './pages/landing/LandingPage';
 import { AIChat } from './pages/ai-chat/AIChat';
-import { LanguageProvider } from './components/localization/LanguageProvider';
-import { ThemeProvider } from './components/theme/ThemeProvider';
 import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,38 +29,19 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <ThemeProvider defaultTheme="system" enableTransitions={true}>
-      <LanguageProvider defaultLanguage="id">
-        <IonReactRouter>
-          <IonRouterOutlet>
-            <Route exact path="/dashboard">
-              <AIChat />
-            </Route>
-            <Route exact path="/auth/login">
-              <Login />
-            </Route>
-            <Route exact path="/auth/register">
-              <Register />
-            </Route>
-            {/* Unified Chat Interface - Direct Access */}
-            <Route exact path="/chat">
-              <Chat />
-            </Route>
-            {/* Simplified Routing - All chat topics go to unified interface */}
-            <Route exact path="/chat/:mode">
-              <Chat />
-            </Route>
-            {/* Company Profile Routes */}
-            <Route exact path="/perusahaan/:kode">
-              <Dashboard />
-            </Route>
-            <Route exact path="/">
-              <Redirect to="/dashboard" />
-            </Route>
-          </IonRouterOutlet>
-        </IonReactRouter>
-      </LanguageProvider>
-    </ThemeProvider>
+    <IonReactRouter>
+      <IonRouterOutlet>
+        <Route exact path="/home">
+          <LandingPage />
+        </Route>
+        <Route exact path="/chat">
+          <AIChat />
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+      </IonRouterOutlet>
+    </IonReactRouter>
   </IonApp>
 );
 

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modcus - AI Platform untuk Analisis Saham Fundamental</title>
+    <!-- Menggunakan Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menggunakan Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Swiper.js untuk Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+        /* Custom styling */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4F46E5, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-color: #0A0A0A;
+            background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.2) 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.2) 0%, transparent 40%);
+        }
+        .feature-card, .performance-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(17, 17, 17, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-bubble { max-width: 80%; }
+        /* Style untuk Swiper Carousel */
+        .swiper-button-next, .swiper-button-prev {
+            color: #A855F7;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #A855F7;
+        }
+    </style>
+</head>
+<body class="text-gray-300">
+
+    <!-- Header & Navigasi -->
+    <header class="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text nav-link" data-target="home-page">Modcus</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#fitur" class="text-gray-400 hover:text-white transition">Fitur</a>
+                <a href="#" class="text-gray-400 hover:text-white transition nav-link" data-target="tentang-kami-page">Tentang Kami</a>
+                <a href="#" class="text-gray-400 hover:text-white transition nav-link" data-target="saran-page">Saran</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                 <a href="#" class="hidden md:block text-gray-400 hover:text-white font-medium transition">Login</a>
+                 <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up for Free</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Halaman Utama (Home) -->
+        <div id="home-page" class="page-content">
+            <!-- Hero Section -->
+            <section class="hero-bg py-24 lg:py-40 fade-in-up">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">Analisis Saham Fundamental Generasi Berikutnya</h1>
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">Modcus menggunakan AI untuk menyaring data finansial yang kompleks menjadi insight yang mudah Anda pahami. Buat keputusan investasi dengan lebih percaya diri.</p>
+                    <div class="max-w-xl mx-auto">
+                        <form class="flex flex-col sm:flex-row gap-4">
+                            <input type="email" placeholder="Masukkan email Anda" class="w-full px-5 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white" required>
+                            <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg whitespace-nowrap">Mulai Gratis</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logo Klien/Partner -->
+            <div class="py-16 bg-black">
+                <div class="container mx-auto px-6">
+                    <p class="text-center text-gray-500 font-medium uppercase tracking-widest">Digunakan oleh Investor dan Trader Profesional</p>
+                    <div class="flex flex-wrap justify-center items-center mt-8 gap-8 md:gap-12">
+                        <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+1" alt="Logo Partner 1" class="h-8 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+2" alt="Logo Partner 2" class="h-8 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+3" alt="Logo Partner 3" class="h-8 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+4" alt="Logo Partner 4" class="h-8 opacity-50 hover:opacity-100 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitur Utama -->
+            <section id="fitur" class="py-24">
+                 <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white">Unlock the Power of AI</h2>
+                        <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Platform kami dirancang untuk memberikan keunggulan kompetitif di pasar saham.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="feature-card p-8 rounded-2xl">
+                            <div class="bg-indigo-600/20 text-indigo-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg></div>
+                            <h3 class="text-xl font-bold text-white mb-3">AI Scoring</h3>
+                            <p class="text-gray-400">Skor fundamental dari 0-100 yang mengevaluasi kesehatan finansial, valuasi, dan efisiensi perusahaan secara objektif.</p>
+                        </div>
+                        <div class="feature-card p-8 rounded-2xl">
+                            <div class="bg-purple-600/20 text-purple-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+                            <h3 class="text-xl font-bold text-white mb-3">Real-time Data Processing</h3>
+                            <p class="text-gray-400">Analisis berdasarkan laporan keuangan terkini, berita pasar, dan data makroekonomi secara real-time.</p>
+                        </div>
+                        <div class="feature-card p-8 rounded-2xl">
+                            <div class="bg-pink-600/20 text-pink-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
+                            <h3 class="text-xl font-bold text-white mb-3">Chatbot Analis Saham</h3>
+                            <p class="text-gray-400">Tanyakan apapun tentang saham pilihan Anda dan dapatkan jawaban instan dari analis AI personal Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bagian Carousel Contoh Penggunaan AI -->
+            <section class="py-24 overflow-hidden">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Coba Analis Saham AI Kami</h2>
+                    <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Rasakan kekuatan analisis berbasis AI. Ajukan pertanyaan tentang saham Indonesia dan dapatkan respons cerdas secara instan.</p>
+                    
+                    <!-- Swiper Carousel -->
+                    <div class="swiper mt-12 max-w-4xl mx-auto">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide"><img src="https://placehold.co/1024x600/0A0A0A/FFFFFF?text=Contoh+Analisis+Fundamental+BBCA" alt="Contoh Analisis Fundamental" class="rounded-2xl border border-gray-800 shadow-2xl"></div>
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide"><img src="https://placehold.co/1024x600/0A0A0A/A855F7?text=Contoh+Perbandingan+Saham+BMRI+vs+BBRI" alt="Contoh Perbandingan Saham" class="rounded-2xl border border-gray-800 shadow-2xl"></div>
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide"><img src="https://placehold.co/1024x600/0A0A0A/4F46E5?text=Contoh+Prediksi+Tren+Saham+GOTO" alt="Contoh Prediksi Tren" class="rounded-2xl border border-gray-800 shadow-2xl"></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination mt-8 relative"></div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Keunggulan AI & Market Performance -->
+            <section class="py-24">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-sm font-semibold text-indigo-400">WHY CHOOSE OUR AI?</span>
+                            <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">Dibuat Khusus untuk Pasar Indonesia</h2>
+                            <p class="text-lg text-gray-400 mb-8">Tidak seperti alat AI finansial generik, chatbot kami dilatih secara eksklusif menggunakan data pasar saham Indonesia, regulasi, dan dinamika pasar lokal.</p>
+                             <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg></div>
+                                    <div><h4 class="font-semibold text-white">Keahlian Lokal</h4><p class="text-gray-400">Pemahaman mendalam tentang peraturan BEI, faktor ekonomi Indonesia, dan sentimen pasar lokal.</p></div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                                    <div><h4 class="font-semibold text-white">Update Real-time</h4><p class="text-gray-400">Tetap terdepan dengan pembaruan pasar instan, analisis berita terkini, dan insight trading langsung.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="performance-card rounded-2xl p-8">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="bg-gray-800 p-3 rounded-lg"><svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div>
+                                <div><h3 class="text-xl font-bold text-white">Market Performance</h3><p class="text-sm text-gray-500">Last 30 days tracking</p></div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center"><span class="text-gray-400">Successful Predictions</span><span class="font-semibold text-green-400">87.3%</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-400">Average Response Time</span><span class="font-semibold text-white">1.2s</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-400">Stocks Analyzed Daily</span><span class="font-semibold text-white">500+</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-400">User Satisfaction</span><span class="font-semibold text-green-400">96.2%</span></div>
+                            </div>
+                            <div class="border-t border-gray-800 mt-6 pt-6">
+                                <h4 class="text-sm text-gray-500 mb-3">Popular Indonesian Stocks We Track:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BBCA</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BMRI</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">ASII</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">TLKM</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">UNVR</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">ICBP</span> <span class="bg-gray-800 text-xs font-medium px-2 py-1 rounded">GOTO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial -->
+            <section class="py-24">
+                <div class="container mx-auto px-6 text-center">
+                    <div class="max-w-3xl mx-auto">
+                        <img src="https://i.pravatar.cc/80?u=susan" alt="Foto Susan" class="h-20 w-20 rounded-full mx-auto mb-4">
+                        <p class="text-2xl font-medium text-white">"Modcus adalah game-changer. Saya bisa menganalisis fundamental saham dalam hitungan menit, bukan jam. Fitur AI Scoring-nya luar biasa akurat."</p>
+                        <div class="mt-6"><p class="font-bold text-lg text-gray-300">Susan Wijaya</p><p class="text-gray-500">Full-time Trader</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action (CTA) Section -->
+            <section class="hero-bg">
+                <div class="container mx-auto px-6 py-24 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Mulai Investasi Lebih Cerdas Hari Ini</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Dapatkan akses gratis ke platform analisis saham fundamental paling canggih.</p>
+                    <a href="#" class="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">Klaim Akses Gratis Anda</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman Tentang Kami (Struktur Baru) -->
+        <div id="tentang-kami-page" class="page-content hidden">
+            <section class="hero-bg py-24 lg:py-32">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Membangun Masa Depan Investasi<br>yang Bertanggung Jawab dengan AI.</h1>
+                </div>
+            </section>
+        
+            <section class="py-24">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Misi Kami</h2>
+                    <div class="text-lg text-gray-300 leading-relaxed space-y-6 text-left">
+                        <p>Modcus didirikan dengan keyakinan bahwa setiap investor, baik pemula maupun profesional, berhak mendapatkan akses yang sama terhadap alat analisis finansial kelas dunia. Misi kami adalah mendemokratisasi informasi pasar modal di Indonesia melalui teknologi AI yang canggih, transparan, dan mudah digunakan.</p>
+                        <p>Kami berupaya menghilangkan hambatan informasi yang kompleks dan menyajikannya dalam bentuk insight yang dapat ditindaklanjuti, memberdayakan individu untuk membuat keputusan investasi yang lebih cerdas dan percaya diri.</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="py-24 bg-black">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Prinsip Kami</h2>
+                        <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Pendekatan kami dalam membangun AI didasarkan pada prinsip-prinsip inti berikut.</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <!-- Prinsip 1 -->
+                        <div class="text-center">
+                            <div class="mx-auto bg-indigo-600/20 text-indigo-400 rounded-lg h-16 w-16 flex items-center justify-center mb-5">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Keamanan & Privasi Data</h3>
+                            <p class="text-gray-400">Kami memprioritaskan keamanan data pengguna sebagai fondasi utama. Semua analisis dilakukan dengan menjaga privasi Anda sepenuhnya.</p>
+                        </div>
+                        <!-- Prinsip 2 -->
+                        <div class="text-center">
+                            <div class="mx-auto bg-purple-600/20 text-purple-400 rounded-lg h-16 w-16 flex items-center justify-center mb-5">
+                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Objektivitas & Transparansi</h3>
+                            <p class="text-gray-400">Model AI kami dirancang untuk memberikan analisis yang objektif berdasarkan data, bebas dari bias dan konflik kepentingan.</p>
+                        </div>
+                        <!-- Prinsip 3 -->
+                        <div class="text-center">
+                            <div class="mx-auto bg-pink-600/20 text-pink-400 rounded-lg h-16 w-16 flex items-center justify-center mb-5">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Pemberdayaan Investor</h3>
+                            <p class="text-gray-400">Tujuan akhir kami adalah edukasi. Kami ingin memberdayakan investor dengan pengetahuan untuk menavigasi pasar secara mandiri.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="py-24">
+                <div class="container mx-auto px-6 max-w-4xl">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Tim Kami</h2>
+                        <p class="text-lg text-gray-400 mt-3">Kami menyatukan para ahli dari berbagai bidang untuk membangun sistem AI yang andal dan bermanfaat.</p>
+                    </div>
+                    <div class="space-y-12 text-left">
+                        <div>
+                            <h3 class="text-2xl font-bold text-indigo-400 mb-4">Tim Riset & AI</h3>
+                            <p class="text-gray-300 leading-relaxed">Tim ini adalah jantung dari inovasi Modcus. Mereka terdiri dari para peneliti AI dan analis keuangan kuantitatif yang bertugas mengembangkan dan melatih model-model machine learning kami. Fokus mereka adalah pada akurasi prediksi, pemahaman konteks pasar Indonesia, dan memastikan analisis yang dihasilkan relevan serta dapat dipertanggungjawabkan.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-purple-400 mb-4">Tim Teknik & Produk</h3>
+                            <p class="text-gray-300 leading-relaxed">Bertanggung jawab untuk menerjemahkan riset kompleks menjadi platform yang andal, cepat, dan mudah digunakan. Tim ini membangun infrastruktur data, merancang antarmuka pengguna (UI/UX), dan memastikan keamanan serta skalabilitas platform Modcus agar dapat melayani jutaan investor di seluruh Indonesia.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-pink-400 mb-4">Tim Operasional & Kemitraan</h3>
+                            <p class="text-gray-300 leading-relaxed">Tim ini memastikan semua operasional perusahaan berjalan lancar, mulai dari dukungan pengguna hingga pengembangan bisnis. Mereka adalah garda terdepan dalam mendengarkan feedback pengguna dan menjalin kemitraan strategis dengan institusi keuangan serta komunitas investor untuk memperluas jangkauan dan dampak positif Modcus.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="py-24">
+                <div class="container mx-auto px-6 text-center max-w-3xl">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Berpartner Dengan Kami</h2>
+                     <p class="text-lg text-gray-400 mb-8">Kami terbuka untuk kolaborasi dengan institusi keuangan, perusahaan sekuritas, dan media untuk menciptakan ekosistem investasi yang lebih baik. Mari berdiskusi.</p>
+                     <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold">Hubungi Kami</a>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Halaman Saran -->
+        <div id="saran-page" class="page-content hidden">
+            <section class="py-24 lg:py-32">
+                <div class="container mx-auto px-6">
+                     <div class="max-w-3xl mx-auto text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Beri Kami Saran</h1>
+                        <p class="text-lg md:text-xl text-gray-400 mb-12">Feedback Anda sangat berharga untuk membantu kami meningkatkan Modcus. Silakan bagikan kritik, saran, atau ide Anda.</p>
+                        <form id="feedback-form" class="text-left space-y-6">
+                            <div>
+                                <label for="nama" class="block text-sm font-medium text-gray-300 mb-2">Nama Anda</label>
+                                <input type="text" id="nama" name="nama" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white" required>
+                            </div>
+                            <div>
+                                <label for="email_saran" class="block text-sm font-medium text-gray-300 mb-2">Alamat Email</label>
+                                <input type="email" id="email_saran" name="email_saran" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white" required>
+                            </div>
+                            <div>
+                                <label for="pesan" class="block text-sm font-medium text-gray-300 mb-2">Pesan Anda</label>
+                                <textarea id="pesan" name="pesan" rows="6" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Kirim Saran</button>
+                            </div>
+                        </form>
+                        <p id="form-success-message" class="mt-8 text-green-400 hidden">Terima kasih! Saran Anda telah kami terima.</p>
+                     </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <div class="col-span-2 lg:col-span-1">
+                    <a href="#" class="text-2xl font-bold gradient-text nav-link" data-target="home-page">Modcus</a>
+                    <p class="text-sm text-gray-500 mt-2">AI-Powered Stock Analysis.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Produk</h4>
+                    <a href="#fitur" class="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white nav-link" data-target="saran-page">Feedback User</a>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white">Dokumentasi</a>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Perusahaan</h4>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white nav-link" data-target="tentang-kami-page">Tentang Kami</a>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white">Blog</a>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white">Syarat & Ketentuan</a>
+                    <a href="#" class="block mt-2 text-sm text-gray-400 hover:text-white">Kebijakan Privasi</a>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white mb-4">Kontak</h4>
+                    <a href="mailto:support@stockbot.id" class="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> support@stockbot.id</a>
+                    <a href="tel:+622112345678" class="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +62 21 1234 5678</a>
+                    <p class="flex items-center gap-2 mt-2 text-sm text-gray-400"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Jakarta, Indonesia</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2024 Modcus. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Inisialisasi Swiper.js untuk Carousel
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Logika untuk Navigasi Single-Page
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    
+                    pages.forEach(page => {
+                        if (page.id === targetId) {
+                            page.classList.remove('hidden');
+                        } else {
+                            page.classList.add('hidden');
+                        }
+                    });
+                     window.scrollTo(0, 0);
+                });
+            });
+
+            // Logika untuk Form Saran
+            const feedbackForm = document.getElementById('feedback-form');
+            const successMessage = document.getElementById('form-success-message');
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                feedbackForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
+
