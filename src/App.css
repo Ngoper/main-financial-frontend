@@ -194,26 +194,24 @@ ion-content {
 
 .chat-log {
   padding: 2rem;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  height: auto;
 }
 
 .chat-log-inner {
   max-width: 800px;
-  margin: auto auto 0 auto;
+  margin: 0 auto;
   width: 100%;
 }
 
 .initial-state-container {
   text-align: center;
-  padding: 2rem;
+  padding: 0.5rem;
 }
 
 .initial-state-container h2 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--text-primary-dark);
   font-family: 'Poppins', sans-serif;
 }
@@ -230,6 +228,20 @@ ion-content {
   padding: 1.5rem;
   border: 1px solid var(--border-dark);
   margin-bottom: 1.5rem;
+}
+
+/* Remove only the top padding for specific initial messages (e.g., rekomendasi) */
+.ai-message.no-top-padding {
+  /* remove internal top padding for a flush appearance */
+  padding-top: 0;
+  padding-right: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Pull the first no-top-padding message up to counter the chat-log's top padding */
+.chat-log-inner > .ai-message.no-top-padding:first-child {
+  margin-top: -2rem; /* equals .chat-log padding to make it flush */
 }
 
 .ai-message h3 {
@@ -391,21 +403,20 @@ ion-button {
 
 /* Example Prompts Styles */
 .example-prompts-section {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .prompt-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
   color: var(--text-secondary-dark);
 }
 
 .prompt-header .line {
-  flex: 1;
-  height: 1px;
-  background: var(--border-dark);
+  display: none;
 }
 
 .prompt-header .text {

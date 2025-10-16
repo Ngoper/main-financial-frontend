@@ -21,9 +21,12 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = f
       </div>
     );
   }
+  // For specific initial content like the "💎 Rekomendasi..." block,
+  // remove the top padding so the title and text align with surrounding content.
+  const noTopPadding = !!content.title && content.title.startsWith('💎 Rekomendasi');
 
   return (
-    <div className="ai-message">
+    <div className={"ai-message" + (noTopPadding ? ' no-top-padding' : '')}>
       <h3>{content.title}</h3>
       {content.text && <p dangerouslySetInnerHTML={{ __html: content.text }} />}
       {content.list && (

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { IonButton, IonIcon, IonTextarea, IonChip, IonLabel } from '@ionic/react';
+import { IonButton, IonIcon, IonTextarea } from '@ionic/react';
 import { add, send } from 'ionicons/icons';
 
 interface ChatInputProps {
@@ -31,17 +31,6 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 
   return (
     <div className="chat-input-area">
-      <div className="contextual-options">
-        <IonChip className="active">
-          <IonLabel>Pemula</IonLabel>
-        </IonChip>
-        <IonChip>
-          <IonLabel>Intermediate</IonLabel>
-        </IonChip>
-        <IonChip>
-          <IonLabel>Advanced</IonLabel>
-        </IonChip>
-      </div>
       <div className="input-wrapper">
         {showUpload && (
           <>
