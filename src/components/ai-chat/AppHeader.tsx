@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   IonHeader,
   IonToolbar,
@@ -19,6 +20,8 @@ interface AppHeaderProps {
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ onBack, showBackButton = false }) => {
+  const history = useHistory();
+
   return (
     <IonHeader>
       <IonToolbar color="dark">
@@ -28,7 +31,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ onBack, showBackButton = f
               <IonIcon icon={arrowBack} />
             </IonButton>
           ) : (
-            <IonButton>
+            <IonButton onClick={() => history.push('/home')}>
               <IonIcon icon={homeOutline} />
               Home
             </IonButton>
