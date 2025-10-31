@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { IonApp, IonContent, setupIonicReact } from '@ionic/react';
+import { IonPage, IonContent } from '@ionic/react';
 import { AppHeader } from '../../components/ai-chat/AppHeader';
 import { ModeSelectionView } from '../../components/ai-chat/ModeSelectionView';
 import { ChatView } from '../../components/ai-chat/ChatView';
-
-setupIonicReact();
 
 export const AIChat: React.FC = () => {
   const [currentView, setCurrentView] = useState<'selection' | 'chat'>('selection');
@@ -21,7 +19,7 @@ export const AIChat: React.FC = () => {
   };
 
   return (
-    <IonApp>
+    <IonPage>
       {currentView === 'selection' ? (
         <>
           <AppHeader showBackButton={false} />
@@ -32,9 +30,11 @@ export const AIChat: React.FC = () => {
       ) : (
         <>
           <AppHeader onBack={handleBack} showBackButton={true} />
-          <ChatView mode={selectedMode || ''} onBack={handleBack} />
+          <IonContent>
+            <ChatView mode={selectedMode || ''} onBack={handleBack} />
+          </IonContent>
         </>
       )}
-    </IonApp>
+    </IonPage>
   );
 };

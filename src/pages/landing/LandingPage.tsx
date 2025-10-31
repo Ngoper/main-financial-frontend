@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonPage, IonContent, useIonRouter } from '@ionic/react';
 import './landing.css';
 
 export const LandingPage: React.FC = () => {
@@ -7,10 +7,12 @@ export const LandingPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [feedbackForm, setFeedbackForm] = useState({ nama: '', email: '', pesan: '' });
   const [showSuccess, setShowSuccess] = useState(false);
+  const router = useIonRouter();
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Email submitted:', email);
+  router.push('/chat');
     setEmail('');
   };
 
