@@ -3,6 +3,8 @@ import { IonContent } from '@ionic/react';
 import { ChatMessage } from './ChatMessage';
 import { ExamplePrompts } from './ExamplePrompts';
 import { ChatInput } from './ChatInput';
+import { LoadingIndicator } from './LoadingIndicator';
+import { apiService, AIQueryRequest } from '../../services/api';
 
 interface Message {
   content: {
@@ -23,6 +25,9 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [prompts, setPrompts] = useState<string[]>([]);
+  const [selectedLevel, setSelectedLevel] = useState<'newbie' | 'novice' | 'expert'>('newbie');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     initializeChatMode(mode);
@@ -68,10 +73,47 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     setPrompts(examplePrompts);
   };
 
-  const handleSend = () => {
-    if (input.trim()) {
-      console.log('Sending message:', input);
-      setInput('');
+  const handleSend = async () => {
+    if (input.trim() && !isLoading) {
+      const userMessage: Message = {
+        content: { text: input },
+        isInitial: false
+      };
+      setMessages(prev => [...prev, userMessage]);
+      setIsLoading(true);
+      
+      try {
+        const modeMap: Record<string, AIQueryRequest['mode']> = {
+          'rekomendasi': 'stock-recommendations',
+          'analisis': 'company-analysis',
+          'dokumen': 'document-analysis'
+        };
+        
+        const request: AIQueryRequest = {
+          mode: modeMap[mode] || 'company-analysis',
+          level: selectedLevel,
+          query: input,
+          file: selectedFile || undefined
+        };
+        
+        const response = await apiService.queryAI(request);
+        
+        const aiMessage: Message = {
+          content: { text: response.response },
+          isInitial: false
+        };
+        setMessages(prev => [...prev, aiMessage]);
+      } catch (error) {
+        const errorMessage: Message = {
+          content: { text: 'Maaf, terjadi kesalahan. Silakan coba lagi.' },
+          isInitial: false
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
+        setInput('');
+        setSelectedFile(null);
+      }
     }
   };
 
@@ -84,7 +126,11 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   };
 
   const handleFileSelect = (file: File) => {
-    alert(`File "${file.name}" telah dipilih.`);
+    setSelectedFile(file);
+  };
+
+  const handleLevelChange = (level: 'newbie' | 'novice' | 'expert') => {
+    setSelectedLevel(level);
   };
 
   return (
@@ -95,6 +141,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
             {messages.map((msg, idx) => (
               <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} />
             ))}
+            {isLoading && <LoadingIndicator />}
           </div>
         </div>
         {prompts.length > 0 && (
@@ -111,6 +158,10 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
         onSend={handleSend}
         showUpload={mode === 'dokumen'}
         onFileSelect={handleFileSelect}
+        selectedLevel={selectedLevel}
+        onLevelChange={handleLevelChange}
+        selectedFile={selectedFile}
+        isLoading={isLoading}
       />
     </>
   );

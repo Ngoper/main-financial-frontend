@@ -8,6 +8,10 @@ interface ChatInputProps {
   onSend: () => void;
   showUpload?: boolean;
   onFileSelect?: (file: File) => void;
+  selectedLevel?: 'newbie' | 'novice' | 'expert';
+  onLevelChange?: (level: 'newbie' | 'novice' | 'expert') => void;
+  selectedFile?: File | null;
+  isLoading?: boolean;
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({
@@ -15,7 +19,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   onChange,
   onSend,
   showUpload = false,
-  onFileSelect
+  onFileSelect,
+  selectedLevel = 'newbie',
+  onLevelChange,
+  selectedFile,
+  isLoading = false
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -32,13 +40,22 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   return (
     <div className="chat-input-area">
       <div className="contextual-options">
-        <IonChip className="active">
+        <IonChip 
+          className={selectedLevel === 'newbie' ? 'active' : ''}
+          onClick={() => onLevelChange?.('newbie')}
+        >
           <IonLabel>Pemula</IonLabel>
         </IonChip>
-        <IonChip>
+        <IonChip 
+          className={selectedLevel === 'novice' ? 'active' : ''}
+          onClick={() => onLevelChange?.('novice')}
+        >
           <IonLabel>Intermediate</IonLabel>
         </IonChip>
-        <IonChip>
+        <IonChip 
+          className={selectedLevel === 'expert' ? 'active' : ''}
+          onClick={() => onLevelChange?.('expert')}
+        >
           <IonLabel>Advanced</IonLabel>
         </IonChip>
       </div>
@@ -56,6 +73,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
             />
           </>
         )}
+        {selectedFile && (
+          <div className="selected-file">
+            <span>📎 {selectedFile.name}</span>
+          </div>
+        )}
         <IonTextarea
           value={value}
           onIonInput={(e) => onChange(e.detail.value || '')}
@@ -63,8 +85,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           autoGrow
           rows={1}
           className="chat-input"
+          disabled={isLoading}
         />
-        <IonButton onClick={onSend} className="send-btn">
+        <IonButton onClick={onSend} className="send-btn" disabled={isLoading || !value.trim()}>
           <IonIcon icon={send} />
         </IonButton>
       </div>
