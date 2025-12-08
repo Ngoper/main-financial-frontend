@@ -3,6 +3,13 @@ export const API_CONFIG = {
   TIMEOUT: 30000,
 };
 
+const getAuthToken = () => localStorage.getItem('token');
+
+export const getAuthHeaders = () => {
+  const token = getAuthToken();
+  return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
+
 export const CORS_CONFIG = {
   credentials: 'include' as RequestCredentials,
   headers: {

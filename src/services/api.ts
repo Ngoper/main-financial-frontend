@@ -1,4 +1,4 @@
-import { API_CONFIG, CORS_CONFIG } from './config';
+import { API_CONFIG, CORS_CONFIG, getAuthHeaders } from './config';
 
 const API_BASE_URL = API_CONFIG.BASE_URL;
 
@@ -63,16 +63,107 @@ class ApiService {
 
     const response = await fetch(`${API_BASE_URL}/ai/query`, {
       method: 'POST',
+      headers: getAuthHeaders(),
       body: formData,
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+        throw new Error('Session expired. Please login again.');
+      }
       const error = await response.json().catch(() => ({ error: 'Unknown error' }));
       throw new Error(error.error || `Request failed: ${response.status}`);
     }
 
     return response.json();
   }
+
+  async register(name: string, email: string, password: string): Promise<{ token: string; user: User }> {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Registration failed' }));
+      throw new Error(error.error || 'Registration failed');
+    }
+
+    return response.json();
+  }
+
+  async login(email: string, password: string): Promise<{ token: string; user: User }> {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Invalid credentials' }));
+      throw new Error(error.error || 'Login failed');
+    }
+
+    return response.json();
+  }
+
+  async verifyToken(): Promise<User> {
+    const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    if (!response.ok) {
+      localStorage.removeItem('token');
+      throw new Error('Invalid or expired token');
+    }
+
+    return response.json();
+  }
 }
 
-export const apiService = new ApiService();
+
+
+export const getCurrentUser = async (): Promise<User | null> => {
+  const token = localStorage.getItem('token');
+  if (!token) return null;
+  
+  try {
+    return await apiService.verifyToken();
+  } catch {
+    return null;
+  }
+};
+
+export const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = '/home';
+};
+
+export interface FeedbackRequest {
+  phone: string;
+  email?: string;
+  feedback: string;
+  wantContact: boolean;
+}
+
+class ApiServiceExtended extends ApiService {
+  async submitFeedback(request: FeedbackRequest): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/feedback`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(request),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to submit feedback' }));
+      throw new Error(error.error || 'Failed to submit feedback');
+    }
+  }
+}
+
+export const apiService = new ApiServiceExtended();

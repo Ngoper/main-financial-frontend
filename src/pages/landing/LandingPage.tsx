@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { getCurrentUser, logout, User } from '../../services/api';
 import './landing.css';
 
 export const LandingPage: React.FC = () => {
@@ -7,12 +8,21 @@ export const LandingPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [feedbackForm, setFeedbackForm] = useState({ nama: '', email: '', pesan: '' });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [showDropdown, setShowDropdown] = useState(false);
   const router = useIonRouter();
+
+  useEffect(() => {
+    getCurrentUser().then(setUser);
+  }, []);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
-  router.push('/chat');
+    if (user) {
+      router.push('/chat');
+    } else {
+      router.push(`/register?email=${encodeURIComponent(email)}`);
+    }
     setEmail('');
   };
 
@@ -35,8 +45,34 @@ export const LandingPage: React.FC = () => {
             <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('feedback')}>Saran</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
-            <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up</button>
+            {user ? (
+              <div className="relative">
+                <button 
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  className="text-gray-400 hover:text-white font-medium transition flex items-center gap-2"
+                >
+                  {user.name}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 bg-gray-900 border border-gray-700 rounded-lg shadow-lg py-2 z-50">
+                    <button
+                      onClick={logout}
+                      className="w-full text-left px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 transition"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
+                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up</button>
+              </>
+            )}
           </div>
         </div>
       </header>
@@ -52,21 +88,28 @@ export const LandingPage: React.FC = () => {
                 <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
                   Modcus menggunakan AI untuk menyaring data finansial yang kompleks menjadi insight yang mudah Anda pahami. Buat keputusan investasi dengan lebih percaya diri.
                 </p>
-                <div className="max-w-xl mx-auto">
-                  <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4">
-                    <input
-                      type="email"
-                      placeholder="Masukkan email Anda"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-5 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                      required
-                    />
-                    <button type="submit" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg whitespace-nowrap">
-                      Mulai Gratis
-                    </button>
-                  </form>
-                </div>
+                {!user && (
+                  <div className="max-w-xl mx-auto">
+                    <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4">
+                      <input
+                        type="email"
+                        placeholder="Masukkan email Anda"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-5 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
+                        required
+                      />
+                      <button type="submit" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg whitespace-nowrap">
+                        Mulai Gratis
+                      </button>
+                    </form>
+                  </div>
+                )}
+                {user && (
+                  <button onClick={() => router.push('/chat')} className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg text-lg">
+                    Mulai Analisis
+                  </button>
+                )}
               </div>
             </section>
 
@@ -208,7 +251,7 @@ export const LandingPage: React.FC = () => {
             <div>
               <h4 className="font-semibold text-white mb-4">Produk</h4>
               <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
-              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white" onClick={() => setCurrentPage('feedback')}>Feedback User</a>
+              <a href="/feedback" className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Perusahaan</h4>

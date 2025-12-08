@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { apiService } from '../../services/api';
 
 export const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -10,6 +11,14 @@ export const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const router = useIonRouter();
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get('email');
+    if (emailParam) {
+      setEmail(emailParam);
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -19,22 +28,20 @@ export const Register: React.FC = () => {
       return;
     }
 
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      });
-
-      if (!response.ok) throw new Error('Registration failed');
-      
-      const data = await response.json();
+      const data = await apiService.register(name, email, password);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       router.push('/chat');
-    } catch (err) {
-      setError('Registration failed. Please try again.');
+    } catch (err: any) {
+      setError(err.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }

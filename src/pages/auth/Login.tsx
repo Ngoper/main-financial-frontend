@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { apiService } from '../../services/api';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,19 +15,12 @@ export const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) throw new Error('Login failed');
-      
-      const data = await response.json();
+      const data = await apiService.login(email, password);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       router.push('/chat');
-    } catch (err) {
-      setError('Login failed. Please check your credentials.');
+    } catch (err: any) {
+      setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }

@@ -5,6 +5,7 @@ import { LandingPage } from './pages/landing/LandingPage';
 import { AIChat } from './pages/ai-chat/AIChat';
 import { Login } from './pages/auth/Login';
 import { Register } from './pages/auth/Register';
+import { Feedback } from './pages/feedback/Feedback';
 import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
@@ -44,6 +45,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/feedback">
+          <Feedback />
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />
