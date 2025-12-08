@@ -192,17 +192,47 @@ ion-content {
   --background: var(--bg-dark) !important;
 }
 
+.chat-page-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.chat-messages-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 .chat-log {
   padding: 2rem;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .chat-log-inner {
   max-width: 800px;
-  margin: auto auto 0 auto;
+  margin: 0 auto;
   width: 100%;
+  flex: 1;
+}
+
+.chat-input-wrapper {
+  flex-shrink: 0;
 }
 
 .initial-state-container {
@@ -225,31 +255,51 @@ ion-content {
 
 /* AI Message Styles */
 .ai-message {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.ai-message .message-content {
   background: var(--card-bg-dark);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   border: 1px solid var(--border-dark);
-  margin-bottom: 1.5rem;
+  flex: 1;
+  max-width: 80%;
 }
 
 .ai-message h3 {
   color: var(--primary-color-dark);
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
   font-family: 'Poppins', sans-serif;
 }
 
 .ai-message p {
   color: var(--text-primary-dark);
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-family: 'Poppins', sans-serif;
 }
 
 .ai-message ul {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0 0;
+  margin: 0.75rem 0 0 0;
 }
 
 .ai-message li {
@@ -261,6 +311,23 @@ ion-content {
 
 .ai-message li strong {
   color: var(--primary-color-dark);
+}
+
+/* User Message Styles */
+.user-message {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.user-message .message-content {
+  background: var(--primary-color-dark);
+  color: white;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  max-width: 80%;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
 }
 
 /* Header Styles */
@@ -391,7 +458,10 @@ ion-button {
 
 /* Example Prompts Styles */
 .example-prompts-section {
-  margin-top: 1.5rem;
+  padding: 1.5rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .prompt-header {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent } from '@ionic/react';
 import { ChatMessage } from './ChatMessage';
 import { ExamplePrompts } from './ExamplePrompts';
 import { ChatInput } from './ChatInput';
@@ -14,6 +13,7 @@ interface Message {
     list?: string[];
   };
   isInitial: boolean;
+  isUser?: boolean;
 }
 
 interface ChatViewProps {
@@ -28,10 +28,16 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   const [selectedLevel, setSelectedLevel] = useState<'newbie' | 'novice' | 'expert'>('newbie');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     initializeChatMode(mode);
   }, [mode]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const initializeChatMode = (modeType: string) => {
     let initialContent: Message['content'];
@@ -77,9 +83,11 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     if (input.trim() && !isLoading) {
       const userMessage: Message = {
         content: { text: input },
-        isInitial: false
+        isInitial: false,
+        isUser: true
       };
       setMessages(prev => [...prev, userMessage]);
+      setHasUserSentMessage(true);
       setIsLoading(true);
       
       try {
@@ -100,13 +108,15 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
         
         const aiMessage: Message = {
           content: { text: response.response },
-          isInitial: false
+          isInitial: false,
+          isUser: false
         };
         setMessages(prev => [...prev, aiMessage]);
       } catch (error) {
         const errorMessage: Message = {
           content: { text: 'Maaf, terjadi kesalahan. Silakan coba lagi.' },
-          isInitial: false
+          isInitial: false,
+          isUser: false
         };
         setMessages(prev => [...prev, errorMessage]);
       } finally {
@@ -134,35 +144,38 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   };
 
   return (
-    <>
-      <IonContent className="chat-content">
+    <div className="chat-container">
+      <div className="chat-messages-wrapper">
         <div className="chat-log">
           <div className="chat-log-inner">
             {messages.map((msg, idx) => (
-              <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} />
+              <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} isUser={msg.isUser} />
             ))}
             {isLoading && <LoadingIndicator />}
+            <div ref={messagesEndRef} />
           </div>
         </div>
-        {prompts.length > 0 && (
+        {prompts.length > 0 && !hasUserSentMessage && (
           <ExamplePrompts
             prompts={prompts}
             onSelectPrompt={handleSelectPrompt}
             onShuffle={handleShuffle}
           />
         )}
-      </IonContent>
-      <ChatInput
-        value={input}
-        onChange={setInput}
-        onSend={handleSend}
-        showUpload={mode === 'dokumen'}
-        onFileSelect={handleFileSelect}
-        selectedLevel={selectedLevel}
-        onLevelChange={handleLevelChange}
-        selectedFile={selectedFile}
-        isLoading={isLoading}
-      />
-    </>
+      </div>
+      <div className="chat-input-wrapper">
+        <ChatInput
+          value={input}
+          onChange={setInput}
+          onSend={handleSend}
+          showUpload={mode === 'dokumen'}
+          onFileSelect={handleFileSelect}
+          selectedLevel={selectedLevel}
+          onLevelChange={handleLevelChange}
+          selectedFile={selectedFile}
+          isLoading={isLoading}
+        />
+      </div>
+    </div>
   );
 };

@@ -3,6 +3,8 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { LandingPage } from './pages/landing/LandingPage';
 import { AIChat } from './pages/ai-chat/AIChat';
+import { Login } from './pages/auth/Login';
+import { Register } from './pages/auth/Register';
 import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
@@ -36,6 +38,12 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/chat">
           <AIChat />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
         </Route>
         <Route exact path="/">
           <Redirect to="/home" />

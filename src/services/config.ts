@@ -1,7 +1,5 @@
 export const API_CONFIG = {
-  BASE_URL: process.env.NODE_ENV === 'production' 
-    ? 'https://your-backend-domain.com/api/v1'
-    : 'http://localhost:8080/api/v1',
+  BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1',
   TIMEOUT: 30000,
 };
 

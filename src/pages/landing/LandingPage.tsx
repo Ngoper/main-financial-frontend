@@ -26,15 +26,17 @@ export const LandingPage: React.FC = () => {
     <IonPage>
       <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className="text-3xl font-bold gradient-text" onClick={() => setCurrentPage('home')}>Modcus</a>
+          <a href="#" onClick={() => setCurrentPage('home')}>
+            <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
+          </a>
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#fitur" className="text-gray-400 hover:text-white transition">Fitur</a>
             <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('about')}>Tentang Kami</a>
             <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('feedback')}>Saran</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <a href="#" className="hidden md:block text-gray-400 hover:text-white font-medium transition">Login</a>
-            <a href="#" className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up for Free</a>
+            <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
+            <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up</button>
           </div>
         </div>
       </header>
@@ -198,7 +200,9 @@ export const LandingPage: React.FC = () => {
         <div className="container mx-auto px-6 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             <div className="col-span-2 lg:col-span-1">
-              <a href="#" className="text-2xl font-bold gradient-text" onClick={() => setCurrentPage('home')}>Modcus</a>
+              <a href="#" onClick={() => setCurrentPage('home')}>
+              <img src="/modcus-logo.png" alt="Modcus" className="h-6" />
+            </a>
               <p className="text-sm text-gray-500 mt-2">AI-Powered Stock Analysis.</p>
             </div>
             <div>

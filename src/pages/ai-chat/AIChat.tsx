@@ -30,7 +30,7 @@ export const AIChat: React.FC = () => {
       ) : (
         <>
           <AppHeader onBack={handleBack} showBackButton={true} />
-          <IonContent>
+          <IonContent className="chat-page-content">
             <ChatView mode={selectedMode || ''} onBack={handleBack} />
           </IonContent>
         </>
