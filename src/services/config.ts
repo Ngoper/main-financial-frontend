@@ -5,7 +5,7 @@ export const API_CONFIG = {
 
 const getAuthToken = () => localStorage.getItem('token');
 
-export const getAuthHeaders = () => {
+export const getAuthHeaders = (): Record<string, string> => {
   const token = getAuthToken();
   return token ? { 'Authorization': `Bearer ${token}` } : {};
 };
