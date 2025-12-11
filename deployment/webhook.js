@@ -84,12 +84,12 @@ const server = http.createServer((req, res) => {
             return;
         }
 
-        // 4. Check branch (only main/master)
+        // 4. Check branch (only deployments)
         const ref = payload.ref;
-        if (ref && !ref.includes('main') && !ref.includes('master')) {
+        if (ref && !ref.includes('deployments')) {
             log(`Ignored ref: ${ref}`, 'INFO');
             res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.end('Ignored: Not main branch');
+            res.end('Ignored: Not deployments branch');
             return;
         }
 
