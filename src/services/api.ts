@@ -10,7 +10,7 @@ export interface User {
 
 export interface AIQueryRequest {
   mode: 'company-analysis' | 'stock-recommendations' | 'document-analysis';
-  level: 1 | 2 | 3;
+  level: 'newbie' | 'novice' | 'expert';
   query: string;
   tickers?: string[];
   ticker?: string;
@@ -31,7 +31,7 @@ export interface AIQueryResponse {
   sources?: SourceRef[];
   metadata?: {
     mode: string;
-    level: number;
+    level: string;
     inferred_tickers?: string[];
     retrieval?: {
       top_k_used: number;
@@ -81,7 +81,7 @@ class ApiService {
       // Use multipart/form-data for file uploads or document analysis
       const formData = new FormData();
       formData.append('mode', request.mode);
-      formData.append('level', request.level.toString());
+      formData.append('level', request.level);
       formData.append('query', request.query);
       
       if (request.tickers) {

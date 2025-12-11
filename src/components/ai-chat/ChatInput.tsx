@@ -8,8 +8,8 @@ interface ChatInputProps {
   onSend: () => void;
   showUpload?: boolean;
   onFileSelect?: (files: File[]) => void;
-  selectedLevel?: 1 | 2 | 3;
-  onLevelChange?: (level: 1 | 2 | 3) => void;
+  selectedLevel?: 'newbie' | 'novice' | 'expert';
+  onLevelChange?: (level: 'newbie' | 'novice' | 'expert') => void;
   selectedFiles?: File[];
   isLoading?: boolean;
 }
@@ -20,7 +20,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   onSend,
   showUpload = false,
   onFileSelect,
-  selectedLevel = 1,
+  selectedLevel = 'newbie',
   onLevelChange,
   selectedFiles = [],
   isLoading = false
@@ -42,20 +42,20 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     <div className="chat-input-area">
       <div className="contextual-options">
         <IonChip 
-          className={selectedLevel === 1 ? 'active' : ''}
-          onClick={() => onLevelChange?.(1)}
+          className={selectedLevel === 'newbie' ? 'active' : ''}
+          onClick={() => onLevelChange?.('newbie')}
         >
           <IonLabel>Pemula</IonLabel>
         </IonChip>
         <IonChip 
-          className={selectedLevel === 2 ? 'active' : ''}
-          onClick={() => onLevelChange?.(2)}
+          className={selectedLevel === 'novice' ? 'active' : ''}
+          onClick={() => onLevelChange?.('novice')}
         >
           <IonLabel>Intermediate</IonLabel>
         </IonChip>
         <IonChip 
-          className={selectedLevel === 3 ? 'active' : ''}
-          onClick={() => onLevelChange?.(3)}
+          className={selectedLevel === 'expert' ? 'active' : ''}
+          onClick={() => onLevelChange?.('expert')}
         >
           <IonLabel>Advanced</IonLabel>
         </IonChip>
