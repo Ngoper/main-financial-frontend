@@ -30,7 +30,7 @@ if (!SECRET) {
     process.exit(1);
 }
 
-// --- SERVER ---
+// --- SERVER --- 
 const server = http.createServer((req, res) => {
     if (req.method !== 'POST') {
         res.writeHead(405, { 'Content-Type': 'text/plain' });
