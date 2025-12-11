@@ -1,0 +1,16 @@
+{
+    "name": "frontend-deployment",
+    "version": "1.0.0",
+    "description": "Webhook listener for frontend deployment",
+    "main": "webhook.js",
+    "scripts": {
+        "start": "node webhook.js"
+    },
+    "keywords": [
+        "webhook",
+        "deployment",
+        "cicd"
+    ],
+    "author": "",
+    "license": "ISC"
+}
