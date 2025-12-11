@@ -10,12 +10,10 @@ cd "$(dirname "$0")/.."
 echo "Pulling latest changes..."
 git pull origin deployments
 
-# Install dependencies
-echo "Installing dependencies..."
-npm install
-
-# Build the project
-echo "Building project..."
-npm run build
+# Rebuild and restart Docker containers
+echo "Rebuilding Docker containers..."
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d
 
 echo "Frontend Deployment Complete!"
