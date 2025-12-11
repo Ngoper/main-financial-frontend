@@ -7,10 +7,10 @@ interface ChatInputProps {
   onChange: (value: string) => void;
   onSend: () => void;
   showUpload?: boolean;
-  onFileSelect?: (file: File) => void;
-  selectedLevel?: 'newbie' | 'novice' | 'expert';
-  onLevelChange?: (level: 'newbie' | 'novice' | 'expert') => void;
-  selectedFile?: File | null;
+  onFileSelect?: (files: File[]) => void;
+  selectedLevel?: 1 | 2 | 3;
+  onLevelChange?: (level: 1 | 2 | 3) => void;
+  selectedFiles?: File[];
   isLoading?: boolean;
 }
 
@@ -20,9 +20,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   onSend,
   showUpload = false,
   onFileSelect,
-  selectedLevel = 'newbie',
+  selectedLevel = 1,
   onLevelChange,
-  selectedFile,
+  selectedFiles = [],
   isLoading = false
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -33,7 +33,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0 && onFileSelect) {
-      onFileSelect(e.target.files[0]);
+      const filesArray = Array.from(e.target.files);
+      onFileSelect(filesArray);
     }
   };
 
@@ -41,20 +42,20 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     <div className="chat-input-area">
       <div className="contextual-options">
         <IonChip 
-          className={selectedLevel === 'newbie' ? 'active' : ''}
-          onClick={() => onLevelChange?.('newbie')}
+          className={selectedLevel === 1 ? 'active' : ''}
+          onClick={() => onLevelChange?.(1)}
         >
           <IonLabel>Pemula</IonLabel>
         </IonChip>
         <IonChip 
-          className={selectedLevel === 'novice' ? 'active' : ''}
-          onClick={() => onLevelChange?.('novice')}
+          className={selectedLevel === 2 ? 'active' : ''}
+          onClick={() => onLevelChange?.(2)}
         >
           <IonLabel>Intermediate</IonLabel>
         </IonChip>
         <IonChip 
-          className={selectedLevel === 'expert' ? 'active' : ''}
-          onClick={() => onLevelChange?.('expert')}
+          className={selectedLevel === 3 ? 'active' : ''}
+          onClick={() => onLevelChange?.(3)}
         >
           <IonLabel>Advanced</IonLabel>
         </IonChip>
@@ -68,14 +69,20 @@ export const ChatInput: React.FC<ChatInputProps> = ({
             <input
               ref={fileInputRef}
               type="file"
+              multiple
+              accept=".pdf,.docx,.pptx,.txt,.html,.csv,.xlsx"
               style={{ display: 'none' }}
               onChange={handleFileChange}
             />
           </>
         )}
-        {selectedFile && (
-          <div className="selected-file">
-            <span>📎 {selectedFile.name}</span>
+        {selectedFiles && selectedFiles.length > 0 && (
+          <div className="selected-files">
+            {selectedFiles.map((file, index) => (
+              <div key={index} className="selected-file">
+                <span>📎 {file.name}</span>
+              </div>
+            ))}
           </div>
         )}
         <IonTextarea

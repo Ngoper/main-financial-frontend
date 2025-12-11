@@ -10,15 +10,38 @@ export interface User {
 
 export interface AIQueryRequest {
   mode: 'company-analysis' | 'stock-recommendations' | 'document-analysis';
-  level: 'newbie' | 'novice' | 'expert';
+  level: 1 | 2 | 3;
   query: string;
-  file?: File;
+  tickers?: string[];
+  ticker?: string;
+  artifactId?: string;
+  files?: File[];
+}
+
+export interface SourceRef {
+  doc_id: string;
+  title: string;
+  ticker?: string;
+  chunk_id: string;
+  page?: number;
 }
 
 export interface AIQueryResponse {
-  response: string;
-  mode: string;
-  level: string;
+  answer: string;
+  sources?: SourceRef[];
+  metadata?: {
+    mode: string;
+    level: number;
+    inferred_tickers?: string[];
+    retrieval?: {
+      top_k_used: number;
+      chunks_used: number;
+    };
+    timings_ms?: {
+      retrieve: number;
+      generate: number;
+    };
+  };
 }
 
 class ApiService {
@@ -52,32 +75,77 @@ class ApiService {
   }
 
   async queryAI(request: AIQueryRequest): Promise<AIQueryResponse> {
-    const formData = new FormData();
-    formData.append('mode', request.mode);
-    formData.append('level', request.level);
-    formData.append('query', request.query);
+    const hasFiles = request.files && request.files.length > 0;
     
-    if (request.file) {
-      formData.append('files[0]', request.file);
-    }
-
-    const response = await fetch(`${API_BASE_URL}/ai/query`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: formData,
-    });
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-        throw new Error('Session expired. Please login again.');
+    if (hasFiles || request.mode === 'document-analysis') {
+      // Use multipart/form-data for file uploads or document analysis
+      const formData = new FormData();
+      formData.append('mode', request.mode);
+      formData.append('level', request.level.toString());
+      formData.append('query', request.query);
+      
+      if (request.tickers) {
+        request.tickers.forEach(ticker => formData.append('tickers', ticker));
       }
-      const error = await response.json().catch(() => ({ error: 'Unknown error' }));
-      throw new Error(error.error || `Request failed: ${response.status}`);
-    }
+      if (request.ticker) {
+        formData.append('ticker', request.ticker);
+      }
+      if (request.artifactId) {
+        formData.append('artifactId', request.artifactId);
+      }
+      if (request.files) {
+        request.files.forEach(file => formData.append('files', file));
+      }
 
-    return response.json();
+      const response = await fetch(`${API_BASE_URL}/ai/query`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: formData,
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+          throw new Error('Session expired. Please login again.');
+        }
+        const error = await response.json().catch(() => ({ detail: 'Unknown error' }));
+        throw new Error(error.detail || error.error || `Request failed: ${response.status}`);
+      }
+
+      return response.json();
+    } else {
+      // Use JSON for other modes
+      const jsonRequest = {
+        mode: request.mode,
+        level: request.level,
+        query: request.query,
+        ...(request.tickers && { tickers: request.tickers }),
+        ...(request.ticker && { ticker: request.ticker }),
+        ...(request.artifactId && { artifactId: request.artifactId })
+      };
+
+      const response = await fetch(`${API_BASE_URL}/ai/query`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders()
+        },
+        body: JSON.stringify(jsonRequest),
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+          throw new Error('Session expired. Please login again.');
+        }
+        const error = await response.json().catch(() => ({ detail: 'Unknown error' }));
+        throw new Error(error.detail || error.error || `Request failed: ${response.status}`);
+      }
+
+      return response.json();
+    }
   }
 
   async register(name: string, email: string, password: string): Promise<{ token: string; user: User }> {

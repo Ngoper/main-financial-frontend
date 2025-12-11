@@ -25,8 +25,8 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [prompts, setPrompts] = useState<string[]>([]);
-  const [selectedLevel, setSelectedLevel] = useState<'newbie' | 'novice' | 'expert'>('newbie');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedLevel, setSelectedLevel] = useState<1 | 2 | 3>(1);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
@@ -101,13 +101,13 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           mode: modeMap[mode] || 'company-analysis',
           level: selectedLevel,
           query: input,
-          file: selectedFile || undefined
+          ...(selectedFiles.length > 0 && { files: selectedFiles })
         };
         
         const response = await apiService.queryAI(request);
         
         const aiMessage: Message = {
-          content: { text: response.response },
+          content: { text: response.answer },
           isInitial: false,
           isUser: false
         };
@@ -122,7 +122,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
       } finally {
         setIsLoading(false);
         setInput('');
-        setSelectedFile(null);
+        setSelectedFiles([]);
       }
     }
   };
@@ -135,11 +135,11 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     setPrompts([...prompts].sort(() => Math.random() - 0.5));
   };
 
-  const handleFileSelect = (file: File) => {
-    setSelectedFile(file);
+  const handleFileSelect = (files: File[]) => {
+    setSelectedFiles(files);
   };
 
-  const handleLevelChange = (level: 'newbie' | 'novice' | 'expert') => {
+  const handleLevelChange = (level: 1 | 2 | 3) => {
     setSelectedLevel(level);
   };
 
@@ -172,7 +172,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           onFileSelect={handleFileSelect}
           selectedLevel={selectedLevel}
           onLevelChange={handleLevelChange}
-          selectedFile={selectedFile}
+          selectedFiles={selectedFiles}
           isLoading={isLoading}
         />
       </div>
