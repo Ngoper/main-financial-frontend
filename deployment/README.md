@@ -24,7 +24,7 @@ node webhook.js --port 9000 --secret YOUR_GITHUB_WEBHOOK_SECRET
 pm2 start webhook.js --name "frontend-webhook" -- --port 9000 --secret YOUR_GITHUB_WEBHOOK_SECRET
 ```
 
-**Arguments:**
+**Arguments:** 
 | Arg | Description | Default |
 |-----|-------------|---------|
 | `--port` | Port to listen on | 9000 |
