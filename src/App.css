@@ -114,6 +114,13 @@ ion-content {
   margin: 0 !important;
 }
 
+.gradient-text {
+  background: linear-gradient(90deg, #4F46E5, #A855F7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .feature-card, .performance-card {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(17, 17, 17, 0.5);
