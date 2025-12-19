@@ -4,10 +4,8 @@ import { getCurrentUser, logout, User } from '../../services/api';
 import './landing.css';
 
 export const LandingPage: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'feedback'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
   const [email, setEmail] = useState('');
-  const [feedbackForm, setFeedbackForm] = useState({ nama: '', email: '', pesan: '' });
-  const [showSuccess, setShowSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,11 +32,7 @@ export const LandingPage: React.FC = () => {
     setEmail('');
   };
 
-  const handleFeedbackSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Feedback submitted:', feedbackForm);
-    setShowSuccess(true);
-  };
+
 
   return (
     <IonPage>
@@ -50,7 +44,7 @@ export const LandingPage: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#fitur" className="text-gray-400 hover:text-white transition">Fitur</a>
             <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('about')}>Tentang Kami</a>
-            <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('feedback')}>Saran</a>
+            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }}>Saran</a>
           </nav>
           <div className="flex items-center space-x-4">
             {user ? (
@@ -326,59 +320,6 @@ export const LandingPage: React.FC = () => {
           </main>
         )}
 
-        {currentPage === 'feedback' && (
-          <section className="py-24 lg:py-32">
-            <div className="container mx-auto px-6">
-              <div className="max-w-3xl mx-auto text-center">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">Beri Kami Saran</h1>
-                <p className="text-lg md:text-xl text-gray-400 mb-12">Feedback Anda sangat berharga untuk membantu kami meningkatkan Modcus. Silakan bagikan kritik, saran, atau ide Anda.</p>
-                {!showSuccess ? (
-                  <form onSubmit={handleFeedbackSubmit} className="text-left space-y-6">
-                    <div>
-                      <label htmlFor="nama" className="block text-sm font-medium text-gray-300 mb-2">Nama Anda</label>
-                      <input
-                        type="text"
-                        id="nama"
-                        value={feedbackForm.nama}
-                        onChange={(e) => setFeedbackForm({ ...feedbackForm, nama: e.target.value })}
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email_saran" className="block text-sm font-medium text-gray-300 mb-2">Alamat Email</label>
-                      <input
-                        type="email"
-                        id="email_saran"
-                        value={feedbackForm.email}
-                        onChange={(e) => setFeedbackForm({ ...feedbackForm, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="pesan" className="block text-sm font-medium text-gray-300 mb-2">Pesan Anda</label>
-                      <textarea
-                        id="pesan"
-                        rows={6}
-                        value={feedbackForm.pesan}
-                        onChange={(e) => setFeedbackForm({ ...feedbackForm, pesan: e.target.value })}
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                        required
-                      />
-                    </div>
-                    <div className="text-center">
-                      <button type="submit" className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Kirim Saran</button>
-                    </div>
-                  </form>
-                ) : (
-                  <p className="mt-8 text-green-400">Terima kasih! Saran Anda telah kami terima.</p>
-                )}
-              </div>
-            </div>
-          </section>
-        )}
-
         <footer className="bg-black border-t border-gray-800">
           <div className="container mx-auto px-6 py-12">
             <div className="flex flex-wrap gap-8">
@@ -391,7 +332,7 @@ export const LandingPage: React.FC = () => {
               <div className="flex-1 min-w-[150px]">
                 <h4 className="font-semibold text-white mb-4">Produk</h4>
                 <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
                 <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Dokumentasi</a>
               </div>
               <div className="flex-1 min-w-[150px]">
@@ -401,8 +342,8 @@ export const LandingPage: React.FC = () => {
               </div>
               <div className="flex-1 min-w-[150px]">
                 <h4 className="font-semibold text-white mb-4">Legal</h4>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Syarat & Ketentuan</a>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Kebijakan Privasi</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/tnc'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Syarat & Ketentuan</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/privacy'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Kebijakan Privasi</a>
               </div>
               <div className="flex-1 min-w-[150px]">
                 <h4 className="font-semibold text-white mb-4">Kontak</h4>
