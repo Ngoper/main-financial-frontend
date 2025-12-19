@@ -4,7 +4,6 @@ import { getCurrentUser, logout, User } from '../../services/api';
 import './landing.css';
 
 export const LandingPage: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<User | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -43,7 +42,7 @@ export const LandingPage: React.FC = () => {
           </a>
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#fitur" className="text-gray-400 hover:text-white transition">Fitur</a>
-            <a href="#" className="text-gray-400 hover:text-white transition" onClick={() => setCurrentPage('about')}>Tentang Kami</a>
+            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/about'); }}>Tentang Kami</a>
             <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }}>Saran</a>
           </nav>
           <div className="flex items-center space-x-4">
@@ -72,7 +71,7 @@ export const LandingPage: React.FC = () => {
             ) : (
               <>
                 <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
-                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Sign Up</button>
+                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Daftar</button>
               </>
             )}
           </div>
@@ -80,8 +79,7 @@ export const LandingPage: React.FC = () => {
       </header>
 
       <IonContent className="landing-content">
-        {currentPage === 'home' && (
-          <main>
+        <main>
             <section className="hero-bg py-24 lg:py-40 fade-in-up">
               <div className="container mx-auto px-6 text-center">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
@@ -130,7 +128,7 @@ export const LandingPage: React.FC = () => {
             <section id="fitur" className="py-24">
               <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white">Unlock the Power of AI</h2>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white">Buka Kekuatan AI</h2>
                   <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Platform kami dirancang untuk memberikan keunggulan kompetitif di pasar saham.</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -140,7 +138,7 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">AI Scoring</h3>
+                    <h3 className="text-xl font-bold text-white mb-3">Penilaian AI</h3>
                     <p className="text-gray-400">Skor fundamental dari 0-100 yang mengevaluasi kesehatan finansial, valuasi, dan efisiensi perusahaan secara objektif.</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
@@ -149,7 +147,7 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Real-time Data Processing</h3>
+                    <h3 className="text-xl font-bold text-white mb-3">Pemrosesan Data Real-time</h3>
                     <p className="text-gray-400">Analisis berdasarkan laporan keuangan terkini, berita pasar, dan data makroekonomi secara real-time.</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
@@ -222,7 +220,7 @@ export const LandingPage: React.FC = () => {
               <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <span className="text-sm font-semibold text-indigo-400">WHY CHOOSE OUR AI?</span>
+                    <span className="text-sm font-semibold text-indigo-400">MENGAPA MEMILIH AI KAMI?</span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">Dibuat Khusus untuk Pasar Indonesia</h2>
                     <p className="text-lg text-gray-400 mb-8">Tidak seperti alat AI finansial generik, chatbot kami dilatih secara eksklusif menggunakan data pasar saham Indonesia, regulasi, dan dinamika pasar lokal.</p>
                     <div className="space-y-6">
@@ -258,30 +256,30 @@ export const LandingPage: React.FC = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white">Market Performance</h3>
-                        <p className="text-sm text-gray-500">Last 30 days tracking</p>
+                        <h3 className="text-xl font-bold text-white">Performa Pasar</h3>
+                        <p className="text-sm text-gray-500">Pelacakan 30 hari terakhir</p>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Successful Predictions</span>
+                        <span className="text-gray-400">Prediksi Berhasil</span>
                         <span className="font-semibold text-green-400">87.3%</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Average Response Time</span>
+                        <span className="text-gray-400">Waktu Respons Rata-rata</span>
                         <span className="font-semibold text-white">1.2s</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Stocks Analyzed Daily</span>
+                        <span className="text-gray-400">Saham Dianalisis Harian</span>
                         <span className="font-semibold text-white">500+</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">User Satisfaction</span>
+                        <span className="text-gray-400">Kepuasan Pengguna</span>
                         <span className="font-semibold text-green-400">96.2%</span>
                       </div>
                     </div>
                     <div className="border-t border-gray-800 mt-6 pt-6">
-                      <h4 className="text-sm text-gray-500 mb-3">Popular Indonesian Stocks We Track:</h4>
+                      <h4 className="text-sm text-gray-500 mb-3">Saham Indonesia Populer yang Kami Lacak:</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BBCA</span>
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BMRI</span>
@@ -304,7 +302,7 @@ export const LandingPage: React.FC = () => {
                   <p className="text-2xl font-medium text-white">"Modcus adalah game-changer. Saya bisa menganalisis fundamental saham dalam hitungan menit, bukan jam. Fitur AI Scoring-nya luar biasa akurat."</p>
                   <div className="mt-6">
                     <p className="font-bold text-lg text-gray-300">Susan Wijaya</p>
-                    <p className="text-gray-500">Full-time Trader</p>
+                    <p className="text-gray-500">Trader Penuh Waktu</p>
                   </div>
                 </div>
               </div>
@@ -317,17 +315,16 @@ export const LandingPage: React.FC = () => {
                 <a href="#" className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">Klaim Akses Gratis Anda</a>
               </div>
             </section>
-          </main>
-        )}
+        </main>
 
         <footer className="bg-black border-t border-gray-800">
           <div className="container mx-auto px-6 py-12">
             <div className="flex flex-wrap gap-8">
               <div className="flex-1 min-w-[150px]">
-                <a href="#" onClick={() => setCurrentPage('home')}>
+                <a href="#" onClick={() => router.push('/home')}>
                   <img src="/modcus-logo.png" alt="Modcus" className="h-6 mb-4" />
                 </a>
-                <p className="text-sm text-gray-500">AI-Powered Stock Analysis.</p>
+                <p className="text-sm text-gray-500">Analisis Saham Berbasis AI.</p>
               </div>
               <div className="flex-1 min-w-[150px]">
                 <h4 className="font-semibold text-white mb-4">Produk</h4>
@@ -337,7 +334,7 @@ export const LandingPage: React.FC = () => {
               </div>
               <div className="flex-1 min-w-[150px]">
                 <h4 className="font-semibold text-white mb-4">Perusahaan</h4>
-                <a href="#" onClick={() => setCurrentPage('about')} className="block mt-2 text-sm text-gray-400 hover:text-white">Tentang Kami</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/about'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Tentang Kami</a>
                 <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Blog</a>
               </div>
               <div className="flex-1 min-w-[150px]">
@@ -354,7 +351,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <div className="border-t border-gray-800 mt-8 pt-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-gray-500">&copy; 2025 PT Ngoper Global Infinity. All Rights Reserved.</p>
+                <p className="text-sm text-gray-500">&copy; 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi.</p>
                 <div className="flex items-center gap-4">
                   <a href="https://www.tiktok.com/@modcus.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

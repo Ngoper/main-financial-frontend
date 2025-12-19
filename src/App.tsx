@@ -6,6 +6,7 @@ import { AIChat } from './pages/ai-chat/AIChat';
 import { Login } from './pages/auth/Login';
 import { Register } from './pages/auth/Register';
 import { FeedbackPage } from './pages/feedback/FeedbackPage';
+import { AboutPage } from './pages/about/AboutPage';
 import { TermsPage } from './pages/legal/TermsPage';
 import { PrivacyPage } from './pages/legal/PrivacyPage';
 import './App.css';
@@ -50,6 +51,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/feedback">
           <FeedbackPage />
+        </Route>
+        <Route exact path="/about">
+          <AboutPage />
         </Route>
         <Route exact path="/tnc">
           <TermsPage />

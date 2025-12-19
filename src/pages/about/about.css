@@ -1,0 +1,9 @@
+.about-content {
+  --background: #0A0A0A;
+}
+
+.hero-bg {
+  background-color: #0A0A0A;
+  background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.2) 0%, transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.2) 0%, transparent 40%);
+}

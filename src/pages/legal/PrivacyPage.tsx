@@ -11,8 +11,8 @@ export const PrivacyPage: React.FC = () => {
           <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">Home</a>
+          <nav className="flex items-center space-x-8">
+            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">Beranda</a>
           </nav>
         </div>
       </header>
