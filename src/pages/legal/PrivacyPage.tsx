@@ -35,7 +35,7 @@ export const PrivacyPage: React.FC = () => {
                   <h2 className="text-2xl font-bold text-white mb-4">2. Informasi yang Kami Kumpulkan</h2>
                   <p>Kami mengumpulkan beberapa jenis informasi:</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li><strong>Informasi Akun:</strong> Nama, alamat email, dan kata sandi</li>
+                    <li><strong>Informasi Akun:</strong> Nama, dan alamat email</li>
                     <li><strong>Informasi Penggunaan:</strong> Data tentang bagaimana Anda menggunakan layanan kami</li>
                     <li><strong>Informasi Teknis:</strong> Alamat IP, jenis browser, dan perangkat</li>
                     <li><strong>Cookies:</strong> Data yang disimpan di perangkat Anda untuk meningkatkan pengalaman</li>
