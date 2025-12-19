@@ -252,10 +252,15 @@ export const LandingPage: React.FC = () => {
               <h4 className="font-semibold text-white mb-4">Produk</h4>
               <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
               <a href="/feedback" className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
+              <a href="/feedback" className="block mt-2 text-sm text-gray-400 hover:text-white">Kerjasama</a>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-4">Perusahaan</h4>
+              <h4 className="font-semibold text-white mb-4">Kontak</h4>
               <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white" onClick={() => setCurrentPage('about')}>Tentang Kami</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Threads</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">X</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">TikTok</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Facebook</a>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Legal</h4>
@@ -264,11 +269,11 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Kontak</h4>
-              <a href="mailto:support@stockbot.id" className="block mt-2 text-sm text-gray-400 hover:text-white">support@stockbot.id</a>
+              <a href="mailto:support@modcus.com" className="block mt-2 text-sm text-gray-400 hover:text-white">support@modcus.com</a>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
-            <p>&copy; 2024 Modcus. All Rights Reserved.</p>
+            <p>&copy; 2025 PT. Ngoper Global Infinity All Rights Reserved.</p>
           </div>
         </div>
       </footer>
