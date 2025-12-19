@@ -10,10 +10,18 @@ export const LandingPage: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const router = useIonRouter();
 
   useEffect(() => {
     getCurrentUser().then(setUser);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => prev === 2 ? 0 : prev + 1);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
@@ -163,6 +171,138 @@ export const LandingPage: React.FC = () => {
               </div>
             </section>
 
+            <section className="py-24 overflow-hidden">
+              <div className="container mx-auto px-6 text-center">
+                <h2 className="text-4xl md:text-5xl font-bold text-white">Coba Analis Saham AI Kami</h2>
+                <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Rasakan kekuatan analisis berbasis AI. Ajukan pertanyaan tentang saham Indonesia dan dapatkan respons cerdas secara instan.</p>
+                
+                <div className="mt-12 max-w-4xl mx-auto relative">
+                  <div className="swiper-container overflow-hidden">
+                    <div className="swiper-wrapper flex transition-transform duration-300 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                      <div className="swiper-slide min-w-full">
+                        <img src="https://placehold.co/1024x600/0A0A0A/FFFFFF?text=Contoh+Analisis+Fundamental+BBCA" alt="Contoh Analisis Fundamental" className="rounded-2xl border border-gray-800 shadow-2xl w-full" />
+                      </div>
+                      <div className="swiper-slide min-w-full">
+                        <img src="https://placehold.co/1024x600/0A0A0A/A855F7?text=Contoh+Perbandingan+Saham+BMRI+vs+BBRI" alt="Contoh Perbandingan Saham" className="rounded-2xl border border-gray-800 shadow-2xl w-full" />
+                      </div>
+                      <div className="swiper-slide min-w-full">
+                        <img src="https://placehold.co/1024x600/0A0A0A/4F46E5?text=Contoh+Prediksi+Tren+Saham+GOTO" alt="Contoh Prediksi Tren" className="rounded-2xl border border-gray-800 shadow-2xl w-full" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center mt-8 space-x-2">
+                    {[0, 1, 2].map((index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-colors ${
+                          currentSlide === index ? 'bg-purple-500' : 'bg-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  
+                  <button
+                    onClick={() => setCurrentSlide(currentSlide === 0 ? 2 : currentSlide - 1)}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-400 transition-colors"
+                  >
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  
+                  <button
+                    onClick={() => setCurrentSlide(currentSlide === 2 ? 0 : currentSlide + 1)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-400 transition-colors"
+                  >
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section className="py-24">
+              <div className="container mx-auto px-6">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <span className="text-sm font-semibold text-indigo-400">WHY CHOOSE OUR AI?</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">Dibuat Khusus untuk Pasar Indonesia</h2>
+                    <p className="text-lg text-gray-400 mb-8">Tidak seperti alat AI finansial generik, chatbot kami dilatih secara eksklusif menggunakan data pasar saham Indonesia, regulasi, dan dinamika pasar lokal.</p>
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white">Keahlian Lokal</h4>
+                          <p className="text-gray-400">Pemahaman mendalam tentang peraturan BEI, faktor ekonomi Indonesia, dan sentimen pasar lokal.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white">Update Real-time</h4>
+                          <p className="text-gray-400">Tetap terdepan dengan pembaruan pasar instan, analisis berita terkini, dan insight trading langsung.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="feature-card rounded-2xl p-8">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="bg-gray-800 p-3 rounded-lg">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Market Performance</h3>
+                        <p className="text-sm text-gray-500">Last 30 days tracking</p>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-400">Successful Predictions</span>
+                        <span className="font-semibold text-green-400">87.3%</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-400">Average Response Time</span>
+                        <span className="font-semibold text-white">1.2s</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-400">Stocks Analyzed Daily</span>
+                        <span className="font-semibold text-white">500+</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-400">User Satisfaction</span>
+                        <span className="font-semibold text-green-400">96.2%</span>
+                      </div>
+                    </div>
+                    <div className="border-t border-gray-800 mt-6 pt-6">
+                      <h4 className="text-sm text-gray-500 mb-3">Popular Indonesian Stocks We Track:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BBCA</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BMRI</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">ASII</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">TLKM</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">UNVR</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">ICBP</span>
+                        <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">GOTO</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             <section className="py-24">
               <div className="container mx-auto px-6 text-center">
                 <div className="max-w-3xl mx-auto">
@@ -252,15 +392,12 @@ export const LandingPage: React.FC = () => {
               <h4 className="font-semibold text-white mb-4">Produk</h4>
               <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
               <a href="/feedback" className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
-              <a href="/feedback" className="block mt-2 text-sm text-gray-400 hover:text-white">Kerjasama</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Dokumentasi</a>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-4">Kontak</h4>
+              <h4 className="font-semibold text-white mb-4">Perusahaan</h4>
               <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white" onClick={() => setCurrentPage('about')}>Tentang Kami</a>
-              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Threads</a>
-              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">X</a>
-              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">TikTok</a>
-              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Facebook</a>
+              <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Blog</a>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Legal</h4>
@@ -269,7 +406,25 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h4 className="font-semibold text-white mb-4">Kontak</h4>
-              <a href="mailto:support@modcus.com" className="block mt-2 text-sm text-gray-400 hover:text-white">support@modcus.com</a>
+              <a href="mailto:support@stockbot.id" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                support@stockbot.id
+              </a>
+              <a href="tel:+622112345678" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +62 21 1234 5678
+              </a>
+              <p className="flex items-center gap-2 mt-2 text-sm text-gray-400">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Jakarta, Indonesia
+              </p>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
