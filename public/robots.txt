@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /chat
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://modcus.ai/sitemap.xml
