@@ -37,7 +37,7 @@ export const LandingPage: React.FC = () => {
     <IonPage>
       <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" onClick={() => setCurrentPage('home')}>
+          <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="hidden md:flex items-center space-x-8">

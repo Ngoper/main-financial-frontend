@@ -49,14 +49,22 @@ export const Register: React.FC = () => {
 
   return (
     <IonPage>
+      <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
+            <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
+          </a>
+          <button onClick={() => router.push('/')} className="text-gray-400 hover:text-white font-medium transition">
+            Beranda
+          </button>
+        </div>
+      </header>
+
       <IonContent className="landing-content">
         <div className="min-h-screen flex items-center justify-center py-12 px-6">
           <div className="max-w-md w-full">
             <div className="text-center mb-8">
-              <a href="/home">
-                <img src="/modcus-logo.png" alt="Modcus" className="h-10 mx-auto" />
-              </a>
-              <h2 className="mt-6 text-3xl font-bold text-white">Create Account</h2>
+              <h2 className="text-3xl font-bold text-white">Create Account</h2>
               <p className="mt-2 text-gray-400">Start your investment journey</p>
             </div>
 
