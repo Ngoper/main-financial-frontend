@@ -83,10 +83,10 @@ export const LandingPage: React.FC = () => {
             <section className="hero-bg py-24 lg:py-40 fade-in-up">
               <div className="container mx-auto px-6 text-center">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
-                  Analisis Saham Fundamental Generasi Berikutnya
+                  Berhenti Menebak. Mulai Untung.
                 </h1>
                 <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-                  Modcus menggunakan AI untuk menyaring data finansial yang kompleks menjadi insight yang mudah Anda pahami. Buat keputusan investasi dengan lebih percaya diri.
+                  AI kami menganalisis saham untuk Anda. Dalam hitungan detik. Tanpa perlu baca laporan keuangan yang bikin pusing.
                 </p>
                 {!user && (
                   <div className="max-w-xl mx-auto">
@@ -115,7 +115,7 @@ export const LandingPage: React.FC = () => {
 
             <div className="py-16 bg-black">
               <div className="container mx-auto px-6">
-                <p className="text-center text-gray-500 font-medium uppercase tracking-widest">Digunakan oleh Investor dan Trader Profesional</p>
+                <p className="text-center text-gray-500 font-medium uppercase tracking-widest">Dipercaya Ribuan Investor Indonesia</p>
                 <div className="flex flex-wrap justify-center items-center mt-8 gap-8 md:gap-12">
                   <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+1" alt="Logo Partner 1" className="h-8 opacity-50 hover:opacity-100 transition" />
                   <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+2" alt="Logo Partner 2" className="h-8 opacity-50 hover:opacity-100 transition" />
@@ -128,8 +128,8 @@ export const LandingPage: React.FC = () => {
             <section id="fitur" className="py-24">
               <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white">Buka Kekuatan AI</h2>
-                  <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Platform kami dirancang untuk memberikan keunggulan kompetitif di pasar saham.</p>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white">Investasi Cerdas Tanpa Ribet</h2>
+                  <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Kami ubah data keuangan yang rumit jadi jawaban sederhana: Beli, Tahan, atau Jual. Sesimpel itu.</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   <div className="feature-card p-8 rounded-2xl">
@@ -138,8 +138,9 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Penilaian AI</h3>
-                    <p className="text-gray-400">Skor fundamental dari 0-100 yang mengevaluasi kesehatan finansial, valuasi, dan efisiensi perusahaan secara objektif.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">Skor Saham Instan</h3>
+                    <p className="text-gray-400 font-semibold mb-2">Tidak perlu lagi menebak-nebak.</p>
+                    <p className="text-gray-400">Dapatkan skor 0-100 untuk setiap saham. Semakin tinggi skornya, semakin bagus peluang untungnya. Simpel.</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
                     <div className="bg-purple-600/20 text-purple-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5">
@@ -147,8 +148,8 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Pemrosesan Data Real-time</h3>
-                    <p className="text-gray-400">Analisis berdasarkan laporan keuangan terkini, berita pasar, dan data makroekonomi secara real-time.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">Selalu Update, Selalu Akurat</h3>
+                    <p className="text-gray-400">Data terbaru setiap saat. Berita pasar terkini. Analisis yang selalu fresh. Anda selalu selangkah lebih maju.</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
                     <div className="bg-pink-600/20 text-pink-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5">
@@ -156,8 +157,8 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Chatbot Analis Saham</h3>
-                    <p className="text-gray-400">Tanyakan apapun tentang saham pilihan Anda dan dapatkan jawaban instan dari analis AI personal Anda.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">Tanya Apa Saja, Kapan Saja</h3>
+                    <p className="text-gray-400">Punya pertanyaan tentang saham? Tanya langsung ke AI kami. Jawaban langsung. Bahasa sederhana. Seperti ngobrol sama teman.</p>
                   </div>
                 </div>
               </div>
@@ -165,8 +166,8 @@ export const LandingPage: React.FC = () => {
 
             <section className="py-24 overflow-hidden">
               <div className="container mx-auto px-6 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white">Coba Analis Saham AI Kami</h2>
-                <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Rasakan kekuatan analisis berbasis AI. Ajukan pertanyaan tentang saham Indonesia dan dapatkan respons cerdas secara instan.</p>
+                <h2 className="text-4xl md:text-5xl font-bold text-white">Lihat Sendiri Cara Kerjanya</h2>
+                <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Tanya tentang saham apapun. Dapat jawaban dalam detik. Mudah dipahami. Langsung actionable.</p>
                 
                 <div className="mt-12 max-w-4xl mx-auto relative">
                   <div className="swiper-container overflow-hidden">
@@ -220,9 +221,9 @@ export const LandingPage: React.FC = () => {
               <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <span className="text-sm font-semibold text-indigo-400">MENGAPA MEMILIH AI KAMI?</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">Dibuat Khusus untuk Pasar Indonesia</h2>
-                    <p className="text-lg text-gray-400 mb-8">Tidak seperti alat AI finansial generik, chatbot kami dilatih secara eksklusif menggunakan data pasar saham Indonesia, regulasi, dan dinamika pasar lokal.</p>
+                    <span className="text-sm font-semibold text-indigo-400">KENAPA KAMI BEDA?</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">100% Fokus ke Saham Indonesia</h2>
+                    <p className="text-lg text-gray-400 mb-8">Bukan AI asal-asalan. Kami paham BEI, paham ekonomi Indonesia, paham saham-saham lokal. Karena kami fokus ke sini, hasilnya lebih akurat.</p>
                     <div className="space-y-6">
                       <div className="flex items-start gap-4">
                         <div className="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center">
@@ -231,8 +232,8 @@ export const LandingPage: React.FC = () => {
                           </svg>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white">Keahlian Lokal</h4>
-                          <p className="text-gray-400">Pemahaman mendalam tentang peraturan BEI, faktor ekonomi Indonesia, dan sentimen pasar lokal.</p>
+                          <h4 className="font-semibold text-white">Paham Pasar Indonesia</h4>
+                          <p className="text-gray-400">Kami ngerti aturan BEI, kondisi ekonomi RI, dan gimana investor lokal berpikir. Analisis yang relevan untuk Anda.</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-4">
@@ -242,8 +243,8 @@ export const LandingPage: React.FC = () => {
                           </svg>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white">Update Real-time</h4>
-                          <p className="text-gray-400">Tetap terdepan dengan pembaruan pasar instan, analisis berita terkini, dan insight trading langsung.</p>
+                          <h4 className="font-semibold text-white">Cepat & Akurat</h4>
+                          <p className="text-gray-400">Berita baru keluar? Kami langsung analisis. Harga bergerak? Kami langsung kasih insight. Anda selalu tahu duluan.</p>
                         </div>
                       </div>
                     </div>
@@ -256,17 +257,17 @@ export const LandingPage: React.FC = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white">Performa Pasar</h3>
-                        <p className="text-sm text-gray-500">Pelacakan 30 hari terakhir</p>
+                        <h3 className="text-xl font-bold text-white">Bukti Nyata</h3>
+                        <p className="text-sm text-gray-500">Data 30 hari terakhir</p>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Prediksi Berhasil</span>
+                        <span className="text-gray-400">Tingkat Akurasi</span>
                         <span className="font-semibold text-green-400">87.3%</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Waktu Respons Rata-rata</span>
+                        <span className="text-gray-400">Kecepatan Jawaban</span>
                         <span className="font-semibold text-white">1.2s</span>
                       </div>
                       <div className="flex justify-between items-center">
@@ -279,7 +280,7 @@ export const LandingPage: React.FC = () => {
                       </div>
                     </div>
                     <div className="border-t border-gray-800 mt-6 pt-6">
-                      <h4 className="text-sm text-gray-500 mb-3">Saham Indonesia Populer yang Kami Lacak:</h4>
+                      <h4 className="text-sm text-gray-500 mb-3">Saham Populer yang Bisa Anda Analisis:</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BBCA</span>
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BMRI</span>
@@ -299,10 +300,10 @@ export const LandingPage: React.FC = () => {
               <div className="container mx-auto px-6 text-center">
                 <div className="max-w-3xl mx-auto">
                   <img src="https://i.pravatar.cc/80?u=susan" alt="Foto Susan" className="h-20 w-20 rounded-full mx-auto mb-4" />
-                  <p className="text-2xl font-medium text-white">"Modcus adalah game-changer. Saya bisa menganalisis fundamental saham dalam hitungan menit, bukan jam. Fitur AI Scoring-nya luar biasa akurat."</p>
+                  <p className="text-2xl font-medium text-white">"Dulu saya takut beli saham karena gak ngerti. Sekarang? Tinggal tanya AI, langsung dapat jawaban jelas. Investasi jadi gampang banget!"</p>
                   <div className="mt-6">
-                    <p className="font-bold text-lg text-gray-300">Susan Wijaya</p>
-                    <p className="text-gray-500">Trader Penuh Waktu</p>
+                    <p className="font-bold text-lg text-gray-300">Budi Santoso</p>
+                    <p className="text-gray-500">Karyawan Swasta, Investor Pemula</p>
                   </div>
                 </div>
               </div>
@@ -310,9 +311,9 @@ export const LandingPage: React.FC = () => {
 
             <section className="hero-bg">
               <div className="container mx-auto px-6 py-24 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Mulai Investasi Lebih Cerdas Hari Ini</h2>
-                <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Dapatkan akses gratis ke platform analisis saham fundamental paling canggih.</p>
-                <a href="#" className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">Klaim Akses Gratis Anda</a>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Saatnya Anda Untung dari Saham</h2>
+                <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Gratis. Tanpa kartu kredit. Langsung bisa pakai. Mulai sekarang.</p>
+                <a href="#" className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">Mulai Gratis Sekarang</a>
               </div>
             </section>
         </main>
