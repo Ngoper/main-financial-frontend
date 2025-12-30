@@ -25,7 +25,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [prompts, setPrompts] = useState<string[]>([]);
-  const [selectedLevel, setSelectedLevel] = useState<1 | 2 | 3>(1);
+  const [selectedLevel, setSelectedLevel] = useState<'newbie' | 'novice' | 'expert'>('newbie');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
@@ -139,7 +139,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     setSelectedFiles(files);
   };
 
-  const handleLevelChange = (level: 1 | 2 | 3) => {
+  const handleLevelChange = (level: 'newbie' | 'novice' | 'expert') => {
     setSelectedLevel(level);
   };
 
