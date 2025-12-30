@@ -19,7 +19,7 @@ export const FEATURES = [
     description: 'Tanyakan apapun tentang saham pilihan Anda dan dapatkan jawaban instan dari analis AI personal Anda.',
     icon: 'people',
     color: 'pink'
-  
+  }
 ];
 
 export const PRINCIPLES = [
