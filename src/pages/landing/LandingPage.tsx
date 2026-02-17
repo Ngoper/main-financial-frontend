@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
 import { getCurrentUser, logout, User } from '../../services/api';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import './landing.css';
 
 export const LandingPage: React.FC = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [user, setUser] = useState<User | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -41,11 +44,12 @@ export const LandingPage: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#fitur" className="text-gray-400 hover:text-white transition">Fitur</a>
-            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/about'); }}>Tentang Kami</a>
-            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }}>Saran</a>
+            <a href="#fitur" className="text-gray-400 hover:text-white transition">{t('landing.nav.features')}</a>
+            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/about'); }}>{t('landing.nav.about')}</a>
+            <a href="#" className="text-gray-400 hover:text-white transition" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }}>{t('landing.nav.feedback')}</a>
           </nav>
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             {user ? (
               <div className="relative">
                 <button 
@@ -63,15 +67,15 @@ export const LandingPage: React.FC = () => {
                       onClick={logout}
                       className="w-full text-left px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 transition"
                     >
-                      Logout
+                      {t('common.logout')}
                     </button>
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
-                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Daftar</button>
+                <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">{t('landing.nav.login')}</button>
+                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">{t('landing.nav.register')}</button>
               </>
             )}
           </div>
@@ -83,31 +87,31 @@ export const LandingPage: React.FC = () => {
             <section className="hero-bg py-24 lg:py-40 fade-in-up">
               <div className="container mx-auto px-6 text-center">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
-                  Berhenti Menebak. Mulai Untung.
+                  {t('landing.hero.title')}
                 </h1>
                 <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-                  AI kami menganalisis saham untuk Anda. Dalam hitungan detik. Tanpa perlu baca laporan keuangan yang bikin pusing.
+                  {t('landing.hero.subtitle')}
                 </p>
                 {!user && (
                   <div className="max-w-xl mx-auto">
                     <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4">
                       <input
                         type="email"
-                        placeholder="Masukkan email Anda"
+                        placeholder={t('landing.hero.emailPlaceholder')}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-5 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
                         required
                       />
                       <button type="submit" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg whitespace-nowrap">
-                        Mulai Gratis
+                        {t('landing.hero.cta')}
                       </button>
                     </form>
                   </div>
                 )}
                 {user && (
                   <button onClick={() => router.push('/chat')} className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg text-lg">
-                    Mulai Analisis
+                    {t('landing.hero.startAnalysis')}
                   </button>
                 )}
               </div>
@@ -115,7 +119,7 @@ export const LandingPage: React.FC = () => {
 
             <div className="py-16 bg-black">
               <div className="container mx-auto px-6">
-                <p className="text-center text-gray-500 font-medium uppercase tracking-widest">Dipercaya Ribuan Investor Indonesia</p>
+                <p className="text-center text-gray-500 font-medium uppercase tracking-widest">{t('landing.trust')}</p>
                 <div className="flex flex-wrap justify-center items-center mt-8 gap-8 md:gap-12">
                   <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+1" alt="Logo Partner 1" className="h-8 opacity-50 hover:opacity-100 transition" />
                   <img src="https://placehold.co/120x40/1f2937/4b5563?text=Partner+2" alt="Logo Partner 2" className="h-8 opacity-50 hover:opacity-100 transition" />
@@ -128,8 +132,8 @@ export const LandingPage: React.FC = () => {
             <section id="fitur" className="py-24">
               <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white">Investasi Cerdas Tanpa Ribet</h2>
-                  <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Kami ubah data keuangan yang rumit jadi jawaban sederhana: Beli, Tahan, atau Jual. Sesimpel itu.</p>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white">{t('landing.features.title')}</h2>
+                  <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">{t('landing.features.subtitle')}</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   <div className="feature-card p-8 rounded-2xl">
@@ -138,9 +142,9 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Skor Saham Instan</h3>
-                    <p className="text-gray-400 font-semibold mb-2">Tidak perlu lagi menebak-nebak.</p>
-                    <p className="text-gray-400">Dapatkan skor 0-100 untuk setiap saham. Semakin tinggi skornya, semakin bagus peluang untungnya. Simpel.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{t('landing.features.score.title')}</h3>
+                    <p className="text-gray-400 font-semibold mb-2">{t('landing.features.score.subtitle')}</p>
+                    <p className="text-gray-400">{t('landing.features.score.description')}</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
                     <div className="bg-purple-600/20 text-purple-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5">
@@ -148,8 +152,8 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Selalu Update, Selalu Akurat</h3>
-                    <p className="text-gray-400">Data terbaru setiap saat. Berita pasar terkini. Analisis yang selalu fresh. Anda selalu selangkah lebih maju.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{t('landing.features.realtime.title')}</h3>
+                    <p className="text-gray-400">{t('landing.features.realtime.description')}</p>
                   </div>
                   <div className="feature-card p-8 rounded-2xl">
                     <div className="bg-pink-600/20 text-pink-400 rounded-lg h-12 w-12 flex items-center justify-center mb-5">
@@ -157,8 +161,8 @@ export const LandingPage: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">Tanya Apa Saja, Kapan Saja</h3>
-                    <p className="text-gray-400">Punya pertanyaan tentang saham? Tanya langsung ke AI kami. Jawaban langsung. Bahasa sederhana. Seperti ngobrol sama teman.</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{t('landing.features.chat.title')}</h3>
+                    <p className="text-gray-400">{t('landing.features.chat.description')}</p>
                   </div>
                 </div>
               </div>
@@ -166,8 +170,8 @@ export const LandingPage: React.FC = () => {
 
             <section className="py-24 overflow-hidden">
               <div className="container mx-auto px-6 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white">Lihat Sendiri Cara Kerjanya</h2>
-                <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Tanya tentang saham apapun. Dapat jawaban dalam detik. Mudah dipahami. Langsung actionable.</p>
+                <h2 className="text-4xl md:text-5xl font-bold text-white">{t('landing.demo.title')}</h2>
+                <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">{t('landing.demo.subtitle')}</p>
                 
                 <div className="mt-12 max-w-4xl mx-auto relative">
                   <div className="swiper-container overflow-hidden">
@@ -221,9 +225,9 @@ export const LandingPage: React.FC = () => {
               <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <span className="text-sm font-semibold text-indigo-400">KENAPA KAMI BEDA?</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">100% Fokus ke Saham Indonesia</h2>
-                    <p className="text-lg text-gray-400 mb-8">Bukan AI asal-asalan. Kami paham BEI, paham ekonomi Indonesia, paham saham-saham lokal. Karena kami fokus ke sini, hasilnya lebih akurat.</p>
+                    <span className="text-sm font-semibold text-indigo-400">{t('landing.why.badge')}</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">{t('landing.why.title')}</h2>
+                    <p className="text-lg text-gray-400 mb-8">{t('landing.why.subtitle')}</p>
                     <div className="space-y-6">
                       <div className="flex items-start gap-4">
                         <div className="bg-indigo-600/20 text-indigo-400 rounded-lg h-10 w-10 flex-shrink-0 flex items-center justify-center">
@@ -232,8 +236,8 @@ export const LandingPage: React.FC = () => {
                           </svg>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white">Paham Pasar Indonesia</h4>
-                          <p className="text-gray-400">Kami ngerti aturan BEI, kondisi ekonomi RI, dan gimana investor lokal berpikir. Analisis yang relevan untuk Anda.</p>
+                          <h4 className="font-semibold text-white">{t('landing.why.local.title')}</h4>
+                          <p className="text-gray-400">{t('landing.why.local.description')}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-4">
@@ -243,8 +247,8 @@ export const LandingPage: React.FC = () => {
                           </svg>
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white">Cepat & Akurat</h4>
-                          <p className="text-gray-400">Berita baru keluar? Kami langsung analisis. Harga bergerak? Kami langsung kasih insight. Anda selalu tahu duluan.</p>
+                          <h4 className="font-semibold text-white">{t('landing.why.fast.title')}</h4>
+                          <p className="text-gray-400">{t('landing.why.fast.description')}</p>
                         </div>
                       </div>
                     </div>
@@ -257,30 +261,30 @@ export const LandingPage: React.FC = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white">Bukti Nyata</h3>
-                        <p className="text-sm text-gray-500">Data 30 hari terakhir</p>
+                        <h3 className="text-xl font-bold text-white">{t('landing.why.proof.title')}</h3>
+                        <p className="text-sm text-gray-500">{t('landing.why.proof.period')}</p>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Tingkat Akurasi</span>
+                        <span className="text-gray-400">{t('landing.why.proof.accuracy')}</span>
                         <span className="font-semibold text-green-400">87.3%</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Kecepatan Jawaban</span>
+                        <span className="text-gray-400">{t('landing.why.proof.speed')}</span>
                         <span className="font-semibold text-white">1.2s</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Saham Dianalisis Harian</span>
+                        <span className="text-gray-400">{t('landing.why.proof.analyzed')}</span>
                         <span className="font-semibold text-white">500+</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-400">Kepuasan Pengguna</span>
+                        <span className="text-gray-400">{t('landing.why.proof.satisfaction')}</span>
                         <span className="font-semibold text-green-400">96.2%</span>
                       </div>
                     </div>
                     <div className="border-t border-gray-800 mt-6 pt-6">
-                      <h4 className="text-sm text-gray-500 mb-3">Saham Populer yang Bisa Anda Analisis:</h4>
+                      <h4 className="text-sm text-gray-500 mb-3">{t('landing.why.proof.popular')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BBCA</span>
                         <span className="bg-gray-800 text-xs font-medium px-2 py-1 rounded">BMRI</span>
@@ -300,10 +304,10 @@ export const LandingPage: React.FC = () => {
               <div className="container mx-auto px-6 text-center">
                 <div className="max-w-3xl mx-auto">
                   <img src="https://i.pravatar.cc/80?u=susan" alt="Foto Susan" className="h-20 w-20 rounded-full mx-auto mb-4" />
-                  <p className="text-2xl font-medium text-white">"Dulu saya takut beli saham karena gak ngerti. Sekarang? Tinggal tanya AI, langsung dapat jawaban jelas. Investasi jadi gampang banget!"</p>
+                  <p className="text-2xl font-medium text-white">{t('landing.testimonial.quote')}</p>
                   <div className="mt-6">
-                    <p className="font-bold text-lg text-gray-300">Budi Santoso</p>
-                    <p className="text-gray-500">Karyawan Swasta, Investor Pemula</p>
+                    <p className="font-bold text-lg text-gray-300">{t('landing.testimonial.name')}</p>
+                    <p className="text-gray-500">{t('landing.testimonial.role')}</p>
                   </div>
                 </div>
               </div>
@@ -311,9 +315,9 @@ export const LandingPage: React.FC = () => {
 
             <section className="hero-bg">
               <div className="container mx-auto px-6 py-24 text-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Saatnya Anda Untung dari Saham</h2>
-                <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Gratis. Tanpa kartu kredit. Langsung bisa pakai. Mulai sekarang.</p>
-                <a href="#" className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">Mulai Gratis Sekarang</a>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{t('landing.cta.title')}</h2>
+                <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">{t('landing.cta.subtitle')}</p>
+                <a href="#" className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-transform transform hover:scale-105 font-bold text-lg shadow-2xl inline-block">{t('landing.cta.button')}</a>
               </div>
             </section>
         </main>
@@ -325,34 +329,34 @@ export const LandingPage: React.FC = () => {
                 <a href="#" onClick={() => router.push('/home')}>
                   <img src="/modcus-logo.png" alt="Modcus" className="h-6 mb-4" />
                 </a>
-                <p className="text-sm text-gray-500">Analisis Saham Berbasis AI.</p>
+                <p className="text-sm text-gray-500">{t('landing.footer.tagline')}</p>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Produk</h4>
-                <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Dokumentasi</a>
+                <h4 className="font-semibold text-white mb-4">{t('landing.footer.product')}</h4>
+                <a href="#fitur" className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.features')}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.userFeedback')}</a>
+                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.docs')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Perusahaan</h4>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/about'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Tentang Kami</a>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Blog</a>
+                <h4 className="font-semibold text-white mb-4">{t('landing.footer.company')}</h4>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/about'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.about')}</a>
+                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.blog')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Legal</h4>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/tnc'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Syarat & Ketentuan</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/privacy'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Kebijakan Privasi</a>
+                <h4 className="font-semibold text-white mb-4">{t('landing.footer.legal')}</h4>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/tnc'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.terms')}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/privacy'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('landing.footer.privacy')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Kontak</h4>
+                <h4 className="font-semibold text-white mb-4">{t('landing.footer.contact')}</h4>
                 <a href="mailto:support@stockbot.id" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> modcusai@gmail.com </a> 
                 <a href="tel:+6282131099968" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +62 821-3109-9968</a>
-                <p className="flex items-center gap-2 mt-2 text-sm text-gray-400"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Surabaya, Indonesia</p>
+                <p className="flex items-center gap-2 mt-2 text-sm text-gray-400"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> {t('landing.footer.location')}</p>
               </div>
             </div>
             <div className="border-t border-gray-800 mt-8 pt-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-gray-500">&copy; 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi.</p>
+                <p className="text-sm text-gray-500">{t('landing.footer.copyright')}</p>
                 <div className="flex items-center gap-4">
                   <a href="https://www.tiktok.com/@modcus.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

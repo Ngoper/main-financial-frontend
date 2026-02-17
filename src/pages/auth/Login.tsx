@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
 import { apiService } from '../../services/api';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 
 export const Login: React.FC = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,8 +37,9 @@ export const Login: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <button onClick={() => router.push('/')} className="text-gray-400 hover:text-white font-medium transition">
-            Beranda
+            {t('common.back')}
           </button>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -43,8 +47,8 @@ export const Login: React.FC = () => {
         <div className="min-h-screen flex items-center justify-center py-12 px-6">
           <div className="max-w-md w-full">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white">Welcome Back</h2>
-              <p className="mt-2 text-gray-400">Sign in to your account</p>
+              <h2 className="text-3xl font-bold text-white">{t('auth.login.title')}</h2>
+              <p className="mt-2 text-gray-400">{t('dashboard.welcome')}</p>
             </div>
 
             <div className="feature-card p-8 rounded-2xl">
@@ -57,7 +61,7 @@ export const Login: React.FC = () => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email Address
+                    {t('auth.login.email')}
                   </label>
                   <input
                     id="email"
@@ -72,7 +76,7 @@ export const Login: React.FC = () => {
 
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
-                    Password
+                    {t('auth.login.password')}
                   </label>
                   <input
                     id="password"
@@ -93,11 +97,11 @@ export const Login: React.FC = () => {
                       className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-700 rounded bg-gray-900"
                     />
                     <label htmlFor="remember" className="ml-2 block text-sm text-gray-400">
-                      Remember me
+                      {t('auth.login.remember')}
                     </label>
                   </div>
                   <a href="#" className="text-sm text-indigo-400 hover:text-indigo-300">
-                    Forgot password?
+                    {t('auth.login.forgot')}
                   </a>
                 </div>
 
@@ -106,13 +110,13 @@ export const Login: React.FC = () => {
                   disabled={loading}
                   className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg disabled:opacity-50"
                 >
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? t('common.loading') : t('auth.login.submit')}
                 </button>
 
                 <p className="text-center text-sm text-gray-400">
-                  Don't have an account?{' '}
+                  {t('auth.login.noAccount')}{' '}
                   <a href="/register" className="text-indigo-400 hover:text-indigo-300 font-medium">
-                    Sign up
+                    {t('auth.login.register')}
                   </a>
                 </p>
               </form>

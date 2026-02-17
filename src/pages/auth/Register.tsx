@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
 import { apiService } from '../../services/api';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 
 export const Register: React.FC = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,8 +58,9 @@ export const Register: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <button onClick={() => router.push('/')} className="text-gray-400 hover:text-white font-medium transition">
-            Beranda
+            {t('common.back')}
           </button>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -64,8 +68,8 @@ export const Register: React.FC = () => {
         <div className="min-h-screen flex items-center justify-center py-12 px-6">
           <div className="max-w-md w-full">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white">Create Account</h2>
-              <p className="mt-2 text-gray-400">Start your investment journey</p>
+              <h2 className="text-3xl font-bold text-white">{t('auth.register.title')}</h2>
+              <p className="mt-2 text-gray-400">{t('auth.register.subtitle')}</p>
             </div>
 
             <div className="feature-card p-8 rounded-2xl">
@@ -78,7 +82,7 @@ export const Register: React.FC = () => {
 
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Full Name
+                    {t('auth.register.name')}
                   </label>
                   <input
                     id="name"
@@ -93,7 +97,7 @@ export const Register: React.FC = () => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email Address
+                    {t('auth.register.email')}
                   </label>
                   <input
                     id="email"
@@ -108,7 +112,7 @@ export const Register: React.FC = () => {
 
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
-                    Password
+                    {t('auth.register.password')}
                   </label>
                   <input
                     id="password"
@@ -124,7 +128,7 @@ export const Register: React.FC = () => {
 
                 <div>
                   <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
-                    Confirm Password
+                    {t('auth.register.confirmPassword')}
                   </label>
                   <input
                     id="confirmPassword"
@@ -143,13 +147,13 @@ export const Register: React.FC = () => {
                   disabled={loading}
                   className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg disabled:opacity-50"
                 >
-                  {loading ? 'Creating account...' : 'Sign Up'}
+                  {loading ? t('common.loading') : t('auth.register.submit')}
                 </button>
 
                 <p className="text-center text-sm text-gray-400">
-                  Already have an account?{' '}
+                  {t('auth.register.hasAccount')}{' '}
                   <a href="/login" className="text-indigo-400 hover:text-indigo-300 font-medium">
-                    Sign in
+                    {t('auth.register.login')}
                   </a>
                 </p>
               </form>

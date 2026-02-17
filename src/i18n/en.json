@@ -1,0 +1,150 @@
+{
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "remember": "Remember me",
+      "forgot": "Forgot password?"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Start your investment journey",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Login"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "welcomeUser": "Welcome back",
+    "quickActions": "Quick Actions",
+    "recentTasks": "Recent Tasks",
+    "startAnalysis": "Start Analysis",
+    "viewPortfolio": "View Portfolio",
+    "research": "Research"
+  },
+  "topic": {
+    "title": "Select Topic",
+    "subtitle": "Choose a topic to start your analysis",
+    "stockAnalysis": "Stock Analysis",
+    "portfolioManagement": "Portfolio Management",
+    "marketResearch": "Market Research",
+    "financialPlanning": "Financial Planning"
+  },
+  "chat": {
+    "title": "Chat",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "newChat": "New Chat"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "logout": "Logout",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "landing": {
+    "nav": {
+      "features": "Features",
+      "about": "About Us",
+      "feedback": "Feedback",
+      "login": "Login",
+      "register": "Register"
+    },
+    "hero": {
+      "title": "Stop Guessing. Start Profiting.",
+      "subtitle": "Our AI analyzes stocks for you. In seconds. No need to read confusing financial reports.",
+      "emailPlaceholder": "Enter your email",
+      "cta": "Start Free",
+      "startAnalysis": "Start Analysis"
+    },
+    "trust": "Trusted by Thousands of Indonesian Investors",
+    "features": {
+      "title": "Smart Investing Made Simple",
+      "subtitle": "We turn complex financial data into simple answers: Buy, Hold, or Sell. That simple.",
+      "score": {
+        "title": "Instant Stock Score",
+        "subtitle": "No more guessing.",
+        "description": "Get a 0-100 score for every stock. Higher score, better profit potential. Simple."
+      },
+      "realtime": {
+        "title": "Always Updated, Always Accurate",
+        "description": "Latest data anytime. Current market news. Always fresh analysis. You're always one step ahead."
+      },
+      "chat": {
+        "title": "Ask Anything, Anytime",
+        "description": "Questions about stocks? Ask our AI directly. Instant answers. Simple language. Like chatting with a friend."
+      }
+    },
+    "demo": {
+      "title": "See How It Works",
+      "subtitle": "Ask about any stock. Get answers in seconds. Easy to understand. Directly actionable."
+    },
+    "why": {
+      "badge": "WHY WE'RE DIFFERENT?",
+      "title": "100% Focused on Indonesian Stocks",
+      "subtitle": "Not just any AI. We understand IDX, Indonesian economy, and local stocks. Because we focus here, results are more accurate.",
+      "local": {
+        "title": "Understands Indonesian Market",
+        "description": "We know IDX rules, RI economic conditions, and how local investors think. Relevant analysis for you."
+      },
+      "fast": {
+        "title": "Fast & Accurate",
+        "description": "Breaking news? We analyze immediately. Price moves? We give instant insights. You always know first."
+      },
+      "proof": {
+        "title": "Real Proof",
+        "period": "Last 30 days data",
+        "accuracy": "Accuracy Rate",
+        "speed": "Response Speed",
+        "analyzed": "Daily Stock Analysis",
+        "satisfaction": "User Satisfaction",
+        "popular": "Popular Stocks You Can Analyze:"
+      }
+    },
+    "testimonial": {
+      "quote": "I used to be afraid to buy stocks because I didn't understand. Now? Just ask AI, get clear answers. Investing is so easy!",
+      "name": "Budi Santoso",
+      "role": "Private Employee, Beginner Investor"
+    },
+    "cta": {
+      "title": "Time to Profit from Stocks",
+      "subtitle": "Free. No credit card. Ready to use. Start now.",
+      "button": "Start Free Now"
+    },
+    "footer": {
+      "tagline": "AI-Powered Stock Analysis.",
+      "product": "Product",
+      "features": "Features",
+      "userFeedback": "User Feedback",
+      "docs": "Documentation",
+      "company": "Company",
+      "about": "About Us",
+      "blog": "Blog",
+      "legal": "Legal",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "contact": "Contact",
+      "location": "Surabaya, Indonesia",
+      "copyright": "© 2025 PT Ngoper Global Infinity. All Rights Reserved."
+    }
+  }
+}

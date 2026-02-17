@@ -9,6 +9,7 @@ import { FeedbackPage } from './pages/feedback/FeedbackPage';
 import { AboutPage } from './pages/about/AboutPage';
 import { TermsPage } from './pages/legal/TermsPage';
 import { PrivacyPage } from './pages/legal/PrivacyPage';
+import { TranslationProvider } from './i18n/TranslationContext';
 import './App.css';
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,39 +35,41 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <LandingPage />
-        </Route>
-        <Route exact path="/chat">
-          <AIChat />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/feedback">
-          <FeedbackPage />
-        </Route>
-        <Route exact path="/about">
-          <AboutPage />
-        </Route>
-        <Route exact path="/tnc">
-          <TermsPage />
-        </Route>
-        <Route exact path="/privacy">
-          <PrivacyPage />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+  <TranslationProvider>
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <LandingPage />
+          </Route>
+          <Route exact path="/chat">
+            <AIChat />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/feedback">
+            <FeedbackPage />
+          </Route>
+          <Route exact path="/about">
+            <AboutPage />
+          </Route>
+          <Route exact path="/tnc">
+            <TermsPage />
+          </Route>
+          <Route exact path="/privacy">
+            <PrivacyPage />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  </TranslationProvider>
 );
 
 export default App;

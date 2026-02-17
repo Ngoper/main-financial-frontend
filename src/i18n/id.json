@@ -1,0 +1,150 @@
+{
+  "auth": {
+    "login": {
+      "title": "Masuk",
+      "email": "Email",
+      "password": "Kata Sandi",
+      "submit": "Masuk",
+      "noAccount": "Belum punya akun?",
+      "register": "Daftar",
+      "remember": "Ingat saya",
+      "forgot": "Lupa kata sandi?"
+    },
+    "register": {
+      "title": "Daftar",
+      "subtitle": "Mulai perjalanan investasi Anda",
+      "name": "Nama",
+      "email": "Email",
+      "password": "Kata Sandi",
+      "confirmPassword": "Konfirmasi Kata Sandi",
+      "submit": "Daftar",
+      "hasAccount": "Sudah punya akun?",
+      "login": "Masuk"
+    }
+  },
+  "dashboard": {
+    "title": "Dasbor",
+    "welcome": "Selamat datang kembali",
+    "welcomeUser": "Selamat datang kembali",
+    "quickActions": "Aksi Cepat",
+    "recentTasks": "Tugas Terbaru",
+    "startAnalysis": "Mulai Analisis",
+    "viewPortfolio": "Lihat Portofolio",
+    "research": "Riset"
+  },
+  "topic": {
+    "title": "Pilih Topik",
+    "subtitle": "Pilih topik untuk memulai analisis Anda",
+    "stockAnalysis": "Analisis Saham",
+    "portfolioManagement": "Manajemen Portofolio",
+    "marketResearch": "Riset Pasar",
+    "financialPlanning": "Perencanaan Keuangan"
+  },
+  "chat": {
+    "title": "Obrolan",
+    "placeholder": "Ketik pesan Anda...",
+    "send": "Kirim",
+    "thinking": "Berpikir...",
+    "newChat": "Obrolan Baru"
+  },
+  "common": {
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "success": "Berhasil",
+    "logout": "Keluar",
+    "settings": "Pengaturan",
+    "language": "Bahasa"
+  },
+  "landing": {
+    "nav": {
+      "features": "Fitur",
+      "about": "Tentang Kami",
+      "feedback": "Saran",
+      "login": "Login",
+      "register": "Daftar"
+    },
+    "hero": {
+      "title": "Berhenti Menebak. Mulai Untung.",
+      "subtitle": "AI kami menganalisis saham untuk Anda. Dalam hitungan detik. Tanpa perlu baca laporan keuangan yang bikin pusing.",
+      "emailPlaceholder": "Masukkan email Anda",
+      "cta": "Mulai Gratis",
+      "startAnalysis": "Mulai Analisis"
+    },
+    "trust": "Dipercaya Ribuan Investor Indonesia",
+    "features": {
+      "title": "Investasi Cerdas Tanpa Ribet",
+      "subtitle": "Kami ubah data keuangan yang rumit jadi jawaban sederhana: Beli, Tahan, atau Jual. Sesimpel itu.",
+      "score": {
+        "title": "Skor Saham Instan",
+        "subtitle": "Tidak perlu lagi menebak-nebak.",
+        "description": "Dapatkan skor 0-100 untuk setiap saham. Semakin tinggi skornya, semakin bagus peluang untungnya. Simpel."
+      },
+      "realtime": {
+        "title": "Selalu Update, Selalu Akurat",
+        "description": "Data terbaru setiap saat. Berita pasar terkini. Analisis yang selalu fresh. Anda selalu selangkah lebih maju."
+      },
+      "chat": {
+        "title": "Tanya Apa Saja, Kapan Saja",
+        "description": "Punya pertanyaan tentang saham? Tanya langsung ke AI kami. Jawaban langsung. Bahasa sederhana. Seperti ngobrol sama teman."
+      }
+    },
+    "demo": {
+      "title": "Lihat Sendiri Cara Kerjanya",
+      "subtitle": "Tanya tentang saham apapun. Dapat jawaban dalam detik. Mudah dipahami. Langsung actionable."
+    },
+    "why": {
+      "badge": "KENAPA KAMI BEDA?",
+      "title": "100% Fokus ke Saham Indonesia",
+      "subtitle": "Bukan AI asal-asalan. Kami paham BEI, paham ekonomi Indonesia, paham saham-saham lokal. Karena kami fokus ke sini, hasilnya lebih akurat.",
+      "local": {
+        "title": "Paham Pasar Indonesia",
+        "description": "Kami ngerti aturan BEI, kondisi ekonomi RI, dan gimana investor lokal berpikir. Analisis yang relevan untuk Anda."
+      },
+      "fast": {
+        "title": "Cepat & Akurat",
+        "description": "Berita baru keluar? Kami langsung analisis. Harga bergerak? Kami langsung kasih insight. Anda selalu tahu duluan."
+      },
+      "proof": {
+        "title": "Bukti Nyata",
+        "period": "Data 30 hari terakhir",
+        "accuracy": "Tingkat Akurasi",
+        "speed": "Kecepatan Jawaban",
+        "analyzed": "Saham Dianalisis Harian",
+        "satisfaction": "Kepuasan Pengguna",
+        "popular": "Saham Populer yang Bisa Anda Analisis:"
+      }
+    },
+    "testimonial": {
+      "quote": "Dulu saya takut beli saham karena gak ngerti. Sekarang? Tinggal tanya AI, langsung dapat jawaban jelas. Investasi jadi gampang banget!",
+      "name": "Budi Santoso",
+      "role": "Karyawan Swasta, Investor Pemula"
+    },
+    "cta": {
+      "title": "Saatnya Anda Untung dari Saham",
+      "subtitle": "Gratis. Tanpa kartu kredit. Langsung bisa pakai. Mulai sekarang.",
+      "button": "Mulai Gratis Sekarang"
+    },
+    "footer": {
+      "tagline": "Analisis Saham Berbasis AI.",
+      "product": "Produk",
+      "features": "Fitur",
+      "userFeedback": "Feedback User",
+      "docs": "Dokumentasi",
+      "company": "Perusahaan",
+      "about": "Tentang Kami",
+      "blog": "Blog",
+      "legal": "Legal",
+      "terms": "Syarat & Ketentuan",
+      "privacy": "Kebijakan Privasi",
+      "contact": "Kontak",
+      "location": "Surabaya, Indonesia",
+      "copyright": "© 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi."
+    }
+  }
+}
