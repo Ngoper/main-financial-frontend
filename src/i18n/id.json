@@ -71,47 +71,47 @@
     },
     "hero": {
       "title": "Berhenti Menebak. Mulai Untung.",
-      "subtitle": "AI kami menganalisis saham untuk Anda. Dalam hitungan detik. Tanpa perlu baca laporan keuangan yang bikin pusing.",
-      "emailPlaceholder": "Masukkan email Anda",
+      "subtitle": "AI Analisis Paling Gampang. Cari Duit Gak Perlu Pusing.",
+      "emailPlaceholder": "Masukkan Email",
       "cta": "Mulai Gratis",
       "startAnalysis": "Mulai Analisis"
     },
     "trust": "Dipercaya Ribuan Investor Indonesia",
     "features": {
-      "title": "Investasi Cerdas Tanpa Ribet",
-      "subtitle": "Kami ubah data keuangan yang rumit jadi jawaban sederhana: Beli, Tahan, atau Jual. Sesimpel itu.",
+      "title": "Investasi Anti Pusing",
+      "subtitle": "Langsung Dapat Jawaban, Langsung Buat Keputusan",
       "score": {
-        "title": "Skor Saham Instan",
-        "subtitle": "Tidak perlu lagi menebak-nebak.",
-        "description": "Dapatkan skor 0-100 untuk setiap saham. Semakin tinggi skornya, semakin bagus peluang untungnya. Simpel."
+        "title": "Penilaian Saham Instan",
+        "subtitle": "Anti Tebak Tebakan.",
+        "description": "AI Kami Menilai Saham dari 0-100. Simpel, Langsung Investasi."
       },
       "realtime": {
-        "title": "Selalu Update, Selalu Akurat",
-        "description": "Data terbaru setiap saat. Berita pasar terkini. Analisis yang selalu fresh. Anda selalu selangkah lebih maju."
+        "title": "Akurat dan Paling Update",
+        "description": "Berita dan Data pasar paling update dan tentunya akurat. Tidak Perlu Takut Salah."
       },
       "chat": {
-        "title": "Tanya Apa Saja, Kapan Saja",
-        "description": "Punya pertanyaan tentang saham? Tanya langsung ke AI kami. Jawaban langsung. Bahasa sederhana. Seperti ngobrol sama teman."
+        "title": "Tanya Apapun",
+        "description": "Anggap AI Kami Temanmu, Tanya Apapun Tentang Saham Apapun."
       }
     },
     "demo": {
-      "title": "Lihat Sendiri Cara Kerjanya",
-      "subtitle": "Tanya tentang saham apapun. Dapat jawaban dalam detik. Mudah dipahami. Langsung actionable."
+      "title": "Lihat Langsung Kinerjanya",
+      "subtitle": "Tanya dan Langsung Dapatkan Jawaban. Langsung Dapat Jawaban, Langsung Cuan."
     },
     "why": {
-      "badge": "KENAPA KAMI BEDA?",
+      "badge": "KENAPA HARUS KAMI?",
       "title": "100% Fokus ke Saham Indonesia",
-      "subtitle": "Bukan AI asal-asalan. Kami paham BEI, paham ekonomi Indonesia, paham saham-saham lokal. Karena kami fokus ke sini, hasilnya lebih akurat.",
+      "subtitle": "Bukan AI Asal. AI Kami Dilatih Berdasar Data BEI, Bukan Tebakan, Apalagi Hoaks.",
       "local": {
         "title": "Paham Pasar Indonesia",
-        "description": "Kami ngerti aturan BEI, kondisi ekonomi RI, dan gimana investor lokal berpikir. Analisis yang relevan untuk Anda."
+        "description": "Kami Melatih AI Dengan Fundamental Berdasarkan BEI. Bukan Pilih Asal."
       },
       "fast": {
         "title": "Cepat & Akurat",
-        "description": "Berita baru keluar? Kami langsung analisis. Harga bergerak? Kami langsung kasih insight. Anda selalu tahu duluan."
+        "description": "Berita baru keluar? Sudah Kami Analisis, Mulai Harga Hingga Pergerakan Semua Bisa Dijawab AI Modcus."
       },
       "proof": {
-        "title": "Bukti Nyata",
+        "title": "Bukan Omong Kosong, Langsung Data",
         "period": "Data 30 hari terakhir",
         "accuracy": "Tingkat Akurasi",
         "speed": "Kecepatan Jawaban",
@@ -126,7 +126,7 @@
       "role": "Karyawan Swasta, Investor Pemula"
     },
     "cta": {
-      "title": "Saatnya Anda Untung dari Saham",
+      "title": "Mulai Analisa Saham",
       "subtitle": "Gratis. Tanpa kartu kredit. Langsung bisa pakai. Mulai sekarang.",
       "button": "Mulai Gratis Sekarang"
     },
