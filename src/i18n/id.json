@@ -71,19 +71,19 @@
     },
     "hero": {
       "title": "Berhenti Menebak. Mulai Untung.",
-      "subtitle": "AI Analisis Paling Gampang. Cari Duit Gak Perlu Pusing.",
+      "subtitle": "Analisis Dengan Bantuan AI, Investasi Jadi Tenang.",
       "emailPlaceholder": "Masukkan Email",
       "cta": "Mulai Gratis",
       "startAnalysis": "Mulai Analisis"
     },
     "trust": "Dipercaya Ribuan Investor Indonesia",
     "features": {
-      "title": "Investasi Anti Pusing",
+      "title": "Investasi Terkalkulasi",
       "subtitle": "Langsung Dapat Jawaban, Langsung Buat Keputusan",
       "score": {
-        "title": "Penilaian Saham Instan",
+        "title": "Analisis Saham Instan",
         "subtitle": "Anti Tebak Tebakan.",
-        "description": "AI Kami Menilai Saham dari 0-100. Simpel, Langsung Investasi."
+        "description": "Sistem Penilaian dari 0-100, Menambah Kepercayaan pada Keputusanmu"
       },
       "realtime": {
         "title": "Akurat dan Paling Update",
@@ -104,14 +104,14 @@
       "subtitle": "Bukan AI Asal. AI Kami Dilatih Berdasar Data BEI, Bukan Tebakan, Apalagi Hoaks.",
       "local": {
         "title": "Paham Pasar Indonesia",
-        "description": "Kami Melatih AI Dengan Fundamental Berdasarkan BEI. Bukan Pilih Asal."
+        "description": "Kami Melatih AI Kami Dengan Fundamental Berdasarkan Keadaan Pasar. Bukan Pilih Asal."
       },
       "fast": {
         "title": "Cepat & Akurat",
         "description": "Berita baru keluar? Sudah Kami Analisis, Mulai Harga Hingga Pergerakan Semua Bisa Dijawab AI Modcus."
       },
       "proof": {
-        "title": "Bukan Omong Kosong, Langsung Data",
+        "title": "Statistik Investasi Kami",
         "period": "Data 30 hari terakhir",
         "accuracy": "Tingkat Akurasi",
         "speed": "Kecepatan Jawaban",
