@@ -3,6 +3,7 @@ import { ChatMessage } from './ChatMessage';
 import { ExamplePrompts } from './ExamplePrompts';
 import { ChatInput } from './ChatInput';
 import { LoadingIndicator } from './LoadingIndicator';
+import { FeedbackModal } from './FeedbackModal';
 import { apiService, AIQueryRequest } from '../../services/api';
 
 interface Message {
@@ -29,7 +30,17 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const promptCount = parseInt(localStorage.getItem('promptCount') || '0');
+    const feedbackShown = localStorage.getItem('feedbackShown') === 'true';
+    
+    if (promptCount >= 3 && !feedbackShown) {
+      setShowFeedbackModal(true);
+    }
+  }, []);
 
   useEffect(() => {
     initializeChatMode(mode);
@@ -90,6 +101,17 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
       setHasUserSentMessage(true);
       setIsLoading(true);
       
+      // Increment prompt count
+      const currentCount = parseInt(localStorage.getItem('promptCount') || '0');
+      const newCount = currentCount + 1;
+      localStorage.setItem('promptCount', newCount.toString());
+      
+      // Show feedback modal after 3 prompts
+      const feedbackShown = localStorage.getItem('feedbackShown') === 'true';
+      if (newCount === 3 && !feedbackShown) {
+        setTimeout(() => setShowFeedbackModal(true), 1000);
+      }
+      
       try {
         const modeMap: Record<string, AIQueryRequest['mode']> = {
           'rekomendasi': 'stock-recommendations',
@@ -143,39 +165,47 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     setSelectedLevel(level);
   };
 
+  const handleCloseFeedbackModal = () => {
+    setShowFeedbackModal(false);
+    localStorage.setItem('feedbackShown', 'true');
+  };
+
   return (
-    <div className="chat-container">
-      <div className="chat-messages-wrapper">
-        <div className="chat-log">
-          <div className="chat-log-inner">
-            {messages.map((msg, idx) => (
-              <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} isUser={msg.isUser} />
-            ))}
-            {isLoading && <LoadingIndicator />}
-            <div ref={messagesEndRef} />
+    <>
+      <div className="chat-container">
+        <div className="chat-messages-wrapper">
+          <div className="chat-log">
+            <div className="chat-log-inner">
+              {messages.map((msg, idx) => (
+                <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} isUser={msg.isUser} />
+              ))}
+              {isLoading && <LoadingIndicator />}
+              <div ref={messagesEndRef} />
+            </div>
           </div>
+          {prompts.length > 0 && !hasUserSentMessage && (
+            <ExamplePrompts
+              prompts={prompts}
+              onSelectPrompt={handleSelectPrompt}
+              onShuffle={handleShuffle}
+            />
+          )}
         </div>
-        {prompts.length > 0 && !hasUserSentMessage && (
-          <ExamplePrompts
-            prompts={prompts}
-            onSelectPrompt={handleSelectPrompt}
-            onShuffle={handleShuffle}
+        <div className="chat-input-wrapper">
+          <ChatInput
+            value={input}
+            onChange={setInput}
+            onSend={handleSend}
+            showUpload={mode === 'dokumen'}
+            onFileSelect={handleFileSelect}
+            selectedLevel={selectedLevel}
+            onLevelChange={handleLevelChange}
+            selectedFiles={selectedFiles}
+            isLoading={isLoading}
           />
-        )}
+        </div>
       </div>
-      <div className="chat-input-wrapper">
-        <ChatInput
-          value={input}
-          onChange={setInput}
-          onSend={handleSend}
-          showUpload={mode === 'dokumen'}
-          onFileSelect={handleFileSelect}
-          selectedLevel={selectedLevel}
-          onLevelChange={handleLevelChange}
-          selectedFiles={selectedFiles}
-          isLoading={isLoading}
-        />
-      </div>
-    </div>
+      <FeedbackModal isOpen={showFeedbackModal} onClose={handleCloseFeedbackModal} />
+    </>
   );
 };
