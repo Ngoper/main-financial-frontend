@@ -16,6 +16,29 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    // Load Sociabuzz script on component mount
+    const script = document.createElement('script');
+    script.src = 'https://storage.sociabuzz.com/storage/js/main/buttononwebsite/index.min.js';
+    script.async = true;
+    script.onload = () => {
+      if (window.sbBoW) {
+        window.sbBoW.draw("modcusai", "QmVyaSBEdWt1bmdhbiA", "position-bottom-right", "#76CC11", "#FFFFFF");
+      }
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+      const btn = document.getElementById('wrapperFloatingBtn');
+      if (btn) {
+        btn.remove();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       const moveButton = () => {
         const sociabuzzBtn = document.getElementById('wrapperFloatingBtn');
