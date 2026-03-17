@@ -78,10 +78,10 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
 
     try {
       await apiService.submitFeedback({
-        phone,
-        email,
+        phone: 'anonymous',
+        email: '',
         feedback,
-        wantContact: true
+        wantContact: false
       });
       setSuccess(true);
       setTimeout(() => {
@@ -116,6 +116,13 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
                 <p className="text-gray-400 text-sm mb-4">
                   Bantu kami terus berkembang dengan memberikan dukungan Anda
                 </p>
+                <div className="qris-container">
+                  <img 
+                    src="/qris.jpg" 
+                    alt="QRIS Payment" 
+                    className="qris-image"
+                  />
+                </div>
                 <div id="sociabuzz-widget-container"></div>
               </div>
             </div>
@@ -130,37 +137,12 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Nomor Telepon
-                    </label>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Email (Opsional)
-                    </label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Kritik & Saran
                     </label>
                     <textarea
                       value={feedback}
                       onChange={(e) => setFeedback(e.target.value)}
-                      rows={4}
+                      rows={8}
                       className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
                       required
                     />
@@ -188,10 +170,10 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
 
         @media (min-width: 768px) {
           .feedback-modal-wrapper {
-            --width: 80%;
-            --max-width: 1000px;
+            --width: 90%;
+            --max-width: 1200px;
             --height: 80%;
-            --max-height: 700px;
+            --max-height: 900px;
           }
         }
 
@@ -248,6 +230,27 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
         .support-content {
           text-align: center;
           width: 100%;
+        }
+
+        .qris-container {
+          margin-bottom: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .qris-image {
+          max-width: 100%;
+          width: 250px;
+          height: auto;
+          border-radius: 0.5rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (min-width: 768px) {
+          .qris-image {
+            width: 300px;
+          }
         }
 
         #sociabuzz-widget-container {
