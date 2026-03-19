@@ -16,27 +16,41 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    // Load Sociabuzz script on component mount
-    const script = document.createElement('script');
-    script.src = 'https://storage.sociabuzz.com/storage/js/main/buttononwebsite/index.min.js';
-    script.async = true;
-    script.onload = () => {
-      if (window.sbBoW) {
-        window.sbBoW.draw("modcusai", "QmVyaSBEdWt1bmdhbiA", "position-bottom-right", "#76CC11", "#FFFFFF");
-      }
-    };
-    document.body.appendChild(script);
+    // Load Sociabuzz script only when modal opens
+    if (isOpen) {
+      const script = document.createElement('script');
+      script.src = 'https://storage.sociabuzz.com/storage/js/main/buttononwebsite/index.min.js';
+      script.async = true;
+      script.onload = () => {
+        if (window.sbBoW) {
+          window.sbBoW.draw("modcusai", "QmVyaSBEdWt1bmdhbiA", "position-bottom-right", "#76CC11", "#FFFFFF");
+          
+          // Immediately move button to modal
+          setTimeout(() => {
+            const sociabuzzBtn = document.getElementById('wrapperFloatingBtn');
+            const container = document.getElementById('sociabuzz-widget-container');
+            
+            if (sociabuzzBtn && container) {
+              container.appendChild(sociabuzzBtn);
+              sociabuzzBtn.style.position = 'static';
+              sociabuzzBtn.style.zIndex = '1';
+            }
+          }, 100);
+        }
+      };
+      document.body.appendChild(script);
 
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      const btn = document.getElementById('wrapperFloatingBtn');
-      if (btn) {
-        btn.remove();
-      }
-    };
-  }, []);
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+        const btn = document.getElementById('wrapperFloatingBtn');
+        if (btn) {
+          btn.remove();
+        }
+      };
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
