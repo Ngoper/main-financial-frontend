@@ -326,6 +326,89 @@ ion-content {
   color: var(--primary-color-dark);
 }
 
+/* Citations Section Styles */
+.citations-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-dark);
+}
+
+.citations-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary-dark);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.citations-icon {
+  color: var(--text-secondary-dark);
+}
+
+.citations-title {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.citations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.citation-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 3px solid var(--primary-color-dark);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.citation-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.citation-number {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color-dark);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.citation-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.citation-source {
+  color: var(--text-primary-dark);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-family: 'Poppins', sans-serif;
+}
+
+.citation-type {
+  color: var(--text-secondary-dark);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* User Message Styles */
 .user-message {
   display: flex;

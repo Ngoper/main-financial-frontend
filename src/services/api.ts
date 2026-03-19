@@ -29,6 +29,7 @@ export interface SourceRef {
 export interface AIQueryResponse {
   answer: string;
   sources?: SourceRef[];
+  citations?: Array<{ source: string; type: string }>;
   metadata?: {
     mode: string;
     level: number;

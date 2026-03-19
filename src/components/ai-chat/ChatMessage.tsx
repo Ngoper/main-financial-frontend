@@ -13,9 +13,10 @@ interface ChatMessageProps {
   content: ChatMessageContent;
   isInitial?: boolean;
   isUser?: boolean;
+  citations?: Array<{ source: string; type: string }>;
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = false, isUser = false }) => {
+export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = false, isUser = false, citations = [] }) => {
   if (isInitial) {
     return (
       <div className="initial-state-container">
@@ -47,6 +48,29 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = f
               <li key={idx} dangerouslySetInnerHTML={{ __html: item }} />
             ))}
           </ul>
+        )}
+        {citations && citations.length > 0 && (
+          <div className="citations-section">
+            <div className="citations-header">
+              <svg className="citations-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2L2 6V12L8 16L14 12V6L8 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                <path d="M8 8V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <circle cx="8" cy="6" r="0.5" fill="currentColor"/>
+              </svg>
+              <span className="citations-title">Sources</span>
+            </div>
+            <div className="citations-list">
+              {citations.map((citation, idx) => (
+                <div key={idx} className="citation-item">
+                  <div className="citation-number">{idx + 1}</div>
+                  <div className="citation-content">
+                    <div className="citation-source">{citation.source}</div>
+                    <div className="citation-type">{citation.type}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>

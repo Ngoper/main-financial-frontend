@@ -5,6 +5,7 @@ import { ChatInput } from './ChatInput';
 import { LoadingIndicator } from './LoadingIndicator';
 import { FeedbackModal } from './FeedbackModal';
 import { apiService, AIQueryRequest } from '../../services/api';
+import { parseAIResponse, formatMarkdown } from '../../utils/responseFormatter';
 
 interface Message {
   content: {
@@ -15,6 +16,7 @@ interface Message {
   };
   isInitial: boolean;
   isUser?: boolean;
+  citations?: Array<{ source: string; type: string }>;
 }
 
 interface ChatViewProps {
@@ -119,19 +121,47 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           'dokumen': 'document-analysis'
         };
         
+        // Build conversation history and append to query
+        const conversationHistory = messages
+          .filter(msg => !msg.isInitial && msg.content.text)
+          .map(msg => {
+            const role = msg.isUser ? 'User' : 'Assistant';
+            return `${role}: ${msg.content.text.replace(/<[^>]*>/g, '')}`; // Strip HTML tags
+          });
+        
+        // Combine history with current query
+        let fullQuery = input;
+        if (conversationHistory.length > 0) {
+          fullQuery = conversationHistory.join('\n\n') + '\n\nUser: ' + input;
+        }
+        
         const request: AIQueryRequest = {
           mode: modeMap[mode] || 'company-analysis',
           level: selectedLevel,
-          query: input,
+          query: fullQuery,
           ...(selectedFiles.length > 0 && { files: selectedFiles })
         };
         
         const response = await apiService.queryAI(request);
         
+        // Parse and format the response
+        const parsed = parseAIResponse(response.answer, response.citations);
+        const formattedAnswer = formatMarkdown(parsed.mainAnswer);
+        
+        // Build the full response with sources
+        let fullResponse = formattedAnswer;
+        if (parsed.sources.length > 0) {
+          fullResponse += '<br/><br/><strong>Sources:</strong><br/>';
+          parsed.sources.forEach(source => {
+            fullResponse += formatMarkdown(source) + '<br/>';
+          });
+        }
+        
         const aiMessage: Message = {
-          content: { text: response.answer },
+          content: { text: fullResponse },
           isInitial: false,
-          isUser: false
+          isUser: false,
+          citations: parsed.citations
         };
         setMessages(prev => [...prev, aiMessage]);
       } catch (error) {
@@ -177,7 +207,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           <div className="chat-log">
             <div className="chat-log-inner">
               {messages.map((msg, idx) => (
-                <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} isUser={msg.isUser} />
+                <ChatMessage key={idx} content={msg.content} isInitial={msg.isInitial} isUser={msg.isUser} citations={msg.citations} />
               ))}
               {isLoading && <LoadingIndicator />}
               <div ref={messagesEndRef} />
