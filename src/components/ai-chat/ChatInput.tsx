@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { IonButton, IonIcon, IonTextarea, IonChip, IonLabel } from '@ionic/react';
 import { add, send } from 'ionicons/icons';
+import { useTranslation } from '../../i18n/TranslationContext';
 
 interface ChatInputProps {
   value: string;
@@ -25,6 +26,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   selectedFiles = [],
   isLoading = false
 }) => {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileClick = () => {
@@ -45,19 +47,19 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           className={selectedLevel === 'newbie' ? 'active' : ''}
           onClick={() => onLevelChange?.('newbie')}
         >
-          <IonLabel>Pemula</IonLabel>
+          <IonLabel>{t('chat.level.newbie')}</IonLabel>
         </IonChip>
         <IonChip 
           className={selectedLevel === 'novice' ? 'active' : ''}
           onClick={() => onLevelChange?.('novice')}
         >
-          <IonLabel>Intermediate</IonLabel>
+          <IonLabel>{t('chat.level.novice')}</IonLabel>
         </IonChip>
         <IonChip 
           className={selectedLevel === 'expert' ? 'active' : ''}
           onClick={() => onLevelChange?.('expert')}
         >
-          <IonLabel>Advanced</IonLabel>
+          <IonLabel>{t('chat.level.expert')}</IonLabel>
         </IonChip>
       </div>
       <div className="input-wrapper">
@@ -88,7 +90,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         <IonTextarea
           value={value}
           onIonInput={(e) => onChange(e.detail.value || '')}
-          placeholder="Tanyakan apa saja tentang investasi..."
+          placeholder={t('chat.inputPlaceholder')}
           autoGrow
           rows={1}
           className="chat-input"

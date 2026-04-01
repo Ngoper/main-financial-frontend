@@ -1,6 +1,7 @@
 import React from 'react';
 import { IonChip, IonLabel, IonButton, IonIcon } from '@ionic/react';
 import { shuffleOutline } from 'ionicons/icons';
+import { useTranslation } from '../../i18n/TranslationContext';
 
 interface ExamplePromptsProps {
   prompts: string[];
@@ -13,11 +14,12 @@ export const ExamplePrompts: React.FC<ExamplePromptsProps> = ({
   onSelectPrompt,
   onShuffle
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="example-prompts-section">
       <div className="prompt-header">
         <span className="line"></span>
-        <span className="text">Contoh Prompt</span>
+        <span className="text">{t('chat.tryAnotherPrompt')}</span>
         <span className="line"></span>
       </div>
       <div className="example-prompts">
@@ -30,7 +32,7 @@ export const ExamplePrompts: React.FC<ExamplePromptsProps> = ({
       <div className="shuffle-container">
         <IonButton fill="outline" onClick={onShuffle}>
           <IonIcon icon={shuffleOutline} slot="start" />
-          Coba Prompt Lain
+          {t('chat.tryAnotherPrompt')}
         </IonButton>
       </div>
     </div>

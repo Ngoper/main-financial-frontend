@@ -45,7 +45,58 @@
     "placeholder": "Ketik pesan Anda...",
     "send": "Kirim",
     "thinking": "Berpikir...",
-    "newChat": "Obrolan Baru"
+    "newChat": "Obrolan Baru",
+    "error": "Maaf, terjadi kesalahan. Silakan coba lagi.",
+    "modes": {
+      "welcomeTitle": "Buat dengan Modcus AI",
+      "welcomeSubtitle": "Bagaimana Anda ingin memulai analisis hari ini?",
+      "rekomendasi": {
+        "title": "Rekomendasi Saham",
+        "description": "Temukan saham undervalued berdasarkan prinsip value investing.",
+        "initialTitle": "💎 Rekomendasi Saham Value Investing Hari Ini",
+        "initialText": "Berdasarkan analisis valuasi dan fundamental, berikut adalah 3 saham yang menarik untuk diperhatikan:",
+        "initialList": [
+          "<strong>1. PT Bank Mandiri (BMRI)</strong> - Valuasi P/BV di bawah rata-rata historis dengan potensi pertumbuhan laba yang kuat dari sektor korporat.",
+          "<strong>2. PT Adaro Energy (ADRO)</strong> - Yield dividen menarik dan valuasi rendah, diuntungkan dari diversifikasi ke bisnis energi terbarukan.",
+          "<strong>3. PT Telkom Indonesia (TLKM)</strong> - Dominasi pasar yang solid dan potensi pertumbuhan dari bisnis data center."
+        ],
+        "examples": ["Bandingkan BMRI dan BBCA", "Analisis prospek ADRO", "Saham apa yang bagus di sektor konsumer?"]
+      },
+      "analisis": {
+        "title": "Analisis Saham & Pasar",
+        "description": "Analisis perusahaan, IHSG, atau berita makroekonomi secara mendalam.",
+        "badge": "POPULER",
+        "initialTitle": "Analisis Saham & Pasar",
+        "initialDescription": "Ajukan pertanyaan spesifik tentang saham, emiten, atau kondisi pasar.",
+        "examples": ["Bagaimana kondisi IHSG minggu ini?", "Analisis fundamental GOTO", "Apa itu P/E ratio?"]
+      },
+      "dokumen": {
+        "title": "Analisis Dokumen",
+        "description": "Unggah dokumen laporan keuangan atau public expose untuk dianalisis AI.",
+        "initialTitle": "Analisis Dokumen",
+        "initialDescription": "Unggah laporan keuangan, materi public expose, atau riset untuk dianalisis oleh AI.",
+        "examples": ["Ringkas laporan keuangan ini", "Apa sentimen utama dari public expose ini?", "Identifikasi risiko utama"]
+      }
+    },
+    "level": {
+      "newbie": "Pemula",
+      "novice": "Menengah",
+      "expert": "Mahir"
+    },
+    "inputPlaceholder": "Tanyakan apa saja tentang investasi...",
+    "sources": "Sumber",
+    "sourcesLabel": "Sumber:",
+    "tryAnotherPrompt": "Coba Prompt Lain",
+    "feedbackModal": {
+      "title": "Kritik & Saran",
+      "supportUs": "Dukung Kami",
+      "supportDescription": "Bantu kami terus berkembang dengan memberikan dukungan Anda",
+      "giveFeedback": "Berikan Feedback",
+      "placeholder": "Kritik & Saran Anda",
+      "submit": "Kirim Feedback",
+      "submitting": "Mengirim...",
+      "success": "Terima kasih atas feedback Anda!"
+    }
   },
   "common": {
     "back": "Kembali",
@@ -145,6 +196,240 @@
       "contact": "Kontak",
       "location": "Surabaya, Indonesia",
       "copyright": "© 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi."
+    }
+  },
+  "about": {
+    "title": "Membangun Masa Depan Investasi yang Bertanggung Jawab dengan AI.",
+    "mission": {
+      "title": "Misi Kami",
+      "p1": "Modcus didirikan dengan keyakinan bahwa setiap investor, baik pemula maupun profesional, berhak mendapatkan akses yang sama terhadap alat analisis finansial kelas dunia. Misi kami adalah mendemokratisasi informasi pasar modal di Indonesia melalui teknologi AI yang canggih, transparan, dan mudah digunakan.",
+      "p2": "Kami berupaya menghilangkan hambatan informasi yang kompleks dan menyajikannya dalam bentuk insight yang dapat ditindaklanjuti, memberdayakan individu untuk membuat keputusan investasi yang lebih cerdas dan percaya diri."
+    },
+    "principles": {
+      "title": "Prinsip Kami",
+      "subtitle": "Pendekatan kami dalam membangun AI didasarkan pada prinsip-prinsip inti berikut.",
+      "security": {
+        "title": "Keamanan & Privasi Data",
+        "description": "Kami memprioritaskan keamanan data pengguna sebagai fondasi utama. Semua analisis dilakukan dengan menjaga privasi Anda sepenuhnya."
+      },
+      "objectivity": {
+        "title": "Objektivitas & Transparansi",
+        "description": "Model AI kami dirancang untuk memberikan analisis yang objektif berdasarkan data, bebas dari bias dan konflik kepentingan."
+      },
+      "empowerment": {
+        "title": "Pemberdayaan Investor",
+        "description": "Tujuan akhir kami adalah edukasi. Kami ingin memberdayakan investor dengan pengetahuan untuk menavigasi pasar secara mandiri."
+      }
+    },
+    "team": {
+      "title": "Tim Kami",
+      "subtitle": "Kami menyatukan para ahli dari berbagai bidang untuk membangun sistem AI yang andal dan bermanfaat.",
+      "research": {
+        "title": "Tim Riset & AI",
+        "description": "Tim ini adalah jantung dari inovasi Modcus. Mereka terdiri dari para peneliti AI dan analis keuangan kuantitatif yang bertugas mengembangkan dan melatih model-model machine learning kami. Fokus mereka adalah pada akurasi prediksi, pemahaman konteks pasar Indonesia, dan memastikan analisis yang dihasilkan relevan serta dapat dipertanggungjawabkan."
+      },
+      "engineering": {
+        "title": "Tim Teknik & Produk",
+        "description": "Bertanggung jawab untuk menerjemahkan riset kompleks menjadi platform yang andal, cepat, dan mudah digunakan. Tim ini membangun infrastruktur data, merancang antarmuka pengguna (UI/UX), dan memastikan keamanan serta skalabilitas platform Modcus agar dapat melayani jutaan investor di seluruh Indonesia."
+      },
+      "operations": {
+        "title": "Tim Operasional & Kemitraan",
+        "description": "Tim ini memastikan semua operasional perusahaan berjalan lancar, mulai dari dukungan pengguna hingga pengembangan bisnis. Mereka adalah garda terdepan dalam mendengarkan feedback pengguna dan menjalin kemitraan strategis dengan institusi keuangan serta komunitas investor untuk memperluas jangkauan dan dampak positif Modcus."
+      }
+    },
+    "cta": {
+      "title": "Berpartner Dengan Kami",
+      "subtitle": "Kami terbuka untuk kolaborasi dengan institusi keuangan, perusahaan sekuritas, dan media untuk menciptakan ekosistem investasi yang lebih baik. Mari berdiskusi.",
+      "button": "Hubungi Kami"
+    },
+    "footer": {
+      "tagline": "Analisis Saham Berbasis AI.",
+      "product": "Produk",
+      "features": "Fitur",
+      "userFeedback": "Feedback User",
+      "docs": "Dokumentasi",
+      "company": "Perusahaan",
+      "about": "Tentang Kami",
+      "blog": "Blog",
+      "legal": "Legal",
+      "terms": "Syarat & Ketentuan",
+      "privacy": "Kebijakan Privasi",
+      "contact": "Kontak",
+      "location": "Surabaya, Indonesia",
+      "copyright": "© 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi."
+    }
+  },
+  "feedback": {
+    "title": "Beri Kami Feedback",
+    "subtitle": "Feedback Anda sangat berharga untuk membantu kami meningkatkan Modcus",
+    "success": {
+      "title": "Terima Kasih!",
+      "message": "Feedback Anda telah kami terima",
+      "button": "Kirim Feedback Lain"
+    },
+    "form": {
+      "phone": "Nomor HP",
+      "email": "Email (Opsional)",
+      "feedback": "Feedback",
+      "phonePlaceholder": "Masukkan nomor HP",
+      "emailPlaceholder": "Masukkan email",
+      "feedbackPlaceholder": "Tulis feedback anda",
+      "wantContact": "Saya ingin dihubungi mengenai feedback saya",
+      "submit": "Kirim Feedback",
+      "submitting": "Mengirim..."
+    }
+  },
+  "feedbackPage": {
+    "title": "Beri Kami Saran",
+    "subtitle": "Feedback Anda sangat berharga untuk membantu kami meningkatkan Modcus. Silakan bagikan kritik, saran, atau ide Anda.",
+    "form": {
+      "name": "Nama Anda",
+      "email": "Alamat Email",
+      "message": "Pesan Anda",
+      "namePlaceholder": "Masukkan nama Anda",
+      "emailPlaceholder": "Masukkan email Anda",
+      "messagePlaceholder": "Tulis pesan Anda",
+      "submit": "Kirim Saran"
+    },
+    "success": "Terima kasih! Saran Anda telah kami terima."
+  },
+  "privacy": {
+    "title": "Kebijakan Privasi",
+    "lastUpdated": "Terakhir diperbarui: Januari 2025",
+    "sections": {
+      "intro": {
+        "title": "1. Pendahuluan",
+        "content": "PT Ngoper Global Infinity (\"Modcus\", \"kami\", \"kita\") menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda."
+      },
+      "collection": {
+        "title": "2. Informasi yang Kami Kumpulkan",
+        "content": "Kami mengumpulkan beberapa jenis informasi:",
+        "items": {
+          "account": "Informasi Akun: Nama dan alamat email",
+          "usage": "Informasi Penggunaan: Data tentang bagaimana Anda menggunakan layanan kami",
+          "technical": "Informasi Teknis: Alamat IP, jenis browser, dan perangkat",
+          "cookies": "Cookies: Data yang disimpan di perangkat Anda untuk meningkatkan pengalaman"
+        }
+      },
+      "usage": {
+        "title": "3. Bagaimana Kami Menggunakan Informasi Anda",
+        "content": "Kami menggunakan informasi yang dikumpulkan untuk:",
+        "items": {
+          "provide": "Menyediakan dan memelihara layanan kami",
+          "improve": "Meningkatkan dan mempersonalisasi pengalaman pengguna",
+          "communicate": "Berkomunikasi dengan Anda tentang layanan kami",
+          "analyze": "Menganalisis penggunaan layanan untuk perbaikan",
+          "security": "Mendeteksi dan mencegah penipuan atau penyalahgunaan"
+        }
+      },
+      "sharing": {
+        "title": "4. Berbagi Informasi",
+        "content": "Kami tidak menjual data pribadi Anda. Kami hanya membagikan informasi Anda dalam situasi berikut:",
+        "items": {
+          "consent": "Dengan persetujuan eksplisit Anda",
+          "providers": "Dengan penyedia layanan pihak ketiga yang membantu operasi kami",
+          "legal": "Untuk mematuhi kewajiban hukum",
+          "protect": "Untuk melindungi hak dan keamanan kami atau orang lain"
+        }
+      },
+      "security": {
+        "title": "5. Keamanan Data",
+        "content": "Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai untuk melindungi data pribadi Anda dari akses tidak sah, kehilangan, atau penyalahgunaan. Namun, tidak ada metode transmisi melalui internet yang 100% aman."
+      },
+      "storage": {
+        "title": "6. Penyimpanan Data",
+        "content": "Kami menyimpan data pribadi Anda selama diperlukan untuk tujuan yang dijelaskan dalam kebijakan ini, kecuali periode penyimpanan yang lebih lama diperlukan atau diizinkan oleh hukum."
+      },
+      "rights": {
+        "title": "7. Hak Anda",
+        "content": "Anda memiliki hak untuk:",
+        "items": {
+          "access": "Mengakses data pribadi Anda",
+          "correct": "Memperbaiki data yang tidak akurat",
+          "delete": "Menghapus data Anda",
+          "restrict": "Membatasi pemrosesan data Anda",
+          "object": "Menolak pemrosesan data Anda",
+          "portability": "Portabilitas data"
+        }
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "content": "Kami menggunakan cookies dan teknologi pelacakan serupa untuk meningkatkan pengalaman Anda. Anda dapat mengatur browser Anda untuk menolak cookies, tetapi ini mungkin mempengaruhi fungsionalitas layanan kami."
+      },
+      "thirdParty": {
+        "title": "9. Layanan Pihak Ketiga",
+        "content": "Layanan kami mungkin berisi tautan ke situs web pihak ketiga. Kami tidak bertanggung jawab atas praktik privasi situs-situs tersebut. Kami mendorong Anda untuk membaca kebijakan privasi mereka."
+      },
+      "changes": {
+        "title": "10. Perubahan Kebijakan",
+        "content": "Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Kami akan memberi tahu Anda tentang perubahan dengan memposting kebijakan baru di halaman ini dan memperbarui tanggal \"Terakhir diperbarui\"."
+      },
+      "contact": {
+        "title": "11. Kontak",
+        "content": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau ingin menggunakan hak Anda, silakan hubungi kami di:",
+        "email": "modcusai@gmail.com",
+        "phone": "+62 821-3109-9968",
+        "address": "Surabaya, Indonesia"
+      }
+    }
+  },
+  "terms": {
+    "title": "Syarat & Ketentuan",
+    "lastUpdated": "Terakhir diperbarui: Januari 2025",
+    "sections": {
+      "acceptance": {
+        "title": "1. Penerimaan Ketentuan",
+        "content": "Dengan mengakses dan menggunakan platform Modcus, Anda setuju untuk terikat oleh syarat dan ketentuan ini. Jika Anda tidak setuju dengan bagian mana pun dari ketentuan ini, Anda tidak boleh menggunakan layanan kami."
+      },
+      "description": {
+        "title": "2. Deskripsi Layanan",
+        "content": "Modcus menyediakan platform analisis saham berbasis AI yang membantu pengguna dalam menganalisis fundamental saham di pasar Indonesia. Layanan kami mencakup AI scoring, analisis real-time, dan chatbot analis saham."
+      },
+      "account": {
+        "title": "3. Akun Pengguna",
+        "content": "Untuk menggunakan layanan tertentu, Anda mungkin perlu membuat akun. Anda bertanggung jawab untuk:",
+        "items": {
+          "confidentiality": "Menjaga kerahasiaan informasi akun Anda",
+          "activities": "Semua aktivitas yang terjadi di bawah akun Anda",
+          "accurate": "Memberikan informasi yang akurat dan terkini"
+        }
+      },
+      "usage": {
+        "title": "4. Penggunaan Layanan",
+        "content": "Anda setuju untuk menggunakan layanan kami hanya untuk tujuan yang sah dan sesuai dengan ketentuan ini. Anda tidak boleh:",
+        "items": {
+          "illegal": "Menggunakan layanan untuk tujuan ilegal atau tidak sah",
+          "access": "Mencoba mendapatkan akses tidak sah ke sistem kami",
+          "disrupt": "Mengganggu atau merusak layanan kami",
+          "abuse": "Menyalahgunakan atau mendistribusikan konten tanpa izin"
+        }
+      },
+      "disclaimer": {
+        "title": "5. Disclaimer Investasi",
+        "content": "PENTING: Informasi yang disediakan oleh Modcus adalah untuk tujuan edukasi dan informasi saja. Ini bukan merupakan saran investasi profesional. Anda bertanggung jawab penuh atas keputusan investasi Anda sendiri."
+      },
+      "intellectual": {
+        "title": "6. Hak Kekayaan Intelektual",
+        "content": "Semua konten, fitur, dan fungsi layanan kami adalah milik eksklusif PT Ngoper Global Infinity dan dilindungi oleh hukum hak cipta, merek dagang, dan hak kekayaan intelektual lainnya."
+      },
+      "liability": {
+        "title": "7. Pembatasan Tanggung Jawab",
+        "content": "Modcus tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan atau ketidakmampuan menggunakan layanan kami, termasuk namun tidak terbatas pada kerugian investasi."
+      },
+      "changes": {
+        "title": "8. Perubahan Ketentuan",
+        "content": "Kami berhak untuk memodifikasi atau mengganti ketentuan ini kapan saja. Perubahan akan berlaku segera setelah diposting di halaman ini. Penggunaan berkelanjutan Anda atas layanan setelah perubahan merupakan penerimaan Anda terhadap ketentuan yang direvisi."
+      },
+      "jurisdiction": {
+        "title": "9. Hukum yang Berlaku",
+        "content": "Ketentuan ini diatur oleh dan ditafsirkan sesuai dengan hukum Republik Indonesia."
+      },
+      "contact": {
+        "title": "10. Kontak",
+        "content": "Jika Anda memiliki pertanyaan tentang Syarat & Ketentuan ini, silakan hubungi kami di:",
+        "email": "modcusai@gmail.com",
+        "phone": "+62 821-3109-9968"
+      }
     }
   }
 }

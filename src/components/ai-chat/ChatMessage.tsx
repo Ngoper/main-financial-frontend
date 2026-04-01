@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '../../i18n/TranslationContext';
 
 interface ChatMessageContent {
   title?: string;
@@ -17,6 +18,7 @@ interface ChatMessageProps {
 }
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = false, isUser = false, citations = [] }) => {
+  const { t } = useTranslation();
   if (isInitial) {
     return (
       <div className="initial-state-container">
@@ -57,7 +59,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = f
                 <path d="M8 8V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 <circle cx="8" cy="6" r="0.5" fill="currentColor"/>
               </svg>
-              <span className="citations-title">Sources</span>
+              <span className="citations-title">{t('chat.sources')}</span>
             </div>
             <div className="citations-list">
               {citations.map((citation, idx) => (

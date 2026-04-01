@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 
 export const FeedbackPage: React.FC = () => {
   const [feedbackForm, setFeedbackForm] = useState({ nama: '', email: '', pesan: '' });
   const [showSuccess, setShowSuccess] = useState(false);
   const router = useIonRouter();
+  const { t } = useTranslation();
 
   const handleFeedbackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +23,9 @@ export const FeedbackPage: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="flex items-center space-x-8">
-            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">Beranda</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">{t('common.back')}</a>
           </nav>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -29,49 +33,52 @@ export const FeedbackPage: React.FC = () => {
         <section className="py-24 lg:py-32">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">Beri Kami Saran</h1>
-              <p className="text-lg md:text-xl text-gray-400 mb-12">Feedback Anda sangat berharga untuk membantu kami meningkatkan Modcus. Silakan bagikan kritik, saran, atau ide Anda.</p>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{t('feedbackPage.title')}</h1>
+              <p className="text-lg md:text-xl text-gray-400 mb-12">{t('feedbackPage.subtitle')}</p>
               {!showSuccess ? (
                 <form onSubmit={handleFeedbackSubmit} className="text-left space-y-6">
                   <div>
-                    <label htmlFor="nama" className="block text-sm font-medium text-gray-300 mb-2">Nama Anda</label>
+                    <label htmlFor="nama" className="block text-sm font-medium text-gray-300 mb-2">{t('feedbackPage.form.name')}</label>
                     <input
                       type="text"
                       id="nama"
                       value={feedbackForm.nama}
                       onChange={(e) => setFeedbackForm({ ...feedbackForm, nama: e.target.value })}
+                      placeholder={t('feedbackPage.form.namePlaceholder')}
                       className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="email_saran" className="block text-sm font-medium text-gray-300 mb-2">Alamat Email</label>
+                    <label htmlFor="email_saran" className="block text-sm font-medium text-gray-300 mb-2">{t('feedbackPage.form.email')}</label>
                     <input
                       type="email"
                       id="email_saran"
                       value={feedbackForm.email}
                       onChange={(e) => setFeedbackForm({ ...feedbackForm, email: e.target.value })}
+                      placeholder={t('feedbackPage.form.emailPlaceholder')}
                       className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="pesan" className="block text-sm font-medium text-gray-300 mb-2">Pesan Anda</label>
+                    <label htmlFor="pesan" className="block text-sm font-medium text-gray-300 mb-2">{t('feedbackPage.form.message')}</label>
                     <textarea
                       id="pesan"
                       rows={6}
                       value={feedbackForm.pesan}
                       onChange={(e) => setFeedbackForm({ ...feedbackForm, pesan: e.target.value })}
+                      placeholder={t('feedbackPage.form.messagePlaceholder')}
                       className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-white"
                       required
                     />
                   </div>
                   <div className="text-center">
-                    <button type="submit" className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Kirim Saran</button>
+                    <button type="submit" className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">{t('feedbackPage.form.submit')}</button>
                   </div>
                 </form>
               ) : (
-                <p className="mt-8 text-green-400">Terima kasih! Saran Anda telah kami terima.</p>
+                <p className="mt-8 text-green-400">{t('feedbackPage.success')}</p>
               )}
             </div>
           </div>

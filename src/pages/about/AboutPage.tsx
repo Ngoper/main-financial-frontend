@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
 import { getCurrentUser, logout, User } from '../../services/api';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 import './about.css';
 
 export const AboutPage: React.FC = () => {
   const router = useIonRouter();
   const [user, setUser] = useState<User | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getCurrentUser().then(setUser);
@@ -20,9 +23,9 @@ export const AboutPage: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="/home#fitur" className="text-gray-400 hover:text-white transition">Fitur</a>
-            <a href="/about" className="text-white font-medium">Tentang Kami</a>
-            <a href="/feedback" className="text-gray-400 hover:text-white transition">Saran</a>
+            <a href="/home#fitur" className="text-gray-400 hover:text-white transition">{t('landing.nav.features')}</a>
+            <a href="/about" className="text-white font-medium">{t('landing.nav.about')}</a>
+            <a href="/feedback" className="text-gray-400 hover:text-white transition">{t('landing.nav.feedback')}</a>
           </nav>
           <div className="flex items-center space-x-4">
             {user ? (
@@ -42,17 +45,18 @@ export const AboutPage: React.FC = () => {
                       onClick={logout}
                       className="w-full text-left px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 transition"
                     >
-                      Logout
+                      {t('common.logout')}
                     </button>
                   </div>
                 )}
               </div>
             ) : (
               <>
-                <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">Login</button>
-                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">Daftar</button>
+                <button onClick={() => router.push('/login')} className="text-gray-400 hover:text-white font-medium transition">{t('landing.nav.login')}</button>
+                <button onClick={() => router.push('/register')} className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition font-semibold shadow-lg">{t('landing.nav.register')}</button>
               </>
             )}
+            <LanguageSwitcher />
           </div>
         </div>
       </header>
@@ -62,21 +66,17 @@ export const AboutPage: React.FC = () => {
           <section className="hero-bg py-24 lg:py-32">
             <div className="container mx-auto px-6 text-center">
               <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Membangun Masa Depan Investasi<br />yang Bertanggung Jawab dengan AI.
+                {t('about.title')}
               </h1>
             </div>
           </section>
 
           <section className="py-24">
             <div className="container mx-auto px-6 max-w-4xl">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Misi Kami</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">{t('about.mission.title')}</h2>
               <div className="text-lg text-gray-300 leading-relaxed space-y-6 text-left">
-                <p>
-                  Modcus didirikan dengan keyakinan bahwa setiap investor, baik pemula maupun profesional, berhak mendapatkan akses yang sama terhadap alat analisis finansial kelas dunia. Misi kami adalah mendemokratisasi informasi pasar modal di Indonesia melalui teknologi AI yang canggih, transparan, dan mudah digunakan.
-                </p>
-                <p>
-                  Kami berupaya menghilangkan hambatan informasi yang kompleks dan menyajikannya dalam bentuk insight yang dapat ditindaklanjuti, memberdayakan individu untuk membuat keputusan investasi yang lebih cerdas dan percaya diri.
-                </p>
+                <p>{t('about.mission.p1')}</p>
+                <p>{t('about.mission.p2')}</p>
               </div>
             </div>
           </section>
@@ -84,9 +84,9 @@ export const AboutPage: React.FC = () => {
           <section className="py-24 bg-black">
             <div className="container mx-auto px-6">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Prinsip Kami</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white">{t('about.principles.title')}</h2>
                 <p className="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">
-                  Pendekatan kami dalam membangun AI didasarkan pada prinsip-prinsip inti berikut.
+                  {t('about.principles.subtitle')}
                 </p>
               </div>
               <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -96,9 +96,9 @@ export const AboutPage: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Keamanan & Privasi Data</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{t('about.principles.security.title')}</h3>
                   <p className="text-gray-400">
-                    Kami memprioritaskan keamanan data pengguna sebagai fondasi utama. Semua analisis dilakukan dengan menjaga privasi Anda sepenuhnya.
+                    {t('about.principles.security.description')}
                   </p>
                 </div>
 
@@ -108,9 +108,9 @@ export const AboutPage: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Objektivitas & Transparansi</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{t('about.principles.objectivity.title')}</h3>
                   <p className="text-gray-400">
-                    Model AI kami dirancang untuk memberikan analisis yang objektif berdasarkan data, bebas dari bias dan konflik kepentingan.
+                    {t('about.principles.objectivity.description')}
                   </p>
                 </div>
 
@@ -122,9 +122,9 @@ export const AboutPage: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Pemberdayaan Investor</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{t('about.principles.empowerment.title')}</h3>
                   <p className="text-gray-400">
-                    Tujuan akhir kami adalah edukasi. Kami ingin memberdayakan investor dengan pengetahuan untuk menavigasi pasar secara mandiri.
+                    {t('about.principles.empowerment.description')}
                   </p>
                 </div>
               </div>
@@ -134,28 +134,28 @@ export const AboutPage: React.FC = () => {
           <section className="py-24">
             <div className="container mx-auto px-6 max-w-4xl">
               <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Tim Kami</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white">{t('about.team.title')}</h2>
                 <p className="text-lg text-gray-400 mt-3">
-                  Kami menyatukan para ahli dari berbagai bidang untuk membangun sistem AI yang andal dan bermanfaat.
+                  {t('about.team.subtitle')}
                 </p>
               </div>
               <div className="space-y-12 text-left">
                 <div>
-                  <h3 className="text-2xl font-bold text-indigo-400 mb-4">Tim Riset & AI</h3>
+                  <h3 className="text-2xl font-bold text-indigo-400 mb-4">{t('about.team.research.title')}</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Tim ini adalah jantung dari inovasi Modcus. Mereka terdiri dari para peneliti AI dan analis keuangan kuantitatif yang bertugas mengembangkan dan melatih model-model machine learning kami. Fokus mereka adalah pada akurasi prediksi, pemahaman konteks pasar Indonesia, dan memastikan analisis yang dihasilkan relevan serta dapat dipertanggungjawabkan.
+                    {t('about.team.research.description')}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-purple-400 mb-4">Tim Teknik & Produk</h3>
+                  <h3 className="text-2xl font-bold text-purple-400 mb-4">{t('about.team.engineering.title')}</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Bertanggung jawab untuk menerjemahkan riset kompleks menjadi platform yang andal, cepat, dan mudah digunakan. Tim ini membangun infrastruktur data, merancang antarmuka pengguna (UI/UX), dan memastikan keamanan serta skalabilitas platform Modcus agar dapat melayani jutaan investor di seluruh Indonesia.
+                    {t('about.team.engineering.description')}
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-pink-400 mb-4">Tim Operasional & Kemitraan</h3>
+                  <h3 className="text-2xl font-bold text-pink-400 mb-4">{t('about.team.operations.title')}</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Tim ini memastikan semua operasional perusahaan berjalan lancar, mulai dari dukungan pengguna hingga pengembangan bisnis. Mereka adalah garda terdepan dalam mendengarkan feedback pengguna dan menjalin kemitraan strategis dengan institusi keuangan serta komunitas investor untuk memperluas jangkauan dan dampak positif Modcus.
+                    {t('about.team.operations.description')}
                   </p>
                 </div>
               </div>
@@ -164,15 +164,15 @@ export const AboutPage: React.FC = () => {
 
           <section className="py-24">
             <div className="container mx-auto px-6 text-center max-w-3xl">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Berpartner Dengan Kami</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('about.cta.title')}</h2>
               <p className="text-lg text-gray-400 mb-8">
-                Kami terbuka untuk kolaborasi dengan institusi keuangan, perusahaan sekuritas, dan media untuk menciptakan ekosistem investasi yang lebih baik. Mari berdiskusi.
+                {t('about.cta.subtitle')}
               </p>
               <button 
                 onClick={() => router.push('/feedback')}
                 className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold"
               >
-                Hubungi Kami
+                {t('about.cta.button')}
               </button>
             </div>
           </section>
@@ -185,34 +185,34 @@ export const AboutPage: React.FC = () => {
                 <a href="#" onClick={() => router.push('/home')}>
                   <img src="/modcus-logo.png" alt="Modcus" className="h-6 mb-4" />
                 </a>
-                <p className="text-sm text-gray-500">Analisis Saham Berbasis AI.</p>
+                <p className="text-sm text-gray-500">{t('about.footer.tagline')}</p>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Produk</h4>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/home'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Fitur</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Feedback User</a>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Dokumentasi</a>
+                <h4 className="font-semibold text-white mb-4">{t('about.footer.product')}</h4>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/home'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.features')}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/feedback'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.userFeedback')}</a>
+                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.docs')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Perusahaan</h4>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/about'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Tentang Kami</a>
-                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">Blog</a>
+                <h4 className="font-semibold text-white mb-4">{t('about.footer.company')}</h4>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/about'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.about')}</a>
+                <a href="#" className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.blog')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Legal</h4>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/tnc'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Syarat & Ketentuan</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/privacy'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">Kebijakan Privasi</a>
+                <h4 className="font-semibold text-white mb-4">{t('about.footer.legal')}</h4>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/tnc'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.terms')}</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); router.push('/privacy'); }} className="block mt-2 text-sm text-gray-400 hover:text-white">{t('about.footer.privacy')}</a>
               </div>
               <div className="flex-1 min-w-[150px]">
-                <h4 className="font-semibold text-white mb-4">Kontak</h4>
+                <h4 className="font-semibold text-white mb-4">{t('about.footer.contact')}</h4>
                 <a href="mailto:support@stockbot.id" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> modcusai@gmail.com </a> 
                 <a href="tel:+6282131099968" className="flex items-center gap-2 mt-2 text-sm text-gray-400 hover:text-white"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> +62 821-3109-9968</a>
-                <p className="flex items-center gap-2 mt-2 text-sm text-gray-400"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Surabaya, Indonesia</p>
+                <p className="flex items-center gap-2 mt-2 text-sm text-gray-400"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> {t('about.footer.location')}</p>
               </div>
             </div>
             <div className="border-t border-gray-800 mt-8 pt-6">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-sm text-gray-500">&copy; 2025 PT Ngoper Global Infinity. Hak Cipta Dilindungi.</p>
+                <p className="text-sm text-gray-500">{t('about.footer.copyright')}</p>
                 <div className="flex items-center gap-4">
                   <a href="https://www.tiktok.com/@modcus.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

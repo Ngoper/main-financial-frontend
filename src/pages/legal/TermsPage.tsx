@@ -1,8 +1,11 @@
 import React from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 
 export const TermsPage: React.FC = () => {
   const router = useIonRouter();
+  const { t } = useTranslation();
 
   return (
     <IonPage>
@@ -12,8 +15,9 @@ export const TermsPage: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="flex items-center space-x-8">
-            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">Beranda</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">{t('common.back')}</a>
           </nav>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -21,72 +25,72 @@ export const TermsPage: React.FC = () => {
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Syarat & Ketentuan</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">{t('terms.title')}</h1>
               
               <div className="space-y-6 text-gray-300">
-                <p className="text-sm text-gray-500">Terakhir diperbarui: Januari 2025</p>
+                <p className="text-sm text-gray-500">{t('terms.lastUpdated')}</p>
                 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">1. Penerimaan Ketentuan</h2>
-                  <p>Dengan mengakses dan menggunakan platform Modcus, Anda setuju untuk terikat oleh syarat dan ketentuan ini. Jika Anda tidak setuju dengan bagian mana pun dari ketentuan ini, Anda tidak boleh menggunakan layanan kami.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.acceptance.title')}</h2>
+                  <p>{t('terms.sections.acceptance.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">2. Deskripsi Layanan</h2>
-                  <p>Modcus menyediakan platform analisis saham berbasis AI yang membantu pengguna dalam menganalisis fundamental saham di pasar Indonesia. Layanan kami mencakup AI scoring, analisis real-time, dan chatbot analis saham.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.description.title')}</h2>
+                  <p>{t('terms.sections.description.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">3. Akun Pengguna</h2>
-                  <p>Untuk menggunakan layanan tertentu, Anda mungkin perlu membuat akun. Anda bertanggung jawab untuk:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.account.title')}</h2>
+                  <p>{t('terms.sections.account.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li>Menjaga kerahasiaan informasi akun Anda</li>
-                    <li>Semua aktivitas yang terjadi di bawah akun Anda</li>
-                    <li>Memberikan informasi yang akurat dan terkini</li>
+                    <li>{t('terms.sections.account.items.confidentiality')}</li>
+                    <li>{t('terms.sections.account.items.activities')}</li>
+                    <li>{t('terms.sections.account.items.accurate')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">4. Penggunaan Layanan</h2>
-                  <p>Anda setuju untuk menggunakan layanan kami hanya untuk tujuan yang sah dan sesuai dengan ketentuan ini. Anda tidak boleh:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.usage.title')}</h2>
+                  <p>{t('terms.sections.usage.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li>Menggunakan layanan untuk tujuan ilegal atau tidak sah</li>
-                    <li>Mencoba mendapatkan akses tidak sah ke sistem kami</li>
-                    <li>Mengganggu atau merusak layanan kami</li>
-                    <li>Menyalahgunakan atau mendistribusikan konten tanpa izin</li>
+                    <li>{t('terms.sections.usage.items.illegal')}</li>
+                    <li>{t('terms.sections.usage.items.access')}</li>
+                    <li>{t('terms.sections.usage.items.disrupt')}</li>
+                    <li>{t('terms.sections.usage.items.abuse')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">5. Disclaimer Investasi</h2>
-                  <p className="font-semibold text-yellow-400">PENTING: Informasi yang disediakan oleh Modcus adalah untuk tujuan edukasi dan informasi saja. Ini bukan merupakan saran investasi profesional. Anda bertanggung jawab penuh atas keputusan investasi Anda sendiri.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.disclaimer.title')}</h2>
+                  <p className="font-semibold text-yellow-400">{t('terms.sections.disclaimer.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">6. Hak Kekayaan Intelektual</h2>
-                  <p>Semua konten, fitur, dan fungsi layanan kami adalah milik eksklusif PT Ngoper Global Infinity dan dilindungi oleh hukum hak cipta, merek dagang, dan hak kekayaan intelektual lainnya.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.intellectual.title')}</h2>
+                  <p>{t('terms.sections.intellectual.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">7. Pembatasan Tanggung Jawab</h2>
-                  <p>Modcus tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan atau ketidakmampuan menggunakan layanan kami, termasuk namun tidak terbatas pada kerugian investasi.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.liability.title')}</h2>
+                  <p>{t('terms.sections.liability.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">8. Perubahan Ketentuan</h2>
-                  <p>Kami berhak untuk memodifikasi atau mengganti ketentuan ini kapan saja. Perubahan akan berlaku segera setelah diposting di halaman ini. Penggunaan berkelanjutan Anda atas layanan setelah perubahan merupakan penerimaan Anda terhadap ketentuan yang direvisi.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.changes.title')}</h2>
+                  <p>{t('terms.sections.changes.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">9. Hukum yang Berlaku</h2>
-                  <p>Ketentuan ini diatur oleh dan ditafsirkan sesuai dengan hukum Republik Indonesia.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.jurisdiction.title')}</h2>
+                  <p>{t('terms.sections.jurisdiction.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">10. Kontak</h2>
-                  <p>Jika Anda memiliki pertanyaan tentang Syarat & Ketentuan ini, silakan hubungi kami di:</p>
-                  <p className="mt-2">Email: modcusai@gmail.com</p>
-                  <p>Telepon: +62 821-3109-9968</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('terms.sections.contact.title')}</h2>
+                  <p>{t('terms.sections.contact.content')}</p>
+                  <p className="mt-2">Email: {t('terms.sections.contact.email')}</p>
+                  <p>Telepon: {t('terms.sections.contact.phone')}</p>
                 </div>
               </div>
             </div>

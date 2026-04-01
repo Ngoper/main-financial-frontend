@@ -6,6 +6,7 @@ import { LoadingIndicator } from './LoadingIndicator';
 import { FeedbackModal } from './FeedbackModal';
 import { apiService, AIQueryRequest } from '../../services/api';
 import { parseAIResponse, formatMarkdown } from '../../utils/responseFormatter';
+import { useTranslation } from '../../i18n/TranslationContext';
 
 interface Message {
   content: {
@@ -25,6 +26,7 @@ interface ChatViewProps {
 }
 
 export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
+  const { t } = useTranslation();
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [prompts, setPrompts] = useState<string[]>([]);
@@ -59,32 +61,28 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
     switch (modeType) {
       case 'rekomendasi':
         initialContent = {
-          title: '💎 Rekomendasi Saham Value Investing Hari Ini',
-          text: 'Berdasarkan analisis valuasi dan fundamental, berikut adalah 3 saham yang menarik untuk diperhatikan:',
-          list: [
-            '<strong>1. PT Bank Mandiri (BMRI)</strong> - Valuasi P/BV di bawah rata-rata historis dengan potensi pertumbuhan laba yang kuat dari sektor korporat.',
-            '<strong>2. PT Adaro Energy (ADRO)</strong> - Yield dividen menarik dan valuasi rendah, diuntungkan dari diversifikasi ke bisnis energi terbarukan.',
-            '<strong>3. PT Telkom Indonesia (TLKM)</strong> - Dominasi pasar yang solid dan potensi pertumbuhan dari bisnis data center.'
-          ]
+          title: t('chat.modes.rekomendasi.initialTitle'),
+          text: t('chat.modes.rekomendasi.initialText'),
+          list: t('chat.modes.rekomendasi.initialList') as unknown as string[]
         };
-        examplePrompts = ['Bandingkan BMRI dan BBCA', 'Analisis prospek ADRO', 'Saham apa yang bagus di sektor konsumer?'];
+        examplePrompts = t('chat.modes.rekomendasi.examples') as unknown as string[];
         break;
       case 'analisis':
         initialContent = {
-          title: 'Analisis Saham & Pasar',
-          description: 'Ajukan pertanyaan spesifik tentang saham, emiten, atau kondisi pasar.'
+          title: t('chat.modes.analisis.initialTitle'),
+          description: t('chat.modes.analisis.initialDescription')
         };
-        examplePrompts = ['Bagaimana kondisi IHSG minggu ini?', 'Analisis fundamental GOTO', 'Apa itu P/E ratio?'];
+        examplePrompts = t('chat.modes.analisis.examples') as unknown as string[];
         break;
       case 'dokumen':
         initialContent = {
-          title: 'Analisis Dokumen',
-          description: 'Unggah laporan keuangan, materi public expose, atau riset untuk dianalisis oleh AI.'
+          title: t('chat.modes.dokumen.initialTitle'),
+          description: t('chat.modes.dokumen.initialDescription')
         };
-        examplePrompts = ['Ringkas laporan keuangan ini', 'Apa sentimen utama dari public expose ini?', 'Identifikasi risiko utama'];
+        examplePrompts = t('chat.modes.dokumen.examples') as unknown as string[];
         break;
       default:
-        initialContent = { title: 'Chat', description: 'Start chatting' };
+        initialContent = { title: t('chat.title'), description: t('chat.modes.welcomeSubtitle') };
         examplePrompts = [];
     }
 
@@ -126,7 +124,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           .filter(msg => !msg.isInitial && msg.content.text)
           .map(msg => {
             const role = msg.isUser ? 'User' : 'Assistant';
-            return `${role}: ${msg.content.text.replace(/<[^>]*>/g, '')}`; // Strip HTML tags
+            return `${role}: ${msg.content.text!.replace(/<[^>]*>/g, '')}`; // Strip HTML tags
           });
         
         // Combine history with current query
@@ -151,7 +149,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
         // Build the full response with sources
         let fullResponse = formattedAnswer;
         if (parsed.sources.length > 0) {
-          fullResponse += '<br/><br/><strong>Sources:</strong><br/>';
+          fullResponse += `<br/><br/><strong>${t('chat.sourcesLabel')}</strong><br/>`;
           parsed.sources.forEach(source => {
             fullResponse += formatMarkdown(source) + '<br/>';
           });
@@ -166,7 +164,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
         setMessages(prev => [...prev, aiMessage]);
       } catch (error) {
         const errorMessage: Message = {
-          content: { text: 'Maaf, terjadi kesalahan. Silakan coba lagi.' },
+          content: { text: t('chat.error') },
           isInitial: false,
           isUser: false
         };

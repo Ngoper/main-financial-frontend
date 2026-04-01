@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IonModal, IonButton, IonIcon } from '@ionic/react';
 import { close } from 'ionicons/icons';
 import { apiService } from '../../services/api';
+import { useTranslation } from '../../i18n/TranslationContext';
 
 interface FeedbackModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface FeedbackModalProps {
 }
 
 export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const [feedback, setFeedback] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -116,7 +118,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
     <IonModal isOpen={isOpen} onDidDismiss={onClose} className="feedback-modal-wrapper">
       <div className="feedback-modal">
         <div className="modal-header">
-          <h2 className="text-2xl font-bold text-white">Kritik & Saran</h2>
+          <h2 className="text-2xl font-bold text-white">{t('chat.feedbackModal.title')}</h2>
           <IonButton fill="clear" onClick={onClose}>
             <IonIcon icon={close} className="text-white" />
           </IonButton>
@@ -126,9 +128,9 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
           <div className="modal-grid">
             <div className="support-section">
               <div className="support-content">
-                <h3 className="text-lg font-semibold text-white mb-3">Dukung Kami</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">{t('chat.feedbackModal.supportUs')}</h3>
                 <p className="text-gray-400 text-sm mb-4">
-                  Bantu kami terus berkembang dengan memberikan dukungan Anda
+                  {t('chat.feedbackModal.supportDescription')}
                 </p>
                 <div className="qris-container">
                   <img 
@@ -142,16 +144,16 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
             </div>
 
             <div className="feedback-section">
-              <h3 className="text-lg font-semibold text-white mb-4">Berikan Feedback</h3>
+              <h3 className="text-lg font-semibold text-white mb-4">{t('chat.feedbackModal.giveFeedback')}</h3>
               {success ? (
                 <div className="success-message">
-                  <p className="text-green-400 text-center">Terima kasih atas feedback Anda!</p>
+                  <p className="text-green-400 text-center">{t('chat.feedbackModal.success')}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Kritik & Saran
+                      {t('chat.feedbackModal.feedback')}
                     </label>
                     <textarea
                       value={feedback}
@@ -167,7 +169,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose })
                     disabled={loading}
                     className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold disabled:opacity-50"
                   >
-                    {loading ? 'Mengirim...' : 'Kirim Feedback'}
+                    {loading ? t('chat.feedbackModal.submitting') : t('chat.feedbackModal.submit')}
                   </button>
                 </form>
               )}

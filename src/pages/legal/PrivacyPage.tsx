@@ -1,8 +1,11 @@
 import React from 'react';
 import { IonPage, IonContent, useIonRouter } from '@ionic/react';
+import { useTranslation } from '../../i18n/TranslationContext';
+import { LanguageSwitcher } from '../../components/common/LanguageSwitcher';
 
 export const PrivacyPage: React.FC = () => {
   const router = useIonRouter();
+  const { t } = useTranslation();
 
   return (
     <IonPage>
@@ -12,8 +15,9 @@ export const PrivacyPage: React.FC = () => {
             <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
           </a>
           <nav className="flex items-center space-x-8">
-            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">Beranda</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); router.push('/'); }} className="text-gray-400 hover:text-white transition">{t('common.back')}</a>
           </nav>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -21,94 +25,94 @@ export const PrivacyPage: React.FC = () => {
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">Kebijakan Privasi</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">{t('privacy.title')}</h1>
               
               <div className="space-y-6 text-gray-300">
-                <p className="text-sm text-gray-500">Terakhir diperbarui: Januari 2025</p>
+                <p className="text-sm text-gray-500">{t('privacy.lastUpdated')}</p>
                 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">1. Pendahuluan</h2>
-                  <p>PT Ngoper Global Infinity ("Modcus", "kami", "kita") menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.intro.title')}</h2>
+                  <p>{t('privacy.sections.intro.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">2. Informasi yang Kami Kumpulkan</h2>
-                  <p>Kami mengumpulkan beberapa jenis informasi:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.collection.title')}</h2>
+                  <p>{t('privacy.sections.collection.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li><strong>Informasi Akun:</strong> Nama, dan alamat email</li>
-                    <li><strong>Informasi Penggunaan:</strong> Data tentang bagaimana Anda menggunakan layanan kami</li>
-                    <li><strong>Informasi Teknis:</strong> Alamat IP, jenis browser, dan perangkat</li>
-                    <li><strong>Cookies:</strong> Data yang disimpan di perangkat Anda untuk meningkatkan pengalaman</li>
+                    <li><strong>{t('privacy.sections.collection.items.account')}</strong></li>
+                    <li><strong>{t('privacy.sections.collection.items.usage')}</strong></li>
+                    <li><strong>{t('privacy.sections.collection.items.technical')}</strong></li>
+                    <li><strong>{t('privacy.sections.collection.items.cookies')}</strong></li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">3. Bagaimana Kami Menggunakan Informasi Anda</h2>
-                  <p>Kami menggunakan informasi yang dikumpulkan untuk:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.usage.title')}</h2>
+                  <p>{t('privacy.sections.usage.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li>Menyediakan dan memelihara layanan kami</li>
-                    <li>Meningkatkan dan mempersonalisasi pengalaman pengguna</li>
-                    <li>Berkomunikasi dengan Anda tentang layanan kami</li>
-                    <li>Menganalisis penggunaan layanan untuk perbaikan</li>
-                    <li>Mendeteksi dan mencegah penipuan atau penyalahgunaan</li>
+                    <li>{t('privacy.sections.usage.items.provide')}</li>
+                    <li>{t('privacy.sections.usage.items.improve')}</li>
+                    <li>{t('privacy.sections.usage.items.communicate')}</li>
+                    <li>{t('privacy.sections.usage.items.analyze')}</li>
+                    <li>{t('privacy.sections.usage.items.security')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">4. Berbagi Informasi</h2>
-                  <p>Kami tidak menjual data pribadi Anda. Kami hanya membagikan informasi Anda dalam situasi berikut:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.sharing.title')}</h2>
+                  <p>{t('privacy.sections.sharing.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li>Dengan persetujuan eksplisit Anda</li>
-                    <li>Dengan penyedia layanan pihak ketiga yang membantu operasi kami</li>
-                    <li>Untuk mematuhi kewajiban hukum</li>
-                    <li>Untuk melindungi hak dan keamanan kami atau orang lain</li>
+                    <li>{t('privacy.sections.sharing.items.consent')}</li>
+                    <li>{t('privacy.sections.sharing.items.providers')}</li>
+                    <li>{t('privacy.sections.sharing.items.legal')}</li>
+                    <li>{t('privacy.sections.sharing.items.protect')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">5. Keamanan Data</h2>
-                  <p>Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai untuk melindungi data pribadi Anda dari akses tidak sah, kehilangan, atau penyalahgunaan. Namun, tidak ada metode transmisi melalui internet yang 100% aman.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.security.title')}</h2>
+                  <p>{t('privacy.sections.security.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">6. Penyimpanan Data</h2>
-                  <p>Kami menyimpan data pribadi Anda selama diperlukan untuk tujuan yang dijelaskan dalam kebijakan ini, kecuali periode penyimpanan yang lebih lama diperlukan atau diizinkan oleh hukum.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.storage.title')}</h2>
+                  <p>{t('privacy.sections.storage.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">7. Hak Anda</h2>
-                  <p>Anda memiliki hak untuk:</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.rights.title')}</h2>
+                  <p>{t('privacy.sections.rights.content')}</p>
                   <ul className="list-disc list-inside ml-4 mt-2 space-y-2">
-                    <li>Mengakses data pribadi Anda</li>
-                    <li>Memperbaiki data yang tidak akurat</li>
-                    <li>Menghapus data Anda</li>
-                    <li>Membatasi pemrosesan data Anda</li>
-                    <li>Menolak pemrosesan data Anda</li>
-                    <li>Portabilitas data</li>
+                    <li>{t('privacy.sections.rights.items.access')}</li>
+                    <li>{t('privacy.sections.rights.items.correct')}</li>
+                    <li>{t('privacy.sections.rights.items.delete')}</li>
+                    <li>{t('privacy.sections.rights.items.restrict')}</li>
+                    <li>{t('privacy.sections.rights.items.object')}</li>
+                    <li>{t('privacy.sections.rights.items.portability')}</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">8. Cookies</h2>
-                  <p>Kami menggunakan cookies dan teknologi pelacakan serupa untuk meningkatkan pengalaman Anda. Anda dapat mengatur browser Anda untuk menolak cookies, tetapi ini mungkin mempengaruhi fungsionalitas layanan kami.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.cookies.title')}</h2>
+                  <p>{t('privacy.sections.cookies.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">9. Layanan Pihak Ketiga</h2>
-                  <p>Layanan kami mungkin berisi tautan ke situs web pihak ketiga. Kami tidak bertanggung jawab atas praktik privasi situs-situs tersebut. Kami mendorong Anda untuk membaca kebijakan privasi mereka.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.thirdParty.title')}</h2>
+                  <p>{t('privacy.sections.thirdParty.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">10. Perubahan Kebijakan</h2>
-                  <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Kami akan memberi tahu Anda tentang perubahan dengan memposting kebijakan baru di halaman ini dan memperbarui tanggal "Terakhir diperbarui".</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.changes.title')}</h2>
+                  <p>{t('privacy.sections.changes.content')}</p>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl font-bold text-white mb-4">11. Kontak</h2>
-                  <p>Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau ingin menggunakan hak Anda, silakan hubungi kami di:</p>
-                  <p className="mt-2">Email: modcusai@gmail.com</p>
-                  <p>Telepon: +62 821-3109-9968</p>
-                  <p>Alamat: Surabaya, Indonesia</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">{t('privacy.sections.contact.title')}</h2>
+                  <p>{t('privacy.sections.contact.content')}</p>
+                  <p className="mt-2">Email: {t('privacy.sections.contact.email')}</p>
+                  <p>Telepon: {t('privacy.sections.contact.phone')}</p>
+                  <p>{t('privacy.sections.contact.address')}</p>
                 </div>
               </div>
             </div>
