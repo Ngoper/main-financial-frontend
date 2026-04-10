@@ -10,6 +10,17 @@ export default defineConfig({
     react(),
     legacy()
   ],
+  build: {
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'katex-vendor': ['katex'],
+          'markdown-vendor': ['react-markdown', 'remark-gfm', 'remark-math', 'rehype-katex'],
+        }
+      }
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',
