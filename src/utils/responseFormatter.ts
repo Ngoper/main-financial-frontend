@@ -32,6 +32,10 @@ export const parseAIResponse = (answer: string, citations?: Array<{ source: stri
   };
 };
 
+/**
+ * @deprecated Use MarkdownRenderer component instead. This function is retained
+ * for backward compatibility only and will be removed in a future release.
+ */
 export const formatMarkdown = (text: string): string => {
   // Bold text: **text** -> <strong>text</strong>
   text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');

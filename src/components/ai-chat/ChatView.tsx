@@ -5,7 +5,7 @@ import { ChatInput } from './ChatInput';
 import { LoadingIndicator } from './LoadingIndicator';
 import { FeedbackModal } from './FeedbackModal';
 import { apiService, AIQueryRequest } from '../../services/api';
-import { parseAIResponse, formatMarkdown } from '../../utils/responseFormatter';
+import { parseAIResponse } from '../../utils/responseFormatter';
 import { useTranslation } from '../../i18n/TranslationContext';
 
 interface Message {
@@ -124,7 +124,7 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
           .filter(msg => !msg.isInitial && msg.content.text)
           .map(msg => {
             const role = msg.isUser ? 'User' : 'Assistant';
-            return `${role}: ${msg.content.text!.replace(/<[^>]*>/g, '')}`; // Strip HTML tags
+            return `${role}: ${msg.content.text!}`;
           });
         
         // Combine history with current query
@@ -142,17 +142,12 @@ export const ChatView: React.FC<ChatViewProps> = ({ mode, onBack }) => {
         
         const response = await apiService.queryAI(request);
         
-        // Parse and format the response
         const parsed = parseAIResponse(response.answer, response.citations);
-        const formattedAnswer = formatMarkdown(parsed.mainAnswer);
         
-        // Build the full response with sources
-        let fullResponse = formattedAnswer;
+        let fullResponse = parsed.mainAnswer;
         if (parsed.sources.length > 0) {
-          fullResponse += `<br/><br/><strong>${t('chat.sourcesLabel')}</strong><br/>`;
-          parsed.sources.forEach(source => {
-            fullResponse += formatMarkdown(source) + '<br/>';
-          });
+          fullResponse += `\n\n---\n\n**${t('chat.sourcesLabel')}**\n\n`;
+          fullResponse += parsed.sources.join('\n');
         }
         
         const aiMessage: Message = {

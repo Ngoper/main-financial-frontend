@@ -309,21 +309,230 @@ ion-content {
   font-family: 'Poppins', sans-serif;
 }
 
-.ai-message ul {
-  list-style: none;
-  padding: 0;
-  margin: 0.75rem 0 0 0;
-}
-
-.ai-message li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+/* Markdown Renderer Styles */
+.ai-message .md-renderer {
   color: var(--text-primary-dark);
   font-family: 'Poppins', sans-serif;
+  line-height: 1.7;
 }
 
-.ai-message li strong {
+.ai-message .md-renderer .md-p {
+  color: var(--text-primary-dark);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.ai-message .md-renderer .md-p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-message .md-renderer .md-h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--primary-color-dark);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.ai-message .md-renderer .md-h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.ai-message .md-renderer .md-h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.ai-message .md-renderer .md-h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+  line-height: 1.4;
+}
+
+.ai-message .md-renderer .md-strong {
+  color: var(--primary-color-dark);
+  font-weight: 600;
+}
+
+.ai-message .md-renderer .md-em {
+  font-style: italic;
+  color: var(--text-secondary-dark);
+}
+
+.ai-message .md-renderer .md-ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.ai-message .md-renderer .md-ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.ai-message .md-renderer .md-li {
+  margin-bottom: 0.375rem;
+  line-height: 1.7;
+  color: var(--text-primary-dark);
+}
+
+.ai-message .md-renderer .md-li .md-p {
+  margin-bottom: 0.25rem;
+}
+
+.ai-message .md-renderer .md-inline-code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #F59E0B;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875em;
+}
+
+.ai-message .md-renderer .md-code-block-wrapper {
+  position: relative;
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ai-message .md-renderer .md-code-lang {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.75rem;
+  font-size: 0.6875rem;
+  color: var(--text-secondary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.ai-message .md-renderer .md-code-block {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 1rem;
+  padding-top: 1.75rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-dark);
+}
+
+.ai-message .md-renderer .md-code-block code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-primary-dark);
+}
+
+.ai-message .md-renderer .md-pre {
+  margin: 0;
+  background: transparent;
+}
+
+.ai-message .md-renderer .md-table-wrapper {
+  overflow-x: auto;
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-dark);
+}
+
+.ai-message .md-renderer .md-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.ai-message .md-renderer .md-thead {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ai-message .md-renderer .md-th {
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  border-bottom: 2px solid var(--primary-color-dark);
+  font-weight: 600;
+  color: var(--primary-color-dark);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.ai-message .md-renderer .md-td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--border-dark);
+  color: var(--text-primary-dark);
+}
+
+.ai-message .md-renderer .md-tr:last-child .md-td {
+  border-bottom: none;
+}
+
+.ai-message .md-renderer .md-link {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s ease;
+}
+
+.ai-message .md-renderer .md-link:hover {
+  opacity: 0.8;
+}
+
+.ai-message .md-renderer .md-blockquote {
+  border-left: 3px solid var(--primary-color-dark);
+  padding-left: 1rem;
+  margin: 0.75rem 0;
+  color: var(--text-secondary-dark);
+  font-style: italic;
+}
+
+.ai-message .md-renderer .md-blockquote .md-p {
+  margin-bottom: 0.25rem;
+}
+
+.ai-message .md-renderer .md-hr {
+  border: none;
+  border-top: 1px solid var(--border-dark);
+  margin: 1.25rem 0;
+}
+
+/* KaTeX Dark Theme Overrides */
+.ai-message .md-renderer .katex {
+  color: var(--text-primary-dark);
+  font-size: 1.05em;
+}
+
+.ai-message .md-renderer .katex-display {
+  margin: 1rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
+.ai-message .md-renderer .katex-display > .katex {
+  text-align: center;
+}
+
+.ai-message .md-renderer .mord,
+.ai-message .md-renderer .mbin,
+.ai-message .md-renderer .mrel,
+.ai-message .md-renderer .mop,
+.ai-message .md-renderer .mpunct,
+.ai-message .md-renderer .mopen,
+.ai-message .md-renderer .mclose {
+  color: var(--text-primary-dark);
 }
 
 /* Citations Section Styles */

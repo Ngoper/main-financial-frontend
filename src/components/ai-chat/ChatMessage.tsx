@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../../i18n/TranslationContext';
+import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface ChatMessageContent {
   title?: string;
@@ -7,8 +8,6 @@ interface ChatMessageContent {
   text?: string;
   list?: string[];
 }
-
-
 
 interface ChatMessageProps {
   content: ChatMessageContent;
@@ -42,12 +41,12 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ content, isInitial = f
         <img src="/modcus-logo-no-text.png" alt="AI" className="w-full h-full object-contain" />
       </div>
       <div className="message-content">
-        <h3>{content.title}</h3>
-        {content.text && <p dangerouslySetInnerHTML={{ __html: content.text }} />}
-        {content.list && (
+        {content.title && <h3>{content.title}</h3>}
+        {content.text && <MarkdownRenderer content={content.text} />}
+        {content.list && content.list.length > 0 && (
           <ul>
             {content.list.map((item, idx) => (
-              <li key={idx} dangerouslySetInnerHTML={{ __html: item }} />
+              <MarkdownRenderer key={idx} content={item} />
             ))}
           </ul>
         )}
