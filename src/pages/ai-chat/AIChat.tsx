@@ -10,15 +10,6 @@ import { apiService, ChatSession } from '../../services/api';
 export const AIChat: React.FC = () => {
   const [currentView, setCurrentView] = useState<'selection' | 'chat'>('selection');
   const [selectedMode, setSelectedMode] = useState<string | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 900);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSidebarOpen(window.innerWidth > 900);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const {
     sessions,
@@ -50,9 +41,6 @@ export const AIChat: React.FC = () => {
   const handleSelectMode = async (mode: string) => {
     setSelectedMode(mode);
     setCurrentView('chat');
-    if (window.innerWidth <= 900) {
-      setIsSidebarOpen(false);
-    }
     await createSession(buildApiMode(mode), 'newbie', `New ${mode} chat`);
   };
 
@@ -70,9 +58,6 @@ export const AIChat: React.FC = () => {
     await createSession(buildApiMode(selectedMode), 'newbie', `New ${selectedMode} chat`);
     setMessages([]);
     setCurrentView('chat');
-    if (window.innerWidth <= 900) {
-      setIsSidebarOpen(false);
-    }
   };
 
   const handleSelectSession = async (session: ChatSession) => {
@@ -85,9 +70,6 @@ export const AIChat: React.FC = () => {
       setSelectedMode('analisis');
     }
     setCurrentView('chat');
-    if (window.innerWidth <= 900) {
-      setIsSidebarOpen(false);
-    }
   };
 
   const handleDeleteSession = async (session: ChatSession) => {
@@ -113,17 +95,9 @@ export const AIChat: React.FC = () => {
                 sessions={sessions}
                 currentSessionId={currentSessionId}
                 loading={loadingSessions}
-                isOpen={isSidebarOpen}
                 onNewSession={handleNewSession}
                 onSelectSession={handleSelectSession}
                 onDeleteSession={handleDeleteSession}
-              />
-              <div
-                className={`sidebar-overlay ${isSidebarOpen && window.innerWidth <= 900 ? 'active' : ''}`}
-                onClick={() => setIsSidebarOpen(false)}
-                role="button"
-                tabIndex={0}
-                aria-label="Close sidebar"
               />
               <div className="chat-main-panel">
                 <ModeSelectionView onSelectMode={handleSelectMode} />
@@ -133,31 +107,16 @@ export const AIChat: React.FC = () => {
         </>
       ) : (
         <>
-          <AppHeader 
-            onBack={handleBack} 
-            showBackButton={true} 
-            showSidebarToggle={true}
-            isSidebarOpen={isSidebarOpen}
-            onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-            onNewChat={handleNewSession}
-          />
+          <AppHeader onBack={handleBack} showBackButton={true} />
           <IonContent className="chat-page-content">
             <div className="chat-layout">
               <ChatSessionSidebar
                 sessions={sessions}
                 currentSessionId={currentSessionId}
                 loading={loadingSessions}
-                isOpen={isSidebarOpen}
                 onNewSession={handleNewSession}
                 onSelectSession={handleSelectSession}
                 onDeleteSession={handleDeleteSession}
-              />
-              <div
-                className={`sidebar-overlay ${isSidebarOpen && window.innerWidth <= 900 ? 'active' : ''}`}
-                onClick={() => setIsSidebarOpen(false)}
-                role="button"
-                tabIndex={0}
-                aria-label="Close sidebar"
               />
               <div className="chat-main-panel">
                 <ChatView

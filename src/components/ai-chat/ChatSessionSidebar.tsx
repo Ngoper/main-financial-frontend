@@ -1,6 +1,6 @@
 import React from 'react';
-import { IonIcon, IonSpinner } from '@ionic/react';
-import { trashOutline, createOutline } from 'ionicons/icons';
+import { IonButton, IonIcon, IonSpinner } from '@ionic/react';
+import { addOutline, trashOutline } from 'ionicons/icons';
 import { ChatSession } from '../../services/api';
 import { useTranslation } from '../../i18n/TranslationContext';
 
@@ -8,7 +8,6 @@ interface ChatSessionSidebarProps {
   sessions: ChatSession[];
   currentSessionId: number | null;
   loading?: boolean;
-  isOpen: boolean;
   onNewSession: () => void;
   onSelectSession: (session: ChatSession) => void;
   onDeleteSession: (session: ChatSession) => void;
@@ -32,7 +31,6 @@ export const ChatSessionSidebar: React.FC<ChatSessionSidebarProps> = ({
   sessions,
   currentSessionId,
   loading = false,
-  isOpen,
   onNewSession,
   onSelectSession,
   onDeleteSession,
@@ -40,19 +38,13 @@ export const ChatSessionSidebar: React.FC<ChatSessionSidebarProps> = ({
   const { t } = useTranslation();
 
   return (
-    <aside className={`chat-sidebar ${isOpen ? 'open' : 'closed'}`}>
-      <div className="chat-sidebar-header" style={{ padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <h2 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary-dark)', margin: 0 }}>
-          {t('chat.historyTitle')}
-        </h2>
-        <button
-          onClick={onNewSession}
-          className="text-gray-400 hover:text-white transition p-1"
-          title={t('chat.historyNew')}
-          type="button"
-        >
-          <IonIcon icon={createOutline} style={{ fontSize: '1.25rem' }} />
-        </button>
+    <aside className="chat-sidebar">
+      <div className="chat-sidebar-header">
+        <h2>{t('chat.historyTitle')}</h2>
+        <IonButton fill="solid" size="small" onClick={onNewSession}>
+          <IonIcon icon={addOutline} slot="start" />
+          {t('chat.historyNew')}
+        </IonButton>
       </div>
 
       {loading ? (

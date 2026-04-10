@@ -225,54 +225,25 @@ ion-content {
 }
 
 .chat-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
   height: 100%;
   width: 100%;
-  position: relative;
-  overflow: hidden;
 }
 
 .chat-main-panel {
-  flex: 1;
   min-width: 0;
   height: 100%;
   position: relative;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .chat-sidebar {
-  width: 300px;
-  flex-shrink: 0;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.96), rgba(19, 24, 35, 0.96));
   border-right: 1px solid var(--border-dark);
   display: flex;
   flex-direction: column;
   min-height: 0;
-  height: 100%;
-  z-index: 40;
-  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chat-sidebar.closed {
-  margin-left: -300px;
-}
-
-.sidebar-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 30;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+  overflow: hidden;
 }
 
 .chat-sidebar-header {
@@ -1000,25 +971,13 @@ ion-button {
 /* Responsive Design */
 @media (max-width: 900px) {
   .chat-layout {
-    display: flex;
+    grid-template-columns: 1fr;
   }
 
   .chat-sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    border-right: 1px solid var(--border-dark);
-    margin-left: 0 !important;
-    transform: translateX(-100%);
-  }
-
-  .chat-sidebar.open {
-    transform: translateX(0);
-  }
-
-  .chat-sidebar.closed {
-    transform: translateX(-100%);
+    border-right: 0;
+    border-bottom: 1px solid var(--border-dark);
+    max-height: 240px;
   }
 
   .chat-sidebar-list {

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { IonIcon } from '@ionic/react';
-import { menuOutline, createOutline } from 'ionicons/icons';
 import { getCurrentUser, logout, User } from '../../services/api';
 import { useTranslation } from '../../i18n/TranslationContext';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
@@ -9,20 +7,9 @@ import { LanguageSwitcher } from '../common/LanguageSwitcher';
 interface AppHeaderProps {
   onBack?: () => void;
   showBackButton?: boolean;
-  showSidebarToggle?: boolean;
-  isSidebarOpen?: boolean;
-  onToggleSidebar?: () => void;
-  onNewChat?: () => void;
 }
 
-export const AppHeader: React.FC<AppHeaderProps> = ({ 
-  onBack, 
-  showBackButton = false,
-  showSidebarToggle = false,
-  isSidebarOpen = false,
-  onToggleSidebar,
-  onNewChat
-}) => {
+export const AppHeader: React.FC<AppHeaderProps> = ({ onBack, showBackButton = false }) => {
   const { t } = useTranslation();
   const history = useHistory();
   const [user, setUser] = useState<User | null>(null);
@@ -39,40 +26,18 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   return (
     <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-lg border-b border-gray-800">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          {showSidebarToggle && (
-            <button 
-              onClick={onToggleSidebar}
-              className="text-gray-400 hover:text-white transition flex items-center justify-center p-2 rounded-md hover:bg-gray-800"
-              title={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
-            >
-              <IonIcon icon={menuOutline} style={{ fontSize: '1.5rem' }} />
-            </button>
-          )}
-          
-          {showSidebarToggle && onNewChat && (
-            <button 
-              onClick={onNewChat}
-              className="text-gray-400 hover:text-white transition flex items-center justify-center p-2 rounded-md hover:bg-gray-800 md:hidden"
-              title={t('chat.historyNew')}
-            >
-              <IonIcon icon={createOutline} style={{ fontSize: '1.25rem' }} />
-            </button>
-          )}
-
-          {showBackButton ? (
-            <button onClick={onBack} className="text-gray-400 hover:text-white transition flex items-center gap-2 font-medium">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {t('common.back')}
-            </button>
-          ) : (
-            <a href="/home" className="flex items-center">
-              <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
-            </a>
-          )}
-        </div>
+        {showBackButton ? (
+          <button onClick={onBack} className="text-gray-400 hover:text-white transition flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            {t('common.back')}
+          </button>
+        ) : (
+          <a href="/home">
+            <img src="/modcus-logo.png" alt="Modcus" className="h-8" />
+          </a>
+        )}
         <div className="flex items-center space-x-4">
           <LanguageSwitcher />
           {user ? (
