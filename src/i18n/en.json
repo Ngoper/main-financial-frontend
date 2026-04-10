@@ -86,11 +86,6 @@
     "inputPlaceholder": "Ask anything about investing...",
     "sources": "Sources",
     "sourcesLabel": "Sources:",
-    "historyTitle": "History",
-    "historyNew": "New",
-    "historyEmpty": "No history yet",
-    "historyNoMessages": "No messages",
-    "loadOlder": "Load older messages",
     "tryAnotherPrompt": "Try Another Prompt",
     "feedbackModal": {
       "title": "Criticism & Suggestions",

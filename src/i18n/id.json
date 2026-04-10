@@ -86,11 +86,6 @@
     "inputPlaceholder": "Tanyakan apa saja tentang investasi...",
     "sources": "Sumber",
     "sourcesLabel": "Sumber:",
-    "historyTitle": "Riwayat",
-    "historyNew": "Baru",
-    "historyEmpty": "Belum ada riwayat",
-    "historyNoMessages": "Belum ada pesan",
-    "loadOlder": "Muat pesan lama",
     "tryAnotherPrompt": "Coba Prompt Lain",
     "feedbackModal": {
       "title": "Kritik & Saran",
