@@ -12,6 +12,8 @@ export interface AIQueryRequest {
   mode: 'company-analysis' | 'stock-recommendations' | 'document-analysis';
   level: 'newbie' | 'novice' | 'expert';
   query: string;
+  sessionId?: number;
+  conversationId?: string;
   tickers?: string[];
   ticker?: string;
   artifactId?: string;
@@ -28,6 +30,8 @@ export interface SourceRef {
 
 export interface AIQueryResponse {
   answer: string;
+  session_id?: number;
+  conversation_id?: string;
   sources?: SourceRef[];
   citations?: Array<{ source: string; type: string }>;
   metadata?: {
@@ -43,6 +47,44 @@ export interface AIQueryResponse {
       generate: number;
     };
   };
+}
+
+export interface ChatSession {
+  ID: number;
+  user_id: number;
+  conversation_id: string;
+  mode: string;
+  level: string;
+  title: string;
+  status: 'active' | 'archived' | 'deleted';
+  last_message_at: string;
+  last_message_preview: string;
+  CreatedAt: string;
+  UpdatedAt: string;
+}
+
+export interface ChatMessage {
+  ID: number;
+  session_id: number;
+  role: 'user' | 'assistant';
+  content: string;
+  citations: string;
+  metadata: string;
+  CreatedAt: string;
+  UpdatedAt: string;
+}
+
+export interface ChatSessionListResponse {
+  data: ChatSession[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface ChatMessagesResponse {
+  data: ChatMessage[];
+  next_cursor: number;
+  has_more: boolean;
 }
 
 class ApiService {
@@ -87,6 +129,12 @@ class ApiService {
         formData.append('mode', request.mode);
         formData.append('level', request.level);
         formData.append('query', request.query);
+        if (request.sessionId) {
+          formData.append('session_id', String(request.sessionId));
+        }
+        if (request.conversationId) {
+          formData.append('conversation_id', request.conversationId);
+        }
         
         if (request.tickers) {
           request.tickers.forEach(ticker => formData.append('tickers', ticker));
@@ -125,6 +173,8 @@ class ApiService {
           mode: request.mode,
           level: request.level,
           query: request.query,
+          ...(request.sessionId && { session_id: request.sessionId }),
+          ...(request.conversationId && { conversation_id: request.conversationId }),
           ...(request.tickers && { tickers: request.tickers }),
           ...(request.ticker && { ticker: request.ticker }),
           ...(request.artifactId && { artifactId: request.artifactId })
@@ -204,6 +254,83 @@ class ApiService {
     }
 
     return response.json();
+  }
+
+  async createChatSession(payload: { mode: string; level: string; title?: string }): Promise<ChatSession> {
+    const response = await fetch(`${API_BASE_URL}/chat/sessions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to create session' }));
+      throw new Error(error.error || error.detail || 'Failed to create session');
+    }
+
+    return response.json();
+  }
+
+  async listChatSessions(page = 1, limit = 20): Promise<ChatSessionListResponse> {
+    const response = await fetch(`${API_BASE_URL}/chat/sessions?page=${page}&limit=${limit}`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to load sessions' }));
+      throw new Error(error.error || error.detail || 'Failed to load sessions');
+    }
+
+    return response.json();
+  }
+
+  async getSessionMessages(sessionId: number, cursor?: number, limit = 50): Promise<ChatMessagesResponse> {
+    const cursorParam = cursor ? `&cursor=${cursor}` : '';
+    const response = await fetch(`${API_BASE_URL}/chat/sessions/${sessionId}/messages?limit=${limit}${cursorParam}`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to load messages' }));
+      throw new Error(error.error || error.detail || 'Failed to load messages');
+    }
+
+    return response.json();
+  }
+
+  async updateChatSession(sessionId: number, payload: { title?: string; status?: string }): Promise<ChatSession> {
+    const response = await fetch(`${API_BASE_URL}/chat/sessions/${sessionId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to update session' }));
+      throw new Error(error.error || error.detail || 'Failed to update session');
+    }
+
+    return response.json();
+  }
+
+  async deleteChatSession(sessionId: number): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/chat/sessions/${sessionId}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to delete session' }));
+      throw new Error(error.error || error.detail || 'Failed to delete session');
+    }
   }
 }
 
