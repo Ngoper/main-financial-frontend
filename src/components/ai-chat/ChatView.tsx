@@ -21,6 +21,7 @@ interface ChatViewProps {
   onLoadMoreMessages?: (limit?: number) => Promise<void>;
   hasMoreMessages?: boolean;
   loadingMessages?: boolean;
+  createSession?: (mode: string, level: 'newbie' | 'novice' | 'expert', title?: string) => Promise<{ ID: number; conversation_id?: string }>;
 }
 
 export const ChatView: React.FC<ChatViewProps> = ({
@@ -33,6 +34,7 @@ export const ChatView: React.FC<ChatViewProps> = ({
   onLoadMoreMessages,
   hasMoreMessages = false,
   loadingMessages = false,
+  createSession,
 }) => {
   const { t } = useTranslation();
   const [input, setInput] = useState('');
@@ -135,6 +137,24 @@ export const ChatView: React.FC<ChatViewProps> = ({
       setTimeout(() => setShowFeedbackModal(true), 1000);
     }
 
+    let currentSessionId = sessionId;
+    let currentConversationId = conversationId;
+
+    if (!currentSessionId && createSession) {
+      try {
+        const modeApiMap: Record<string, string> = {
+          rekomendasi: 'stock-recommendations',
+          analisis: 'company-analysis',
+          dokumen: 'document-analysis',
+        };
+        const { ID, conversation_id } = await createSession(modeApiMap[mode] || 'company-analysis', selectedLevel, input.slice(0, 50));
+        currentSessionId = ID;
+        currentConversationId = conversation_id || null;
+      } catch (err) {
+        console.error('Failed to create session:', err);
+      }
+    }
+
     try {
       const modeMap: Record<string, AIQueryRequest['mode']> = {
         rekomendasi: 'stock-recommendations',
@@ -146,15 +166,15 @@ export const ChatView: React.FC<ChatViewProps> = ({
         mode: modeMap[mode] || 'company-analysis',
         level: selectedLevel,
         query: input,
-        ...(sessionId ? { sessionId } : {}),
-        ...(conversationId ? { conversationId } : {}),
+        ...(currentSessionId ? { sessionId: currentSessionId } : {}),
+        ...(currentConversationId ? { conversationId: currentConversationId } : {}),
         ...(selectedFiles.length > 0 ? { files: selectedFiles } : {}),
       };
 
       const response = await apiService.queryAI(request);
 
-      if (sessionId && response.conversation_id) {
-        onSessionLinked?.(sessionId, response.conversation_id);
+      if (currentSessionId && response.conversation_id) {
+        onSessionLinked?.(currentSessionId, response.conversation_id);
       }
 
       const parsed = parseAIResponse(response.answer, response.citations);
@@ -172,6 +192,16 @@ export const ChatView: React.FC<ChatViewProps> = ({
         isUser: false,
         citations: parsed.citations,
       };
+
+      if (currentSessionId) {
+        try {
+          await apiService.saveMessage(currentSessionId, input, 'user');
+          await apiService.saveMessage(currentSessionId, fullResponse, 'assistant');
+          await apiService.updateLastMessage(currentSessionId, fullResponse.slice(0, 100));
+        } catch (err) {
+          console.error('Failed to save messages:', err);
+        }
+      }
 
       onMessagesChange([...baseMessages, aiMessage]);
     } catch {

@@ -332,6 +332,28 @@ class ApiService {
       throw new Error(error.error || error.detail || 'Failed to delete session');
     }
   }
+
+  async saveMessage(sessionId: number, content: string, role: 'user' | 'assistant'): Promise<ChatMessage> {
+    const response = await fetch(`${API_BASE_URL}/chat/sessions/${sessionId}/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders(),
+      },
+      body: JSON.stringify({ content, role }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ error: 'Failed to save message' }));
+      throw new Error(error.error || error.detail || 'Failed to save message');
+    }
+
+    return response.json();
+  }
+
+  async updateLastMessage(sessionId: number, lastMessagePreview: string): Promise<void> {
+    await this.updateChatSession(sessionId, { title: lastMessagePreview.slice(0, 100) });
+  }
 }
 
 

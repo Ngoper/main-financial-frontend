@@ -50,10 +50,10 @@ export const AIChat: React.FC = () => {
   const handleSelectMode = async (mode: string) => {
     setSelectedMode(mode);
     setCurrentView('chat');
+    clearSelection();
     if (window.innerWidth <= 900) {
       setIsSidebarOpen(false);
     }
-    await createSession(buildApiMode(mode), 'newbie', `New ${mode} chat`);
   };
 
   const handleBack = () => {
@@ -67,7 +67,7 @@ export const AIChat: React.FC = () => {
       setCurrentView('selection');
       return;
     }
-    await createSession(buildApiMode(selectedMode), 'newbie', `New ${selectedMode} chat`);
+    clearSelection();
     setMessages([]);
     setCurrentView('chat');
     if (window.innerWidth <= 900) {
@@ -170,6 +170,7 @@ export const AIChat: React.FC = () => {
                   onLoadMoreMessages={loadMoreMessages}
                   hasMoreMessages={hasMoreMessages}
                   loadingMessages={loadingMessages}
+                  createSession={createSession}
                 />
               </div>
             </div>
